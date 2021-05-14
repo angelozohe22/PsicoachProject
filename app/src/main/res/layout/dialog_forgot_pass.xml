@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center_horizontal">
+
+    <View
+        android:id="@+id/view_card_support"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        app:layout_constraintLeft_toLeftOf="@id/card"
+        app:layout_constraintRight_toRightOf="@id/card"
+        app:layout_constraintTop_toTopOf="@id/card"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:cardCornerRadius="64dp"
+        android:elevation="0dp"
+        app:layout_constraintLeft_toLeftOf="@id/view_card_support"
+        app:layout_constraintRight_toRightOf="@id/view_card_support"
+        app:layout_constraintTop_toTopOf="@id/view_card_support"
+        app:layout_constraintBottom_toBottomOf="@id/view_card_support">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_google"
+            android:layout_gravity="center"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        app:cardBackgroundColor="@color/primary"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lbl_title_card"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="78dp"
+                android:text="Ingresa un correo asociado con una cuenta"
+                android:textAlignment="center"
+                android:fontFamily="@font/googlesans_bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lbl_desc_card"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Te enviaremos un link para resetear tu contraseña"
+                android:textAlignment="center"
+                android:fontFamily="@font/googlesans_regular"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lbl_title_card"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/cet_email_recovery_pass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="68dp"
+                app:errorEnabled="true"
+                android:focusableInTouchMode="true"
+                app:errorTextAppearance="@style/ErrorAppearance"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lbl_desc_card"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:endIconMode="clear_text"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_email_recovery_pass"
+                    android:hint="Correo"
+                    android:background="@drawable/card_corner_and_stroke"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="1000"
+                    style="@style/InputEditText"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/view_btn_support"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        app:layout_constraintLeft_toLeftOf="@id/card"
+        app:layout_constraintRight_toRightOf="@id/card"
+        app:layout_constraintBottom_toBottomOf="@id/card"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_recovery_pass"
+        android:text="Recuperar contraseña"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintLeft_toLeftOf="@id/view_btn_support"
+        app:layout_constraintRight_toRightOf="@id/view_btn_support"
+        app:layout_constraintBottom_toBottomOf="@id/view_btn_support"
+        style="@style/ButtonCornerOutline"
+        />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
