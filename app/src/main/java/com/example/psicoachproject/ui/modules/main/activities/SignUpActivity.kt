@@ -3,9 +3,11 @@ package com.example.psicoachproject.ui.modules.main.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.widget.addTextChangedListener
 import com.example.psicoachproject.R
 import com.example.psicoachproject.databinding.ActivitySignUpBinding
 import com.example.psicoachproject.common.utils.afterTextChanged
@@ -51,7 +53,10 @@ class SignUpActivity : AppCompatActivity() {
 
         //Click listeners
         lblSignIn.setOnClickListener { goToSignIn() }
-        btnBackSignUp.setOnClickListener { onBackPressed(); finish() }
+        btnBackSignUp.setOnClickListener {
+            onBackPressed()
+            finish()
+        }
 
     }
 
@@ -62,24 +67,20 @@ class SignUpActivity : AppCompatActivity() {
             val email   = etEmailSignUp.text.toString().trim()
             val password= etPasswordSignUp.text.toString().trim()
 
-            if (email.isNotEmpty()){
-                cetEmailSignUp.error = when {
-                    !isEmailValid(email) -> "Correo incorrecto"
-                    else -> null
-                }
+            cetEmailSignUp.error = when {
+                !isEmailValid(email) && !isNullOrEmpty(email) -> "Correo incorrecto"
+                else -> null
             }
 
-            if (password.isNotEmpty()){
-                cetPasswordSignUp.error = when {
-                    password.length <= 5 || password.length > 20 -> "La contraseña debe tener entre 5 a 20 caracteres"
-                    else -> null
-                }
+            cetPasswordSignUp.error = when {
+                password.length !in 5..20 && !isNullOrEmpty(password) -> "La contraseña debe tener entre 5 a 20 caracteres"
+                else -> null
             }
 
             btnSignUp.apply {
                 isEnabled = !isNullOrEmpty(email)
                             && !isNullOrEmpty(password)
-                            && password.length >= 5 || password.length < 20
+                            && password.length !in 5..20
 
                 if (isEnabled) setBackgroundResource(R.drawable.btn_corner)
                 else setBackgroundResource(R.drawable.btn_corner_disable)
@@ -87,7 +88,6 @@ class SignUpActivity : AppCompatActivity() {
                 setOnClickListener {
                     signUp(name, email, password)
                 }
-
             }
         }
 
