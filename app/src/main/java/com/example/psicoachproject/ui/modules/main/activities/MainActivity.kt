@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
         addBottomDots(0)
 
-        vpSlider?.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+        vpSlider.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 addBottomDots(position)
@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addBottomDots(currentPage: Int) {
-        lnIndSlider?.removeAllViews()
+        lnIndSlider.removeAllViews()
         val drawaInactive = ContextCompat.getDrawable(this, R.drawable.slider_dot_inactive)
         val drawaActive= ContextCompat.getDrawable(this, R.drawable.slider_dot_active)
         drawaInactive?.alpha = alphaHidden
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                 listView[i].setImageDrawable(drawaInactive)
                 val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                 params.setMargins(marginItem, marginMin, marginItem, marginMin)
-                lnIndSlider?.addView(listView[i], params)
+                lnIndSlider.addView(listView[i], params)
             }
             listView[currentPage].setImageDrawable(drawaActive)
         }
