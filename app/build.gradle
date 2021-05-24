@@ -65,14 +65,16 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
 
+
     //ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
     //LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
     //Lifecycle only (without ViewModel or LiveData) we can use coroutines with this
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+
     //Coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
 
     //Coil
     implementation 'io.coil-kt:coil:1.2.1'
