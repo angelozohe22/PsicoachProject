@@ -4,15 +4,23 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.Observer
 import com.example.psicoachproject.R
 import com.example.psicoachproject.databinding.ActivitySignUpBinding
 import com.example.psicoachproject.common.utils.afterTextChanged
 import com.example.psicoachproject.common.utils.isEmailValid
 import com.example.psicoachproject.common.utils.isNullOrEmpty
+import com.example.psicoachproject.core.Resource
+import com.example.psicoachproject.data.remote.source.auth.AuthRemoteDataSourceImpl
+import com.example.psicoachproject.domain.repository.auth.AuthRepositoryImpl
+import com.example.psicoachproject.ui.modules.main.activities.viewmodel.AuthViewModel
+import com.example.psicoachproject.ui.modules.main.activities.viewmodel.AuthViewModelFactory
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -28,6 +36,14 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var btnSignUp          : AppCompatButton
     private lateinit var lblSignIn          : AppCompatTextView
     private lateinit var btnBackSignUp      : AppCompatImageButton
+
+    private val viewModel by viewModels<AuthViewModel>{
+        AuthViewModelFactory(
+            AuthRepositoryImpl(
+                AuthRemoteDataSourceImpl()
+            )
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,7 +96,7 @@ class SignUpActivity : AppCompatActivity() {
             btnSignUp.apply {
                 isEnabled = !isNullOrEmpty(email)
                             && !isNullOrEmpty(password)
-                            && password.length !in 5..20
+                            && password.length in 5..20
 
                 if (isEnabled) setBackgroundResource(R.drawable.btn_corner)
                 else setBackgroundResource(R.drawable.btn_corner_disable)
@@ -97,7 +113,22 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun signUp(name: String, email: String, password: String ){
-        //Usar viewmodel
+        viewModel.signUp(name, email, password).observe(this, Observer {
+            it?.let { result ->
+                when (result) {
+                    Resource.Loading -> {
+                        println("Cargando...")
+                    }
+                    is Resource.Success -> {
+                        val asd = result.data
+                        Toast.makeText(this, asd, Toast.LENGTH_SHORT).show()
+                    }
+                    is Resource.Failure -> {
+                        Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
     }
 
     private fun goToSignIn(){

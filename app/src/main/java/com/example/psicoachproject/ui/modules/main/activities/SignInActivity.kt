@@ -4,9 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.lifecycle.Observer
 import com.example.psicoachproject.R
 import com.example.psicoachproject.databinding.ActivitySignInBinding
 import com.example.psicoachproject.databinding.DialogForgotPassBinding
@@ -14,6 +17,11 @@ import com.example.psicoachproject.common.utils.afterTextChanged
 import com.example.psicoachproject.common.utils.customDialog
 import com.example.psicoachproject.common.utils.isEmailValid
 import com.example.psicoachproject.common.utils.isNullOrEmpty
+import com.example.psicoachproject.core.Resource
+import com.example.psicoachproject.data.remote.source.auth.AuthRemoteDataSourceImpl
+import com.example.psicoachproject.domain.repository.auth.AuthRepositoryImpl
+import com.example.psicoachproject.ui.modules.main.activities.viewmodel.AuthViewModel
+import com.example.psicoachproject.ui.modules.main.activities.viewmodel.AuthViewModelFactory
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -29,6 +37,14 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var etEmailSignIn      : TextInputEditText
     private lateinit var cetPasswordSignIn  : TextInputLayout
     private lateinit var etPasswordSignIn   : TextInputEditText
+
+    private val viewModel by viewModels<AuthViewModel>{
+        AuthViewModelFactory(
+            AuthRepositoryImpl(
+                AuthRemoteDataSourceImpl()
+            )
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,7 +115,23 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun signIn(email: String, password: String ){
-        //Usar viewmodel
+        viewModel.signIn(email, password).observe(this, Observer {
+            it?.let { result ->
+                when (result) {
+                    Resource.Loading -> {
+                        println("Cargando...")
+                    }
+                    is Resource.Success -> {
+                        val asd = result.data
+                        Toast.makeText(this, asd, Toast.LENGTH_SHORT).show()
+                    }
+                    is Resource.Failure -> {
+                        println("Error ${result.message}")
+                        Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
     }
 
     private fun showForgotPasswordDialog() {

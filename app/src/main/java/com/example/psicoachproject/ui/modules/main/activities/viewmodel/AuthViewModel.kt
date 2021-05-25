@@ -3,8 +3,12 @@ package com.example.psicoachproject.ui.modules.main.activities.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.psicoachproject.core.Resource
+import com.example.psicoachproject.data.remote.source.dto.ErrorResponse
 import com.example.psicoachproject.domain.repository.auth.AuthRepository
+import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
+import org.json.JSONObject
+import retrofit2.HttpException
 import java.lang.Exception
 
 /**
@@ -18,8 +22,19 @@ class AuthViewModel(
         emit(Resource.Loading)
         try {
             emit(Resource.Success(repository.signIn(email, password)))
-        }catch (e: Exception){
-            emit(Resource.Failure(e))
+        }catch (t: Throwable){
+            if(t is HttpException){
+                try {
+                    val errorResponse = t.response()
+                    val jsonError = JSONObject(errorResponse?.body().toString())
+                    val result = Gson().fromJson(jsonError.toString(), ErrorResponse::class.java)
+                    emit(Resource.Failure(result.error.first().message))
+                }catch (e: Exception){
+                    emit(Resource.Failure("Ocurrió un error en servicio - ${e.message.toString()}"))
+                }
+            }else{
+                emit(Resource.Failure("Ocurrió un error"))
+            }
         }
     }
 
@@ -27,8 +42,20 @@ class AuthViewModel(
         emit(Resource.Loading)
         try {
             emit(Resource.Success(repository.signUp(name, email, password)))
-        }catch (e: Exception){
-            emit(Resource.Failure(e))
+        }catch (t: Throwable){
+            println("Error sign up -> ${t.message.toString()}")
+            if(t is HttpException){
+                try {
+                    val errorResponse = t.response()
+                    val jsonError = JSONObject(errorResponse?.body().toString())
+                    val result = Gson().fromJson(jsonError.toString(), ErrorResponse::class.java)
+                    emit(Resource.Failure(result.error.first().message))
+                }catch (e: Exception){
+                    emit(Resource.Failure("Ocurrió un error en servicio - ${e.message.toString()}"))
+                }
+            }else{
+                emit(Resource.Failure("Ocurrió un error"))
+            }
         }
     }
 

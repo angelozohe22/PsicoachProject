@@ -1,6 +1,5 @@
 package com.example.psicoachproject.data.remote.source.auth
 
-import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.data.remote.source.dto.DataResponse
 import com.example.psicoachproject.data.remote.source.dto.UserResponse
 
@@ -9,7 +8,7 @@ import com.example.psicoachproject.data.remote.source.dto.UserResponse
  */
 interface AuthRemoteDataSource {
 
-    suspend fun signIn(email: String, password: String): Resource<DataResponse>
-    suspend fun signUp(name: String, email: String, password: String): Resource<UserResponse>
+    suspend fun signIn(email: String, password: String): DataResponse
+    suspend fun signUp(name: String, email: String, password: String): UserResponse
 
 }

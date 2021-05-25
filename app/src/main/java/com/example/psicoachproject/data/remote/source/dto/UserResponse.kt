@@ -15,7 +15,7 @@ data class DataResponse(
 )
 
 data class ErrorResponse(
-    @field:SerializedName("errors")   val error  : Error
+    @field:SerializedName("errors")   val error  : List<Error>
 )
 
 data class Error(
