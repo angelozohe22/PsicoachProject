@@ -2,6 +2,7 @@ package com.example.psicoachproject.data.remote.source.auth
 
 import android.util.Log
 import android.widget.Toast
+import com.example.psicoachproject.common.utils.isNullOrEmpty
 import com.example.psicoachproject.data.remote.RetrofitBuilder.getConexionRetrofit
 import com.example.psicoachproject.data.remote.service.auth.AuthService
 import com.example.psicoachproject.data.remote.source.dto.DataResponse
@@ -28,6 +29,7 @@ class AuthRemoteDataSourceImpl
     }
 
     override suspend fun signUp(name: String, email: String, password: String): UserResponse {
-        return service.signUp(email, password, name)
+        return if (!isNullOrEmpty(name)) service.signUp(email, password, name)
+        else service.signUpWithoutName(email, password)
     }
 }

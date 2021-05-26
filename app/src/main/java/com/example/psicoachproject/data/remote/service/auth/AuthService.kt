@@ -22,4 +22,10 @@ interface AuthService {
     suspend fun signUp (@Field("email")     email    : String,
                         @Field("password")  password : String,
                         @Field("name")      name     : String): UserResponse
+
+    @POST(Constants.SERVICE_ROUTE_SIGN_UP)
+    @Headers("Accept: application/json")
+    @FormUrlEncoded
+    suspend fun signUpWithoutName (@Field("email")     email    : String,
+                                   @Field("password")  password : String): UserResponse
 }
