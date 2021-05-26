@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * Created by Angelo on 5/23/2021
  */
 data class UserResponse(
-    @field:SerializedName("message") val message: String
+    @field:SerializedName("message") var message: String = ""
 )
 
 data class DataResponse(

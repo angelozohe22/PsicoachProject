@@ -5,6 +5,7 @@ package com.example.psicoachproject.core.aplication
  */
 object Constants {
 
+    val ROOT_URL: String = ""
     const val SERVICE_ROUTE_SIGN_IN = "auth/"
     const val SERVICE_ROUTE_SIGN_UP = "register"
 

@@ -1,23 +1,26 @@
 package com.example.psicoachproject.data.remote
 
 import com.example.psicoachproject.common.UnsafeOkHttpClient
-import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 /**
  * Created by Angelo on 5/23/2021
  */
 object RetrofitBuilder {
+    val BASE_URL = "https://psicouch-apiv2.herokuapp.com/"
 
-    private const val BASE_URL = "https://psicouch-apiv2.herokuapp.com/"
-
-    fun getRetrofit(): Retrofit {
+    fun getConexionRetrofit(): Retrofit {
         val okHttpClient = UnsafeOkHttpClient.getUnsafeOkHttpClient()
         return Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(okHttpClient.build())
-                .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-                .build()
+//            .client(myOkHttpClient)
+            .client(okHttpClient.build())
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+            .build()
     }
 }
