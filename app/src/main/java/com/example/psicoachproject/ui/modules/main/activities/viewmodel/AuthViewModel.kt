@@ -49,7 +49,11 @@ class AuthViewModel(
                     val errorResponse = t.response()
                     val jsonError = JSONObject(errorResponse?.body().toString())
                     val result = Gson().fromJson(jsonError.toString(), ErrorResponse::class.java)
-                    emit(Resource.Failure(result.error.first().message))
+                    if (errorResponse?.code() == 422){
+                        emit(Resource.Failure(result.error.first().message))
+                    }else {
+                        emit(Resource.Failure(result.message))
+                    }
                 }catch (e: Exception){
                     emit(Resource.Failure("Ocurrió un error en servicio - ${e.message.toString()}"))
                 }

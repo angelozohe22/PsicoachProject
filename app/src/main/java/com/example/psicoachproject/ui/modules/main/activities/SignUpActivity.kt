@@ -124,6 +124,7 @@ class SignUpActivity : AppCompatActivity() {
                         Toast.makeText(this, asd, Toast.LENGTH_SHORT).show()
                     }
                     is Resource.Failure -> {
+                        println("message: ${result.message}")
                         Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
                     }
                 }
