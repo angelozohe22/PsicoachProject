@@ -14,7 +14,7 @@ class MyApp: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+//        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         prefs = MySharePreferences(applicationContext)
     }
 }

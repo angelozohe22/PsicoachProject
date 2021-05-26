@@ -15,12 +15,10 @@ object RetrofitBuilder {
     fun getConexionRetrofit(): Retrofit {
         val okHttpClient = UnsafeOkHttpClient.getUnsafeOkHttpClient()
         return Retrofit.Builder()
-//            .client(myOkHttpClient)
             .client(okHttpClient.build())
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-//            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .build()
     }
 }

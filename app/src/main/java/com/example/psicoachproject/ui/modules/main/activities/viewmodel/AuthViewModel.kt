@@ -25,11 +25,15 @@ class AuthViewModel(
             emit(Resource.Success(repository.signIn(email, password)))
         }catch (t: Throwable){
             if(t is HttpException){
+                val errorResponse = t.response()
                 try {
-                    val errorResponse = t.response()
-                    val jsonError = JSONObject(errorResponse?.body().toString())
+                    val jsonError = JSONObject(errorResponse?.errorBody()?.string())
                     val result = Gson().fromJson(jsonError.toString(), ErrorResponse::class.java)
-                    emit(Resource.Failure(result.error.first().message))
+                    if (errorResponse?.code() == 422){
+                        emit(Resource.Failure(result.error.first().message))
+                    }else {
+                        emit(Resource.Failure(result.message))
+                    }
                 }catch (e: Exception){
                     emit(Resource.Failure("Ocurrió un error en servicio - ${e.message.toString()}"))
                 }
@@ -73,31 +77,6 @@ class AuthViewModel(
                 }
             }else{
                 Log.e("TAG", "ENTRO AL ELSE MRD " )
-                emit(Resource.Failure("Ocurrió un error"))
-            }
-        }
-
-
-
-        try {
-        }catch (t: Throwable){
-            println("Error sign up -> ${t.message.toString()}")
-            if(t is HttpException){
-                try {
-                    val errorResponse = t.response()
-                    Log.e("TAG", "errorResponse: $errorResponse" )
-                    val jsonError = JSONObject(errorResponse?.body().toString())
-                    Log.e("TAG", "jsonError: $jsonError" )
-                    val result = Gson().fromJson(jsonError.toString(), ErrorResponse::class.java)
-                    if (errorResponse?.code() == 422){
-                        emit(Resource.Failure(result.error.first().message))
-                    }else {
-                        emit(Resource.Failure(result.message))
-                    }
-                }catch (e: Exception){
-                    emit(Resource.Failure("Ocurrió un error en servicio - ${e.message.toString()}"))
-                }
-            }else{
                 emit(Resource.Failure("Ocurrió un error"))
             }
         }

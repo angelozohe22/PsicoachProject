@@ -122,11 +122,9 @@ class SignInActivity : AppCompatActivity() {
                         println("Cargando...")
                     }
                     is Resource.Success -> {
-                        val asd = result.data
-                        Toast.makeText(this, asd, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, result.data, Toast.LENGTH_SHORT).show()
                     }
                     is Resource.Failure -> {
-                        println("Error ${result.message}")
                         Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
                     }
                 }
