@@ -17,10 +17,7 @@ class AuthRepositoryImpl(
 
     override suspend fun signIn(email: String, password: String): String {
         val result = remote.signIn(email, password)
-        if (!isNullOrEmpty(result.type)){
-            preferences.token = result.token
-        }
-
+        if (!isNullOrEmpty(result.type)){ preferences.token = result.token }
         return "Logeo correctamente"
     }
 
