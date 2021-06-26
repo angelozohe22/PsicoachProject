@@ -21,8 +21,13 @@ class AuthRepositoryImpl(
         return "Logeo correctamente"
     }
 
-    override suspend fun signUp(name: String, email: String, password: String): String {
-        return remote.signUp(name, email, password).message
+    override suspend fun signUp(name: String,
+                                email: String,
+                                password: String,
+                                secretQuestion: String,
+                                secretResponse: String,
+                                helpPhrase: String): String {
+        return remote.signUp(name, email, password, secretQuestion, secretResponse, helpPhrase).message
     }
 
     override suspend fun recoveryPassword(email: String) {

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home"
+        android:title="Inicio"/>
+
+    <item
+        android:id="@+id/navigation_opcion1"
+        android:icon="@drawable/ic_calendar"
+        android:title="Opcion1"/>
+
+    <item
+        android:id="@+id/navigation_opcion2"
+        android:icon="@drawable/ic_sticky_note"
+        android:title="Opcion2"/>
+
+    <item
+        android:id="@+id/navigation_opcion3"
+        android:icon="@drawable/ic_event"
+        android:title="Opcion3"/>
+</menu>

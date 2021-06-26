@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_home"
+            android:title="Calendario"/>
+
+        <item
+            android:id="@+id/navigation_opcion1"
+            android:title="Postergar cita"/>
+
+        <item
+            android:id="@+id/navigation_opcion2"
+            android:title="Notificaciones"/>
+
+    </group>
+
+    <item android:title="Otros">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/navigation_contact_us"
+                    android:title="Nosotros"/>
+
+                <item
+                    android:id="@+id/sign_out"
+                    android:title="Cerrar sesión"/>
+            </group>
+        </menu>
+
+    </item>
+</menu>

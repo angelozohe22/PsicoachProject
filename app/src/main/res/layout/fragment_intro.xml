@@ -3,7 +3,7 @@
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:background="@color/white"
+android:background="@color/color_transparent"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 tools:context=".ui.modules.main.fragments.intro.IntroFragment">
 
@@ -23,6 +23,8 @@ tools:context=".ui.modules.main.fragments.intro.IntroFragment">
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:layout_gravity="center"
+        android:scaleType="center"
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
     <TextView

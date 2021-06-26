@@ -19,13 +19,19 @@ interface AuthService {
     @POST(Constants.SERVICE_ROUTE_SIGN_UP)
     @Headers("Accept: application/json")
     @FormUrlEncoded
-    suspend fun signUp (@Field("email")     email    : String,
-                        @Field("password")  password : String,
-                        @Field("name")      name     : String): UserResponse
+    suspend fun signUp (@Field("email")           email          : String,
+                        @Field("password")        password       : String,
+                        @Field("name")            name           : String,
+                        @Field("secret_question") secretQuestion : String,
+                        @Field("secret_response") secretResponse : String,
+                        @Field("help_phrase")     helpPhrase     : String): UserResponse
 
     @POST(Constants.SERVICE_ROUTE_SIGN_UP)
     @Headers("Accept: application/json")
     @FormUrlEncoded
-    suspend fun signUpWithoutName (@Field("email")     email    : String,
-                                   @Field("password")  password : String): UserResponse
+    suspend fun signUpWithoutName (@Field("email")           email          : String,
+                                   @Field("password")        password       : String,
+                                   @Field("secret_question") secretQuestion : String,
+                                   @Field("secret_response") secretResponse : String,
+                                   @Field("help_phrase")     helpPhrase     : String): UserResponse
 }

@@ -8,7 +8,7 @@ import com.example.psicoachproject.core.Resource
 interface AuthRepository {
 
     suspend fun signIn(email: String, password: String): String
-    suspend fun signUp(name: String, email: String, password: String): String
+    suspend fun signUp(name: String, email: String, password: String, secretQuestion: String, secretResponse: String, helpPhrase: String): String
     suspend fun recoveryPassword(email: String)
     //Colocar más funciones si va haber mas pasos para lo de recuperar
 

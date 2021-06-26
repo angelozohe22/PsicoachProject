@@ -28,8 +28,14 @@ class AuthRemoteDataSourceImpl
         return service.signIn(email, password)
     }
 
-    override suspend fun signUp(name: String, email: String, password: String): UserResponse {
-        return if (!isNullOrEmpty(name)) service.signUp(email, password, name)
-        else service.signUpWithoutName(email, password)
+    override suspend fun signUp(name: String,
+                                email: String,
+                                password: String,
+                                secretQuestion: String,
+                                secretResponse: String,
+                                helpPhrase: String): UserResponse {
+
+        return if (!isNullOrEmpty(name)) service.signUp(email, password, name, secretQuestion, secretResponse, helpPhrase)
+        else service.signUpWithoutName(email, password, secretQuestion, secretResponse, helpPhrase)
     }
 }

@@ -3,7 +3,7 @@
     <style name="Theme.PsicoachProject" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
@@ -73,5 +73,14 @@
     <style name="ErrorAppearance" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/color_error</item>
         <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Theme.NavigationView" parent="ThemeOverlay.MaterialComponents">
+        <item name="colorControlHighlight">@android:color/transparent</item>
+    </style>
+
+    <style name="TextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/googlesans_bold</item>
+        <item name="android:textSize">14sp</item>
     </style>
 </resources>

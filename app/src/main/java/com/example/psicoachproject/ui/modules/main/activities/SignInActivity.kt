@@ -20,6 +20,7 @@ import com.example.psicoachproject.common.utils.isNullOrEmpty
 import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.data.remote.source.auth.AuthRemoteDataSourceImpl
 import com.example.psicoachproject.domain.repository.auth.AuthRepositoryImpl
+import com.example.psicoachproject.ui.modules.home.activities.HomeActivity
 import com.example.psicoachproject.ui.modules.main.activities.viewmodel.AuthViewModel
 import com.example.psicoachproject.ui.modules.main.activities.viewmodel.AuthViewModelFactory
 import com.google.android.material.textfield.TextInputEditText
@@ -119,10 +120,14 @@ class SignInActivity : AppCompatActivity() {
             it?.let { result ->
                 when (result) {
                     Resource.Loading -> {
-                        println("Cargando...")
+                        Toast.makeText(this, "Cargando...", Toast.LENGTH_SHORT).show()
+//                        println("Cargando...")
                     }
                     is Resource.Success -> {
                         Toast.makeText(this, result.data, Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, HomeActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
                     is Resource.Failure -> {
                         Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
@@ -136,6 +141,40 @@ class SignInActivity : AppCompatActivity() {
         binding.forgotCurtain.visibility = View.VISIBLE
         customDialog(this, R.layout.dialog_forgot_pass){ view, dialog ->
             val dialogBinding = DialogForgotPassBinding.bind(view)
+
+            //binding
+            val cetEmail = dialogBinding.cetEmailRecoveryPass
+            val etEmail = dialogBinding.etEmailRecoveryPass
+            val btnRecoveryPass = dialogBinding.btnRecoveryPass
+
+            btnRecoveryPass.apply {
+                isEnabled = false
+                setBackgroundResource(R.drawable.btn_corner_disable)
+            }
+
+            val validator = afterTextChanged {
+                val email   = etEmail.text.toString().trim()
+
+                if (email.isNotEmpty()){
+                    cetEmail.error = when {
+                        !isEmailValid(email) -> "Correo incorrecto"
+                        else -> null
+                    }
+                }
+
+                btnRecoveryPass.apply {
+                    isEnabled = !isNullOrEmpty(email) &&
+                                isEmailValid(email)
+                    if (isEnabled) setBackgroundResource(R.drawable.btn_corner)
+                    else setBackgroundResource(R.drawable.btn_corner_disable)
+
+                    setOnClickListener {
+//                        signIn(email, password)
+                    }
+                }
+            }
+
+            etEmail.addTextChangedListener(validator)
 
             dialog.setOnDismissListener {
                 binding.forgotCurtain.visibility = View.GONE

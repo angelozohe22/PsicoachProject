@@ -1,179 +1,254 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.modules.main.activities.SignUpActivity">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/btn_back_signUp"
-        android:layout_width="@dimen/size_button_arrow_back"
-        android:layout_height="@dimen/size_button_arrow_back"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/btn_arrow"
-        android:src="@drawable/ic_arrow_back"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.modules.main.activities.SignUpActivity">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/lbl_title_sign_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="86dp"
-        android:text="Regístrate"
-        android:textSize="32sp"
-        android:fontFamily="@font/googlesans_regular"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/lbl_sign_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="42dp"
-        android:text="Inicia sesión"
-        android:textColor="@color/primary_dark"
-        android:textSize="16sp"
-        android:fontFamily="@font/googlesans_bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/lbl_title_have_account"
-        android:text="¿Ya tienes una cuenta?"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:fontFamily="@font/googlesans_regular"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/lbl_sign_in"/>
-
-    <!--<androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_sign_in_google"
-        android:layout_marginBottom="32dp"
-        android:text="Regístrate con Google"
-        android:drawableLeft="@drawable/ic_google"
-        android:paddingLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/lbl_title_have_account"
-        style="@style/ButtonCornerGoogle"
-        />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/lbl_title_separator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="O"
-        android:textSize="16dp"
-        android:fontFamily="@font/googlesans_bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btn_sign_in_google"
-        />
-
-    <View
-        android:id="@+id/separator_one"
-        android:layout_width="0dp"
-        android:layout_height="1.5dp"
-        android:background="@drawable/separator"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintTop_toTopOf="@id/lbl_title_separator"
-        app:layout_constraintBottom_toBottomOf="@id/lbl_title_separator"
-        app:layout_constraintRight_toLeftOf="@id/lbl_title_separator"
-        app:layout_constraintLeft_toLeftOf="parent"
-        />
-
-    <View
-        android:id="@+id/separator_two"
-        android:layout_width="0dp"
-        android:layout_height="1.5dp"
-        android:background="@drawable/separator"
-        android:layout_marginRight="32dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintTop_toTopOf="@id/lbl_title_separator"
-        app:layout_constraintBottom_toBottomOf="@id/lbl_title_separator"
-        app:layout_constraintLeft_toRightOf="@id/lbl_title_separator"
-        app:layout_constraintRight_toRightOf="parent"
-        />-->
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_sign_up"
-        android:layout_marginTop="24dp"
-        android:text="Regístrate"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cet_password_signUp"
-        style="@style/ButtonCorner"
-        />
-
-    <!-- inputs -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/cet_username_sign_up"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginRight="24dp"
-        app:endIconMode="clear_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lbl_title_sign_up"
-        style="@style/ContentInputEditText"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_username_sign_up"
-            android:hint="Nombre"
-            android:inputType="textCapWords"
-            android:maxLength="1000"
-            style="@style/InputEditText"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_back_signUp"
+            android:layout_width="@dimen/size_button_arrow_back"
+            android:layout_height="@dimen/size_button_arrow_back"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn_arrow"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             />
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/cet_email_signUp"
-        android:layout_marginTop="8dp"
-        app:endIconMode="clear_text"
-        app:layout_constraintLeft_toLeftOf="@id/cet_username_sign_up"
-        app:layout_constraintRight_toRightOf="@id/cet_username_sign_up"
-        app:layout_constraintTop_toBottomOf="@id/cet_username_sign_up"
-        style="@style/ContentInputEditText"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_email_signUp"
-            android:hint="Correo"
-            android:inputType="textEmailAddress"
-            android:maxLength="1000"
-            style="@style/InputEditText"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_title_sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="86dp"
+            android:text="Regístrate"
+            android:textSize="32sp"
+            android:fontFamily="@font/googlesans_regular"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             />
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/cet_password_signUp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintLeft_toLeftOf="@id/cet_email_signUp"
-        app:layout_constraintRight_toRightOf="@id/cet_email_signUp"
-        app:layout_constraintTop_toBottomOf="@id/cet_email_signUp"
-        app:passwordToggleEnabled="true"
-        style="@style/ContentInputEditText"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_password_signUp"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:maxLength="1000"
-            style="@style/InputEditText"
+        <!--<androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_sign_in_google"
+            android:layout_marginBottom="32dp"
+            android:text="Regístrate con Google"
+            android:drawableLeft="@drawable/ic_google"
+            android:paddingLeft="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/lbl_title_have_account"
+            style="@style/ButtonCornerGoogle"
             />
-    </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_title_separator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="O"
+            android:textSize="16dp"
+            android:fontFamily="@font/googlesans_bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_sign_in_google"
+            />
+
+        <View
+            android:id="@+id/separator_one"
+            android:layout_width="0dp"
+            android:layout_height="1.5dp"
+            android:background="@drawable/separator"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintTop_toTopOf="@id/lbl_title_separator"
+            app:layout_constraintBottom_toBottomOf="@id/lbl_title_separator"
+            app:layout_constraintRight_toLeftOf="@id/lbl_title_separator"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <View
+            android:id="@+id/separator_two"
+            android:layout_width="0dp"
+            android:layout_height="1.5dp"
+            android:background="@drawable/separator"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintTop_toTopOf="@id/lbl_title_separator"
+            app:layout_constraintBottom_toBottomOf="@id/lbl_title_separator"
+            app:layout_constraintLeft_toRightOf="@id/lbl_title_separator"
+            app:layout_constraintRight_toRightOf="parent"
+            />-->
+
+        <!-- inputs -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cet_username_sign_up"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginRight="24dp"
+            app:endIconMode="clear_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lbl_title_sign_up"
+            style="@style/ContentInputEditText"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_username_sign_up"
+                android:hint="Nombre"
+                android:inputType="textCapWords"
+                android:maxLength="1000"
+                style="@style/InputEditText"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cet_email_signUp"
+            android:layout_marginTop="8dp"
+            app:endIconMode="clear_text"
+            app:layout_constraintLeft_toLeftOf="@id/cet_username_sign_up"
+            app:layout_constraintRight_toRightOf="@id/cet_username_sign_up"
+            app:layout_constraintTop_toBottomOf="@id/cet_username_sign_up"
+            style="@style/ContentInputEditText"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_email_signUp"
+                android:hint="Correo*"
+                android:inputType="textEmailAddress"
+                android:maxLength="1000"
+                style="@style/InputEditText"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cet_password_signUp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="@id/cet_email_signUp"
+            app:layout_constraintRight_toRightOf="@id/cet_email_signUp"
+            app:layout_constraintTop_toBottomOf="@id/cet_email_signUp"
+            app:passwordToggleEnabled="true"
+            style="@style/ContentInputEditText"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_password_signUp"
+                android:hint="Contraseña*"
+                android:inputType="textPassword"
+                android:maxLength="1000"
+                style="@style/InputEditText"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cet_secret_question"
+            android:layout_marginTop="8dp"
+            app:endIconMode="clear_text"
+            app:layout_constraintLeft_toLeftOf="@id/cet_password_signUp"
+            app:layout_constraintRight_toRightOf="@id/cet_password_signUp"
+            app:layout_constraintTop_toBottomOf="@id/cet_password_signUp"
+            style="@style/ContentInputEditText"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_secret_question"
+                android:hint="Pregunta secreta*"
+                android:maxLength="1000"
+                style="@style/InputEditText"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cet_secret_response"
+            android:layout_marginTop="8dp"
+            app:endIconMode="clear_text"
+            app:layout_constraintLeft_toLeftOf="@id/cet_secret_question"
+            app:layout_constraintRight_toRightOf="@id/cet_secret_question"
+            app:layout_constraintTop_toBottomOf="@id/cet_secret_question"
+            style="@style/ContentInputEditText"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_secret_response"
+                android:hint="Respuesta secreta*"
+                android:maxLength="1000"
+                style="@style/InputEditText"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cet_help_phrase"
+            android:layout_marginTop="8dp"
+            app:endIconMode="clear_text"
+            app:layout_constraintLeft_toLeftOf="@id/cet_secret_response"
+            app:layout_constraintRight_toRightOf="@id/cet_secret_response"
+            app:layout_constraintTop_toBottomOf="@id/cet_secret_response"
+            style="@style/ContentInputEditText"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_help_phrase"
+                android:hint="Frase de ayuda*"
+                android:maxLength="1000"
+                style="@style/InputEditText"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_sign_up"
+            android:layout_marginTop="24dp"
+            android:text="Regístrate"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cet_help_phrase"
+            style="@style/ButtonCorner"
+            />
+
+        <ProgressBar
+            android:id="@+id/progress_signUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cet_help_phrase"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_title_have_account"
+            android:text="¿Ya tienes una cuenta?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/googlesans_regular"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_sign_up"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_sign_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="42dp"
+            android:text="Inicia sesión"
+            android:textColor="@color/primary_dark"
+            android:textSize="16sp"
+            android:fontFamily="@font/googlesans_bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_title_have_account"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
+
+

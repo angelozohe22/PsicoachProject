@@ -3,6 +3,7 @@
     package="com.example.psicoachproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".core.aplication.MyApp"
         android:allowBackup="true"
@@ -11,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PsicoachProject">
-        <activity android:name=".ui.modules.main.activities.SignUpActivity"></activity>
+        <activity android:name=".ui.modules.home.activities.HomeActivity"></activity>
+        <activity android:name=".ui.modules.main.activities.SignUpActivity" />
         <activity android:name=".ui.modules.main.activities.SignInActivity" />
         <activity android:name=".ui.modules.main.activities.MainActivity">
             <intent-filter>

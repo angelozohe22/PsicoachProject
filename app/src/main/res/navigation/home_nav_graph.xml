@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.psicoachproject.ui.modules.home.fragments.InicioFragment"
+        android:label="Inicio"
+        tools:layout="@layout/fragment_inicio" />
+    <fragment
+        android:id="@+id/navigation_opcion1"
+        android:name="com.example.psicoachproject.ui.modules.home.fragments.Opcion1Fragment"
+        android:label="Opcion1"
+        tools:layout="@layout/fragment_opcion1" />
+    <fragment
+        android:id="@+id/navigation_opcion2"
+        android:name="com.example.psicoachproject.ui.modules.home.fragments.Opcion2Fragment"
+        android:label="Opcion2"
+        tools:layout="@layout/fragment_opcion2" />
+    <fragment
+        android:id="@+id/navigation_opcion3"
+        android:name="com.example.psicoachproject.ui.modules.home.fragments.Opcion3Fragment"
+        android:label="Opcion3"
+        tools:layout="@layout/fragment_opcion3" />
+</navigation>

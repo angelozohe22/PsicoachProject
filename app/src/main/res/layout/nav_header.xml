@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primary"
+    android:padding="20dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_header"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/logo_image"
+        android:background="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_title_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Centro psicologo"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/googlesans_bold"
+        app:layout_constraintLeft_toRightOf="@id/img_header"
+        app:layout_constraintTop_toTopOf="@id/img_header"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_desc_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/playscript_font"
+        app:layout_constraintLeft_toRightOf="@id/img_header"
+        app:layout_constraintTop_toBottomOf="@id/lbl_title_header"
+        android:text="Psicoach en Vida"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

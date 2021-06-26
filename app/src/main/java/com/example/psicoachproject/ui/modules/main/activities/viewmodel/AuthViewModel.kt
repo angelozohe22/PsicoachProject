@@ -43,40 +43,35 @@ class AuthViewModel(
         }
     }
 
-    fun signUp(name: String, email: String, password: String) = liveData(Dispatchers.IO) {
+    fun signUp(name: String,
+               email: String,
+               password: String,
+               secretQuestion: String,
+               secretResponse: String,
+               helpPhrase: String) = liveData(Dispatchers.IO) {
         emit(Resource.Loading)
         try {
-            emit(Resource.Success(repository.signUp(name, email, password)))
-            Log.e("TAG", "inicie la peticion " )
+            emit(Resource.Success(repository.signUp(name, email, password, secretQuestion, secretResponse, helpPhrase)))
 
         } catch (t: Throwable){
             if(t is HttpException){
-                println("t -> ${t.response()}")
-                println("t -> ${t.message()}")
-                println("t -> ${t.code()}")
                 val response = t.response()
 
-                println("Error sign up -> ${t.response()?.errorBody().toString()}")
                 try {
                     val jObjError = JSONObject(response?.errorBody()?.string())
-                    Log.e("TAG", "jObjError: $jObjError" )
 
                     val result = Gson().fromJson(jObjError.toString(), ErrorResponse::class.java)
 
                     if (response?.code() == 422){
-                        Log.e("TAG", "FUNCO: ${result.error}" )
                         emit(Resource.Failure(result.error.first().message))
                     }else {
-                        Log.e("TAG", "FUNCO: ${result.message}" )
                         emit(Resource.Failure(result.message))
                     }
 
                 } catch (e: Exception){
-                    Log.e("TAG", "SE fue al mrd " )
                     emit(Resource.Failure("Ocurrió un error en servicio - ${e.message.toString()}"))
                 }
             }else{
-                Log.e("TAG", "ENTRO AL ELSE MRD " )
                 emit(Resource.Failure("Ocurrió un error"))
             }
         }

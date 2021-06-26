@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.widget.AppCompatButton
@@ -28,14 +30,21 @@ class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding            : ActivitySignUpBinding
     private lateinit var cetUsernameSignUp  : TextInputLayout
-    private lateinit var etUsernameSignUp   : TextInputEditText
     private lateinit var cetEmailSignUp     : TextInputLayout
-    private lateinit var etEmailSignUp      : TextInputEditText
     private lateinit var cetPasswordSignUp  : TextInputLayout
+    private lateinit var cetSecretQuestion  : TextInputLayout
+    private lateinit var cetSecretResponse  : TextInputLayout
+    private lateinit var cetHelpPhrase      : TextInputLayout
+    private lateinit var etUsernameSignUp   : TextInputEditText
+    private lateinit var etEmailSignUp      : TextInputEditText
     private lateinit var etPasswordSignUp   : TextInputEditText
+    private lateinit var etSecretQuestion   : TextInputEditText
+    private lateinit var etSecretResponse   : TextInputEditText
+    private lateinit var etHelpPhrase       : TextInputEditText
     private lateinit var btnSignUp          : AppCompatButton
-    private lateinit var lblSignIn          : AppCompatTextView
     private lateinit var btnBackSignUp      : AppCompatImageButton
+    private lateinit var progress           : ProgressBar
+    private lateinit var lblSignIn          : AppCompatTextView
 
     private val viewModel by viewModels<AuthViewModel>{
         AuthViewModelFactory(
@@ -51,21 +60,25 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         cetUsernameSignUp   = binding.cetUsernameSignUp
-        etUsernameSignUp    = binding.etUsernameSignUp
         cetEmailSignUp      = binding.cetEmailSignUp
-        etEmailSignUp       = binding.etEmailSignUp
         cetPasswordSignUp   = binding.cetPasswordSignUp
+        cetSecretQuestion   = binding.cetSecretQuestion
+        cetSecretResponse   = binding.cetSecretResponse
+        cetHelpPhrase       = binding.cetHelpPhrase
+
+        etUsernameSignUp    = binding.etUsernameSignUp
+        etEmailSignUp       = binding.etEmailSignUp
         etPasswordSignUp    = binding.etPasswordSignUp
+        etSecretQuestion    = binding.etSecretQuestion
+        etSecretResponse    = binding.etSecretResponse
+        etHelpPhrase        = binding.etHelpPhrase
+
         btnSignUp           = binding.btnSignUp
-        lblSignIn           = binding.lblSignIn
         btnBackSignUp       = binding.btnBackSignUp
+        progress            = binding.progressSignUp
+        lblSignIn           = binding.lblSignIn
 
         inputsValidator()
-
-        btnSignUp.apply {
-            isEnabled = false
-            setBackgroundResource(R.drawable.btn_corner_disable)
-        }
 
         //Click listeners
         lblSignIn.setOnClickListener { goToSignIn() }
@@ -78,10 +91,14 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun inputsValidator(){
 
+        validateButton(false)
         val validate = afterTextChanged {
-            val name    = etUsernameSignUp.text.toString().trim()
-            val email   = etEmailSignUp.text.toString().trim()
-            val password= etPasswordSignUp.text.toString().trim()
+            val name        = etUsernameSignUp.text.toString().trim()
+            val email       = etEmailSignUp.text.toString().trim()
+            val password    = etPasswordSignUp.text.toString().trim()
+            val question    = etSecretQuestion.text.toString().trim()
+            val answer      = etSecretResponse.text.toString().trim()
+            val helpPhrase  = etHelpPhrase.text.toString().trim()
 
             cetEmailSignUp.error = when {
                 !isEmailValid(email) && !isNullOrEmpty(email) -> "Correo incorrecto"
@@ -93,38 +110,63 @@ class SignUpActivity : AppCompatActivity() {
                 else -> null
             }
 
+            cetSecretQuestion.error = when {
+                isNullOrEmpty(question) -> "Ingresa una pregunta"
+                else -> null
+            }
+
+            cetSecretResponse.error = when {
+                isNullOrEmpty(answer) -> "Ingresa una respuesta"
+                else -> null
+            }
+
+            cetHelpPhrase.error = when {
+                isNullOrEmpty(helpPhrase) -> "Ingresa una frase de ayuda"
+                else -> null
+            }
+
             btnSignUp.apply {
                 isEnabled = !isNullOrEmpty(email)
+                            && isEmailValid(email)
                             && !isNullOrEmpty(password)
                             && password.length in 5..20
+                            && !isNullOrEmpty(question)
+                            && !isNullOrEmpty(answer)
+                            && !isNullOrEmpty(helpPhrase)
 
-                if (isEnabled) setBackgroundResource(R.drawable.btn_corner)
-                else setBackgroundResource(R.drawable.btn_corner_disable)
-
+                validateButton(isEnabled)
                 setOnClickListener {
-                    signUp(name, email, password)
+                    signUp(name, email, password, question, answer, helpPhrase)
                 }
             }
         }
 
         etEmailSignUp.addTextChangedListener(validate)
         etPasswordSignUp.addTextChangedListener(validate)
+        etSecretQuestion.addTextChangedListener(validate)
+        etSecretResponse.addTextChangedListener(validate)
+        etHelpPhrase.addTextChangedListener(validate)
 
     }
 
-    private fun signUp(name: String, email: String, password: String ){
-        viewModel.signUp(name, email, password).observe(this, Observer {
+    private fun signUp(name: String,
+                       email: String,
+                       password: String,
+                       secretQuestion: String,
+                       secretResponse: String,
+                       helpPhrase: String ){
+        viewModel.signUp(name, email, password, secretQuestion, secretResponse, helpPhrase).observe(this, Observer {
             it?.let { result ->
                 when (result) {
-                    Resource.Loading -> {
-                        println("Cargando...")
-                    }
+                    Resource.Loading -> { showProgress() }
                     is Resource.Success -> {
-                        val asd = result.data
-                        Toast.makeText(this, asd, Toast.LENGTH_SHORT).show()
+                        hideProgress()
+                        validateButton(false)
+                        Toast.makeText(this, result.data, Toast.LENGTH_SHORT).show()
                     }
                     is Resource.Failure -> {
-                        println("message: ${result.message}")
+                        hideProgress()
+                        validateButton(false)
                         Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -136,6 +178,26 @@ class SignUpActivity : AppCompatActivity() {
         val intent = Intent(this, SignInActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    private fun showProgress(){
+        progress.visibility = View.VISIBLE
+        btnSignUp.visibility = View.GONE
+    }
+
+    private fun hideProgress(){
+        progress.visibility = View.GONE
+        btnSignUp.visibility = View.VISIBLE
+    }
+
+    private fun validateButton(validator: Boolean){
+
+        btnSignUp.apply {
+            isEnabled = validator
+            if (isEnabled) setBackgroundResource(R.drawable.btn_corner)
+            else setBackgroundResource(R.drawable.btn_corner_disable)
+        }
+
     }
 
     private fun clearInputs(){

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_image"
     tools:context=".ui.modules.main.activities.SignInActivity">
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -163,7 +164,7 @@
         android:layout_marginTop="8dp"
         android:text="¿Olvidaste tu contraseña?"
         android:textSize="16sp"
-        android:textColor="@color/primary_dark"
+        android:textColor="@color/color_Gray_Web"
         android:fontFamily="@font/googlesans_bold"
         app:layout_constraintRight_toRightOf="@id/cet_password_sign_in"
         app:layout_constraintTop_toBottomOf="@id/cet_password_sign_in"

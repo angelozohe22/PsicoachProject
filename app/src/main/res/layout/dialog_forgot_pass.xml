@@ -29,7 +29,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_google"
+            android:src="@drawable/ic_pensando"
             android:layout_gravity="center"/>
 
     </androidx.cardview.widget.CardView>
@@ -120,6 +120,7 @@
         android:id="@+id/btn_recovery_pass"
         android:text="Recuperar contraseña"
         android:layout_marginBottom="12dp"
+        android:textColor="@color/white"
         app:layout_constraintLeft_toLeftOf="@id/view_btn_support"
         app:layout_constraintRight_toRightOf="@id/view_btn_support"
         app:layout_constraintBottom_toBottomOf="@id/view_btn_support"

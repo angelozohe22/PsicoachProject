@@ -9,6 +9,6 @@ import com.example.psicoachproject.data.remote.source.dto.UserResponse
 interface AuthRemoteDataSource {
 
     suspend fun signIn(email: String, password: String): DataResponse
-    suspend fun signUp(name: String, email: String, password: String): UserResponse
+    suspend fun signUp(name: String, email: String, password: String, secretQuestion: String, secretResponse: String, helpPhrase: String): UserResponse
 
 }

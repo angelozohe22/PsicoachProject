@@ -12,6 +12,8 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.EditText
 import com.example.psicoachproject.R
+import android.content.res.ColorStateList
+import android.graphics.Color
 
 /**
  * Created by Angelo on 5/11/2021
@@ -70,4 +72,14 @@ fun isNullOrEmpty(text: Any): Boolean {
 fun isEmailValid(email: String): Boolean {
     val pattern = Patterns.EMAIL_ADDRESS
     return pattern.matcher(email).matches()
+}
+
+fun setColorTintBottomNavigation(): ColorStateList {
+    val gris   = Color.parseColor("#9E9E9E")
+    val states = arrayOf(intArrayOf(android.R.attr.state_checked),
+            intArrayOf(android.R.attr.state_selected),
+            intArrayOf(-android.R.attr.state_selected)
+    )
+    val colors = intArrayOf(Color.parseColor("#ffffff"), Color.parseColor("#808080"), gris)
+    return ColorStateList(states, colors)
 }

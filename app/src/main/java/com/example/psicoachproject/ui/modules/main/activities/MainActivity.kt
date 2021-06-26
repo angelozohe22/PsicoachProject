@@ -71,9 +71,9 @@ class MainActivity : AppCompatActivity() {
         val fList = arrayListOf<Fragment>()
 
         fList.apply {
-            add(IntroFragment().newInstance( R.drawable.ic_google,"Titulo 1","Descripcion 1"))
-            add(IntroFragment().newInstance( R.drawable.ic_google,"Titulo 2","Descripcion 3"))
-            add(IntroFragment().newInstance( R.drawable.ic_google,"Titulo 3","Descripcion 3"))
+            add(IntroFragment().newInstance( R.drawable.ic_logo,"¡Te damos la bienvenida!","Junto con nosotros podrás adquirir tu mejor versión"))
+            add(IntroFragment().newInstance( R.drawable.ic_logotwo,"Misión","Promuever, mejorar y potenciar tu desarrollo personal y emocional"))
+            add(IntroFragment().newInstance( R.drawable.ic_logothree,"Visión","Consolidarnos como la clínica psicológica multidisciplinaria líder de Lima y Provincia"))
         }
 
         return fList
