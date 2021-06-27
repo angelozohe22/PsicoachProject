@@ -19,6 +19,8 @@ class AuthViewModel(
     private val repository: AuthRepository
 ): ViewModel() {
 
+    lateinit var email: String
+
     fun signIn(email: String, password: String) = liveData(Dispatchers.IO) {
         emit(Resource.Loading)
         try {
@@ -76,5 +78,90 @@ class AuthViewModel(
             }
         }
     }
+
+    fun verifyEmail(email: String) = liveData(Dispatchers.IO) {
+        emit(Resource.Loading)
+        try {
+            emit(Resource.Success(repository.verifyEmail(email)))
+        }catch (t: Throwable){
+            if(t is HttpException){
+                val response = t.response()
+
+                try {
+                    val jObjError = JSONObject(response?.errorBody()?.string())
+                    val result = Gson().fromJson(jObjError.toString(), ErrorResponse::class.java)
+
+                    if (response?.code() == 422){
+                        emit(Resource.Failure(result.error.first().message))
+                    }else {
+                        emit(Resource.Failure(result.message))
+                    }
+
+                } catch (e: Exception){
+                    emit(Resource.Failure("Ocurrió un error en servicio - ${e.message.toString()}"))
+                }
+            }else{
+                emit(Resource.Failure("Ocurrió un error"))
+            }
+        }
+    }
+
+    fun verifyResponse(email: String, phrase: String) = liveData(Dispatchers.IO) {
+        emit(Resource.Loading)
+        try {
+            emit(Resource.Success(repository.verifyResponse(email, phrase)))
+        }catch (t: Throwable){
+            if(t is HttpException){
+                val response = t.response()
+
+                try {
+                    val jObjError = JSONObject(response?.errorBody()?.string())
+                    val result = Gson().fromJson(jObjError.toString(), ErrorResponse::class.java)
+
+                    if (response?.code() == 422){
+                        emit(Resource.Failure(result.error.first().message))
+                    }else {
+                        emit(Resource.Failure(result.message))
+                    }
+
+                } catch (e: Exception){
+                    emit(Resource.Failure("Ocurrió un error en servicio - ${e.message.toString()}"))
+                }
+            }else{
+                emit(Resource.Failure("Ocurrió un error"))
+            }
+        }
+    }
+
+    fun changePassword(email: String, password: String) = liveData(Dispatchers.IO) {
+        emit(Resource.Loading)
+        try {
+
+            emit(Resource.Success(repository.changePassword(email, password)))
+        }catch (t: Throwable){
+            if(t is HttpException){
+                val response = t.response()
+
+                try {
+                    val jObjError = JSONObject(response?.errorBody()?.string())
+                    val result = Gson().fromJson(jObjError.toString(), ErrorResponse::class.java)
+
+                    if (response?.code() == 422){
+                        emit(Resource.Failure(result.error.first().message))
+                    }else {
+                        emit(Resource.Failure(result.message))
+                    }
+
+                } catch (e: Exception){
+                    emit(Resource.Failure("Ocurrió un error en servicio - ${e.message.toString()}"))
+                }
+            }else{
+                emit(Resource.Failure("Ocurrió un error"))
+            }
+        }
+    }
+
+
+
 
 }

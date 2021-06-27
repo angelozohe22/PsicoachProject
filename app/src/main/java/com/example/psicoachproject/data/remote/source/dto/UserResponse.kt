@@ -22,5 +22,16 @@ data class ErrorResponse(
 data class Error(
     @field:SerializedName("rule")    val rule    : String,
     @field:SerializedName("field")   val field   : String,
-    @field:SerializedName("message") val message : String
+    @field:SerializedName("message") val message : String,
+    @field:SerializedName("args")    val args    : Args
+)
+
+data class Args(
+    @field:SerializedName("minLength") val minLength : Int
+)
+
+data class SecretQuestion(
+    @field:SerializedName("secret_question")    val question  : String,
+    @field:SerializedName("help_phrase")        val phrase    : String,
+    @field:SerializedName("message")            val message   : String
 )

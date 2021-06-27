@@ -7,6 +7,7 @@ import com.example.psicoachproject.data.remote.RetrofitBuilder.getConexionRetrof
 import com.example.psicoachproject.data.remote.service.auth.AuthService
 import com.example.psicoachproject.data.remote.source.dto.DataResponse
 import com.example.psicoachproject.data.remote.source.dto.ErrorResponse
+import com.example.psicoachproject.data.remote.source.dto.SecretQuestion
 import com.example.psicoachproject.data.remote.source.dto.UserResponse
 import com.google.gson.Gson
 import okhttp3.ResponseBody
@@ -37,5 +38,17 @@ class AuthRemoteDataSourceImpl
 
         return if (!isNullOrEmpty(name)) service.signUp(email, password, name, secretQuestion, secretResponse, helpPhrase)
         else service.signUpWithoutName(email, password, secretQuestion, secretResponse, helpPhrase)
+    }
+
+    override suspend fun verifyEmail(email: String): SecretQuestion {
+        return service.verifyEmail(email = email)
+    }
+
+    override suspend fun verifySecret(email: String, phrase: String): UserResponse {
+        return service.verifyResponse(email = email, response = phrase)
+    }
+
+    override suspend fun changePassword(email: String, password: String): UserResponse {
+        return service.changePassword(email = email, password = password)
     }
 }

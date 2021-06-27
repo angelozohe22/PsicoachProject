@@ -125,20 +125,18 @@ class SignUpActivity : AppCompatActivity() {
                 else -> null
             }
 
-            btnSignUp.apply {
-                isEnabled = !isNullOrEmpty(email)
-                            && isEmailValid(email)
-                            && !isNullOrEmpty(password)
-                            && password.length in 5..20
-                            && !isNullOrEmpty(question)
-                            && !isNullOrEmpty(answer)
-                            && !isNullOrEmpty(helpPhrase)
+            validateButton(!isNullOrEmpty(email)
+                    && isEmailValid(email)
+                    && !isNullOrEmpty(password)
+                    && password.length in 5..20
+                    && !isNullOrEmpty(question)
+                    && !isNullOrEmpty(answer)
+                    && !isNullOrEmpty(helpPhrase))
 
-                validateButton(isEnabled)
-                setOnClickListener {
-                    signUp(name, email, password, question, answer, helpPhrase)
-                }
+            btnSignUp.setOnClickListener {
+                signUp(name, email, password, question, answer, helpPhrase)
             }
+
         }
 
         etEmailSignUp.addTextChangedListener(validate)

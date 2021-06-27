@@ -1,12 +1,9 @@
 package com.example.psicoachproject.domain.repository.auth
 
 import com.example.psicoachproject.common.utils.isNullOrEmpty
-import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.core.aplication.preferences
 import com.example.psicoachproject.data.remote.source.auth.AuthRemoteDataSource
-import com.example.psicoachproject.data.remote.source.dto.DataResponse
-import com.example.psicoachproject.data.remote.source.dto.UserResponse
-import com.example.psicoachproject.domain.repository.auth.AuthRepository
+import com.example.psicoachproject.data.remote.source.dto.SecretQuestion
 
 /**
  * Created by Angelo on 5/23/2021
@@ -14,6 +11,8 @@ import com.example.psicoachproject.domain.repository.auth.AuthRepository
 class AuthRepositoryImpl(
     private val remote: AuthRemoteDataSource
 ): AuthRepository {
+
+    private lateinit var email: String
 
     override suspend fun signIn(email: String, password: String): String {
         val result = remote.signIn(email, password)
@@ -30,7 +29,15 @@ class AuthRepositoryImpl(
         return remote.signUp(name, email, password, secretQuestion, secretResponse, helpPhrase).message
     }
 
-    override suspend fun recoveryPassword(email: String) {
-        TODO("Not yet implemented")
+    override suspend fun verifyEmail(email: String): SecretQuestion {
+        return remote.verifyEmail(email)
+    }
+
+    override suspend fun verifyResponse(email: String, phrase: String): String {
+        return remote.verifySecret(email, phrase).message
+    }
+
+    override suspend fun changePassword(email: String, password: String): String {
+        return remote.changePassword(email, password).message
     }
 }

@@ -2,6 +2,7 @@ package com.example.psicoachproject.data.remote.service.auth
 
 import com.example.psicoachproject.core.aplication.Constants
 import com.example.psicoachproject.data.remote.source.dto.DataResponse
+import com.example.psicoachproject.data.remote.source.dto.SecretQuestion
 import com.example.psicoachproject.data.remote.source.dto.UserResponse
 import retrofit2.http.*
 
@@ -34,4 +35,26 @@ interface AuthService {
                                    @Field("secret_question") secretQuestion : String,
                                    @Field("secret_response") secretResponse : String,
                                    @Field("help_phrase")     helpPhrase     : String): UserResponse
+
+    @POST(Constants.SERVICE_ROUTE_VERIFY_EMAIL)
+    @Headers("Accept: application/json")
+    @FormUrlEncoded
+    suspend fun verifyEmail(@Field("action") action      : String = "verify_mail",
+                            @Field("email")  email       : String): SecretQuestion
+
+    @POST(Constants.SERVICE_ROUTE_VERIFY_EMAIL)
+    @Headers("Accept: application/json")
+    @FormUrlEncoded
+    suspend fun verifyResponse(@Field("action")           action   : String = "verify_secret",
+                               @Field("email")            email    : String,
+                               @Field("secret_response")  response : String): UserResponse
+
+    @POST(Constants.SERVICE_ROUTE_VERIFY_EMAIL)
+    @Headers("Accept: application/json")
+    @FormUrlEncoded
+    suspend fun changePassword(@Field("action") action      : String = "change_password",
+                               @Field("email")  email       : String,
+                               @Field("email")  password    : String): UserResponse
+
+
 }
