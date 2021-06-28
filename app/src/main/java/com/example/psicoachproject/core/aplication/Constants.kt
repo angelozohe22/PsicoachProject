@@ -9,6 +9,10 @@ object Constants {
     const val SERVICE_ROUTE_SIGN_IN = "auth/"
     const val SERVICE_ROUTE_SIGN_UP = "register"
     const val SERVICE_ROUTE_VERIFY_EMAIL = "auth/recovery"
+    const val SERVICE_ROUTE_LOGOUT  = "auth/logout"
+    const val SERVICE_ROUTE_PROFILE = "auth/profile"
+
+    const val TYPE_AUTH = "Bearer"
 
     const val VERIFY_EMAIL = 1
     const val VERIFY_RESPONSE = 2

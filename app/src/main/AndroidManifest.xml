@@ -12,16 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PsicoachProject">
-        <activity android:name=".ui.modules.home.activities.HomeActivity"></activity>
-        <activity android:name=".ui.modules.main.activities.SignUpActivity" />
-        <activity android:name=".ui.modules.main.activities.SignInActivity" />
-        <activity android:name=".ui.modules.main.activities.MainActivity">
+        <activity android:name=".ui.modules.main.activities.SplashActivity"
+            android:theme="@style/Theme.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.modules.home.activities.HomeActivity"/>
+        <activity android:name=".ui.modules.main.activities.SignUpActivity" />
+        <activity android:name=".ui.modules.main.activities.SignInActivity" />
+        <activity android:name=".ui.modules.main.activities.MainActivity"/>
     </application>
 
 </manifest>

@@ -12,5 +12,6 @@ interface AuthRepository {
     suspend fun verifyEmail(email: String): SecretQuestion
     suspend fun verifyResponse(email: String, phrase: String): String
     suspend fun changePassword(email: String, password: String): String
-
+    suspend fun refreshData(): String
+    suspend fun logOut(): String
 }

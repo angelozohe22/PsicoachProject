@@ -1,9 +1,8 @@
 package com.example.psicoachproject.data.remote.service.auth
 
 import com.example.psicoachproject.core.aplication.Constants
-import com.example.psicoachproject.data.remote.source.dto.DataResponse
-import com.example.psicoachproject.data.remote.source.dto.SecretQuestion
-import com.example.psicoachproject.data.remote.source.dto.UserResponse
+import com.example.psicoachproject.core.aplication.preferences
+import com.example.psicoachproject.data.remote.source.dto.*
 import retrofit2.http.*
 
 /**
@@ -56,5 +55,13 @@ interface AuthService {
                                @Field("email")  email       : String,
                                @Field("email")  password    : String): UserResponse
 
+
+    @DELETE(Constants.SERVICE_ROUTE_LOGOUT)
+    @Headers("Accept:application/json", "Content-type:application/json")
+    suspend fun logout(@Header("Authorization")token: String): LogoutResponse
+
+    @GET(Constants.SERVICE_ROUTE_PROFILE)
+    @Headers("Accept:application/json", "Content-type:application/json")
+    suspend fun refreshData(@Header("Authorization")token: String): ProfileResponse
 
 }

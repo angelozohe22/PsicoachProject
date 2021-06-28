@@ -3,12 +3,11 @@ package com.example.psicoachproject.data.remote.source.auth
 import android.util.Log
 import android.widget.Toast
 import com.example.psicoachproject.common.utils.isNullOrEmpty
+import com.example.psicoachproject.core.aplication.Constants.TYPE_AUTH
+import com.example.psicoachproject.core.aplication.preferences
 import com.example.psicoachproject.data.remote.RetrofitBuilder.getConexionRetrofit
 import com.example.psicoachproject.data.remote.service.auth.AuthService
-import com.example.psicoachproject.data.remote.source.dto.DataResponse
-import com.example.psicoachproject.data.remote.source.dto.ErrorResponse
-import com.example.psicoachproject.data.remote.source.dto.SecretQuestion
-import com.example.psicoachproject.data.remote.source.dto.UserResponse
+import com.example.psicoachproject.data.remote.source.dto.*
 import com.google.gson.Gson
 import okhttp3.ResponseBody
 import org.json.JSONObject
@@ -50,5 +49,13 @@ class AuthRemoteDataSourceImpl
 
     override suspend fun changePassword(email: String, password: String): UserResponse {
         return service.changePassword(email = email, password = password)
+    }
+
+    override suspend fun logOut(): LogoutResponse {
+        return service.logout(" $TYPE_AUTH ${preferences.token ?: ""}")
+    }
+
+    override suspend fun refreshData(): ProfileResponse {
+        return service.refreshData(" $TYPE_AUTH ${preferences.token ?: ""}")
     }
 }

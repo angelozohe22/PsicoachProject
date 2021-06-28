@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.psicoachproject.core.Resource
+import com.example.psicoachproject.core.aplication.preferences
 import com.example.psicoachproject.data.remote.source.dto.ErrorResponse
 import com.example.psicoachproject.domain.repository.auth.AuthRepository
 import com.google.gson.Gson
@@ -161,7 +162,62 @@ class AuthViewModel(
         }
     }
 
+    fun logOut()= liveData(Dispatchers.IO) {
+        emit(Resource.Loading)
+        try {
 
+            emit(Resource.Success(repository.logOut()))
+        }catch (t: Throwable){
+            println("--->> Error: ${t.message.toString()}")
+            if(t is HttpException){
+                val response = t.response()
+
+                try {
+                    val jObjError = JSONObject(response?.errorBody()?.string())
+                    val result = Gson().fromJson(jObjError.toString(), ErrorResponse::class.java)
+
+                    if (response?.code() == 422){
+                        emit(Resource.Failure(result.error.first().message))
+                    }else {
+                        emit(Resource.Failure(result.message))
+                    }
+
+                } catch (e: Exception){
+                    emit(Resource.Failure("Ocurrió un error en servicio - ${e.message.toString()}"))
+                }
+            }else{
+                emit(Resource.Failure("Ocurrió un error"))
+            }
+        }
+    }
+
+    fun refreshData() = liveData(Dispatchers.IO){
+        emit(Resource.Loading)
+        try {
+            emit(Resource.Success(repository.refreshData()))
+        }catch (t: Throwable){
+            println("--->> Error: ${t.message.toString()}")
+            if(t is HttpException){
+                val response = t.response()
+
+                try {
+                    val jObjError = JSONObject(response?.errorBody()?.string())
+                    val result = Gson().fromJson(jObjError.toString(), ErrorResponse::class.java)
+
+                    if (response?.code() == 422){
+                        emit(Resource.Failure(result.error.first().message))
+                    }else {
+                        emit(Resource.Failure(result.message))
+                    }
+
+                } catch (e: Exception){
+                    emit(Resource.Failure("Ocurrió un error en servicio - ${e.message.toString()}"))
+                }
+            }else{
+                emit(Resource.Failure("Ocurrió un error"))
+            }
+        }
+    }
 
 
 }

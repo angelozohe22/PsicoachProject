@@ -1,20 +1,17 @@
 package com.example.psicoachproject.ui.modules.main.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.view.isNotEmpty
 import androidx.lifecycle.Observer
 import com.example.psicoachproject.R
-import com.example.psicoachproject.databinding.ActivitySignInBinding
-import com.example.psicoachproject.databinding.DialogForgotPassBinding
 import com.example.psicoachproject.common.utils.afterTextChanged
 import com.example.psicoachproject.common.utils.customDialog
 import com.example.psicoachproject.common.utils.isEmailValid
@@ -24,8 +21,9 @@ import com.example.psicoachproject.core.aplication.Constants.CHANGE_PASSWORD
 import com.example.psicoachproject.core.aplication.Constants.VERIFY_EMAIL
 import com.example.psicoachproject.core.aplication.Constants.VERIFY_RESPONSE
 import com.example.psicoachproject.data.remote.source.auth.AuthRemoteDataSourceImpl
+import com.example.psicoachproject.databinding.ActivitySignInBinding
+import com.example.psicoachproject.databinding.DialogForgotPassBinding
 import com.example.psicoachproject.domain.repository.auth.AuthRepositoryImpl
-import com.example.psicoachproject.ui.modules.home.activities.HomeActivity
 import com.example.psicoachproject.ui.modules.main.activities.viewmodel.AuthViewModel
 import com.example.psicoachproject.ui.modules.main.activities.viewmodel.AuthViewModelFactory
 import com.google.android.material.textfield.TextInputEditText
@@ -72,7 +70,10 @@ class SignInActivity : AppCompatActivity() {
         inputsValidator()
         lblSignUp.setOnClickListener { goToSignUp() }
         lblForgotPassword.setOnClickListener { showForgotPasswordDialog() }
-        btnBackSignIn.setOnClickListener { onBackPressed(); finish() }
+        btnBackSignIn.setOnClickListener {
+            onBackPressed()
+            finish()
+        }
 
     }
 
@@ -95,9 +96,11 @@ class SignInActivity : AppCompatActivity() {
                 }
             }
 
-            validateButton(!isNullOrEmpty(email)
-                    && !isNullOrEmpty(password)
-                    && password.length >= 5 || password.length < 20)
+            validateButton(
+                !isNullOrEmpty(email)
+                        && !isNullOrEmpty(password)
+                        && password.length >= 5 || password.length < 20
+            )
 
             btnSignIn.setOnClickListener { signIn(email, password) }
 
@@ -108,7 +111,7 @@ class SignInActivity : AppCompatActivity() {
 
     }
 
-    private fun signIn(email: String, password: String ){
+    private fun signIn(email: String, password: String){
         viewModel.signIn(email, password).observe(this, Observer {
             it?.let { result ->
                 when (result) {
@@ -120,9 +123,9 @@ class SignInActivity : AppCompatActivity() {
                         hideProgress()
                         validateButton(false)
                         Toast.makeText(this, result.data, Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, HomeActivity::class.java)
+                        val intent = Intent(this, SplashActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         startActivity(intent)
-                        finish()
                     }
                     is Resource.Failure -> {
                         hideProgress()
@@ -252,15 +255,16 @@ class SignInActivity : AppCompatActivity() {
                                         lblHelpPhrase.text = "Ayuda: ${result.data.phrase}"
 
                                         //Success
-                                        lblQuestion.visibility   = View.VISIBLE
+                                        lblQuestion.visibility = View.VISIBLE
                                         lblHelpPhrase.visibility = View.VISIBLE
-                                        cetAnswer.visibility     = View.VISIBLE
+                                        cetAnswer.visibility = View.VISIBLE
                                     }
                                     is Resource.Failure -> {
                                         progressRecover.visibility = View.GONE
                                         btnRecoveryPass.visibility = View.VISIBLE
 
-                                        Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(this, result.message, Toast.LENGTH_SHORT)
+                                            .show()
                                     }
                                 }
                             }
@@ -270,7 +274,7 @@ class SignInActivity : AppCompatActivity() {
                     VERIFY_RESPONSE -> {
                         viewModel.verifyResponse(viewModel.email, answer).observe(this, Observer {
                             it?.let { result ->
-                                when(result){
+                                when (result) {
                                     is Resource.Loading -> {
                                         progressRecover.visibility = View.VISIBLE
                                         btnRecoveryPass.apply {
@@ -284,8 +288,8 @@ class SignInActivity : AppCompatActivity() {
                                         progressRecover.visibility = View.GONE
                                         btnRecoveryPass.visibility = View.VISIBLE
 
-                                        lblQuestion.visibility   = View.GONE
-                                        cetAnswer.visibility     = View.GONE
+                                        lblQuestion.visibility = View.GONE
+                                        cetAnswer.visibility = View.GONE
                                         lblHelpPhrase.visibility = View.GONE
 
                                         cetPassword.visibility = View.VISIBLE
@@ -295,7 +299,8 @@ class SignInActivity : AppCompatActivity() {
                                         progressRecover.visibility = View.GONE
                                         btnRecoveryPass.visibility = View.VISIBLE
 
-                                        Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(this, result.message, Toast.LENGTH_SHORT)
+                                            .show()
                                     }
                                 }
                             }
@@ -318,13 +323,15 @@ class SignInActivity : AppCompatActivity() {
                                         is Resource.Success -> {
                                             progressRecover.visibility = View.GONE
                                             btnRecoveryPass.visibility = View.VISIBLE
-                                            Toast.makeText(this, result.data, Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(this, result.data, Toast.LENGTH_SHORT)
+                                                .show()
                                         }
                                         is Resource.Failure -> {
                                             progressRecover.visibility = View.GONE
                                             btnRecoveryPass.visibility = View.VISIBLE
 
-                                            Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(this, result.message, Toast.LENGTH_SHORT)
+                                                .show()
                                         }
                                     }
                                 }

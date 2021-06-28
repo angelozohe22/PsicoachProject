@@ -30,6 +30,11 @@ data class Args(
     @field:SerializedName("minLength") val minLength : Int
 )
 
+data class LogoutResponse(
+    @field:SerializedName("message") val message : String,
+    @field:SerializedName("revoked") val revoked : Boolean
+)
+
 data class SecretQuestion(
     @field:SerializedName("secret_question")    val question  : String,
     @field:SerializedName("help_phrase")        val phrase    : String,
