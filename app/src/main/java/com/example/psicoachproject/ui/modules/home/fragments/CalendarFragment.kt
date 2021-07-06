@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.psicoachproject.R
 import com.example.psicoachproject.common.compactcalendarview.CompactCalendarView
 import com.example.psicoachproject.common.compactcalendarview.domain.Event
 import com.example.psicoachproject.common.utils.capitalizeFully
 import com.example.psicoachproject.common.utils.dateStringToTimeMilli
 import com.example.psicoachproject.common.utils.getColorWithAlpha
+import com.example.psicoachproject.common.utils.toParseString
 import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.databinding.FragmentCalendarBinding
 import com.example.psicoachproject.databinding.FragmentInicioBinding
@@ -52,15 +54,16 @@ class CalendarFragment : Fragment() {
 
         viewModel = (activity as HomeActivity).viewModelCita
         setUpCalendar()
-
+        setUpEventRecycler()
 
     }
 
     private fun setUpEventRecycler(){
-//        binding.rvEvents.apply {
-//            adapter = eventAdapter
-//            layoutManager =
-//        }
+        binding.rvEvents.apply {
+            adapter = eventAdapter
+            layoutManager = LinearLayoutManager( context,
+                LinearLayoutManager.VERTICAL,false)
+        }
     }
 
     private fun setUpCalendar(){
@@ -109,7 +112,9 @@ class CalendarFragment : Fragment() {
                     }
                     is Resource.Success -> {
                         loadEvent(result.data)
-
+                        val currentEventList = result.data.eventList.filter { lastDate?.toParseString() == it.date }
+                        println("---->>> currentList: $currentEventList")
+                        eventAdapter.setData(currentEventList)
                     }
                     is Resource.Failure -> {
 

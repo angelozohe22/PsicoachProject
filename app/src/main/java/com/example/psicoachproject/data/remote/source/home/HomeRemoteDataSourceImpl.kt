@@ -58,22 +58,27 @@ class HomeRemoteDataSourceImpl: HomeRemoteDataSource {
         println("---->>> json:::: $asd")
 
         return service.registerCita(
-            name            =  name,
-            surname         =  surname,
-            age             =  age,
-            document_id     =  document_id,
-            document_number =  document_number,
-            gender_id       =  gender_id,
-            phone           =  phone,
-            emails          =  emails.toJson(),
-            product_id      =  product_id,
-            disease         =  disease,
-            description     =  description,
-            date            =  date.toJson(),
-            start_time      =  start_time.toJson(),
-            end_time        =  end_time.toJson(),
+            json = asd,
             token           = " ${Constants.TYPE_AUTH} ${preferences.token}"
         )
+
+//        return service.registerCita(
+//            name            =  name,
+//            surname         =  surname,
+//            age             =  age,
+//            document_id     =  document_id,
+//            document_number =  document_number,
+//            gender_id       =  gender_id,
+//            phone           =  phone,
+//            emails          =  emails.toJson(),
+//            product_id      =  product_id,
+//            disease         =  disease,
+//            description     =  description,
+//            date            =  date.toJson(),
+//            start_time      =  start_time.toJson(),
+//            end_time        =  end_time.toJson(),
+//            token           = " ${Constants.TYPE_AUTH} ${preferences.token}"
+//        )
     }
 
     override suspend fun validateDate(date: String, startTime: String, endTime: String) {

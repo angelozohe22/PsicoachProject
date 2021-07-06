@@ -15,10 +15,10 @@ data class Meet(
     @SerializedName("gender_id")        val gender_id       : Int,
     @SerializedName("description")      val description     : String,
     @SerializedName("disease")          val disease         : String,
-    @SerializedName("date")             val date            : String,
-    @SerializedName("start_time")       val start_time      : String,
-    @SerializedName("end_time")         val end_time        : String,
+    @SerializedName("date_app")             val date            : String,
+    @SerializedName("start_time_app")       val start_time      : String,
+    @SerializedName("end_time_app")         val end_time        : String,
     @SerializedName("phone")            val phone           : String,
-    @SerializedName("emails")           val emails          : String,
+    @SerializedName("emails_app")           val emails          : String,
     @SerializedName("is_app")           val is_app          : Boolean = true
 )

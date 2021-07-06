@@ -12,23 +12,27 @@ interface HomeService {
 
     @POST(Constants.SERVICE_ROUTE_REGISTER)
     @Headers("Content-Type: application/json;charset=utf-8")
-    @FormUrlEncoded
-    suspend fun registerCita(@Field("name")            name            : String,
-                             @Field("surname")         surname         : String,
-                             @Field("age")             age             : String,
-                             @Field("document_id")     document_id     : Int,
-                             @Field("document_number") document_number : String,
-                             @Field("product_id")      product_id      : Int,
-                             @Field("gender_id")       gender_id       : Int,
-                             @Field("description")     description     : String,
-                             @Field("disease")         disease         : String,
-                             @Field("date_app")        date            : String,
-                             @Field("start_time_app")  start_time      : String,
-                             @Field("end_time_app")    end_time        : String,
-                             @Field("phone")           phone           : String,
-                             @Field("emails_app")      emails          : String,
-                             @Field("is_app")          is_app          : Boolean = true,
+//    @FormUrlEncoded
+    suspend fun registerCita(@Body json: String,
                              @Header("Authorization")token: String
+
+
+//    suspend fun registerCita(@Field("name")            name            : String,
+//                             @Field("surname")         surname         : String,
+//                             @Field("age")             age             : String,
+//                             @Field("document_id")     document_id     : Int,
+//                             @Field("document_number") document_number : String,
+//                             @Field("product_id")      product_id      : Int,
+//                             @Field("gender_id")       gender_id       : Int,
+//                             @Field("description")     description     : String,
+//                             @Field("disease")         disease         : String,
+//                             @Field("date_app")        date            : String,
+//                             @Field("start_time_app")  start_time      : String,
+//                             @Field("end_time_app")    end_time        : String,
+//                             @Field("phone")           phone           : String,
+//                             @Field("emails_app")      emails          : String,
+//                             @Field("is_app")          is_app          : Boolean = true,
+//                             @Header("Authorization")token: String
     ): UserResponse
 
     @GET(Constants.SERVICE_ROUTE_VALIDATE_DATE)

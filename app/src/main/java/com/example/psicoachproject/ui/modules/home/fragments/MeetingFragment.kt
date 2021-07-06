@@ -202,6 +202,7 @@ class MeetingFragment : Fragment(), MeetingListener {
                     startDate   = startTimeList,
                     endDate     = endTimeList)
 
+            validateButton(false)
             citaBundle.putParcelable("meeting", meeting)
             val intent = Intent(requireContext(), DatosActivity::class.java)
             intent.putExtras(citaBundle)
