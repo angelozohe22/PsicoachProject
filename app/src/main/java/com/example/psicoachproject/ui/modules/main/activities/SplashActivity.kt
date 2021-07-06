@@ -33,13 +33,12 @@ class SplashActivity: AppCompatActivity() {
     }
 
     private fun goTo(){
-        //De momento
         if(isNullOrEmpty(preferences.token)){
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }else{
-            viewModel.getProfile().observe(this, Observer {
+            viewModel.refreshData().observe(this, Observer {
                 it?.let { result ->
                     when(result){
                         is Resource.Loading -> {
@@ -53,6 +52,10 @@ class SplashActivity: AppCompatActivity() {
                         }
                         is Resource.Failure -> {
                             println("Falla...")
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                            preferences.clear()
+                            finish()
                         }
                     }
                 }

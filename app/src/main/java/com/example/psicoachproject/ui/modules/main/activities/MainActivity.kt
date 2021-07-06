@@ -6,10 +6,12 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatButton
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.example.psicoachproject.R
+import com.example.psicoachproject.common.utils.showSnackBar
 import com.example.psicoachproject.databinding.ActivityMainBinding
 import com.example.psicoachproject.ui.modules.main.fragments.intro.IntroFragment
 import com.example.psicoachproject.common.utils.transform.FadePageTransfomer
@@ -19,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    private lateinit var container   : ConstraintLayout
     private lateinit var btnSignIn   : AppCompatButton
     private lateinit var btnSignUp   : AppCompatButton
     private lateinit var lnIndSlider : LinearLayout
@@ -38,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        container   = binding.container
         btnSignIn   = binding.btnSignIn
         btnSignUp   = binding.btnSignUp
         lnIndSlider = binding.lnIndSlider

@@ -1,7 +1,6 @@
 package com.example.psicoachproject.data.remote.service.auth
 
-import com.example.psicoachproject.core.aplication.Constants
-import com.example.psicoachproject.core.aplication.preferences
+import com.example.psicoachproject.core.Constants
 import com.example.psicoachproject.data.remote.source.dto.*
 import retrofit2.http.*
 

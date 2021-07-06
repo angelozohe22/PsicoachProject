@@ -8,5 +8,4 @@ class AuthViewModelFactory(private val repository: AuthRepository): ViewModelPro
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return modelClass.getConstructor(AuthRepository::class.java).newInstance(repository)
     }
-
 }

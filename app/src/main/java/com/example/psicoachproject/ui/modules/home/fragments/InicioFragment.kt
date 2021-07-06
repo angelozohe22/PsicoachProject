@@ -1,22 +1,25 @@
 package com.example.psicoachproject.ui.modules.home.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.psicoachproject.R
+import com.example.psicoachproject.core.aplication.preferences
 import com.example.psicoachproject.databinding.FragmentInicioBinding
+import com.example.psicoachproject.domain.model.Promotion
+import com.example.psicoachproject.ui.modules.home.activities.PromotionActivity
+import com.example.psicoachproject.ui.modules.home.activities.viewmodel.HomeViewModel
+import com.example.psicoachproject.ui.modules.home.fragments.adapter.BenefitListAdapter
+import com.example.psicoachproject.ui.modules.home.fragments.adapter.PromotionPageAdapter
 
-class InicioFragment : Fragment() {
+class InicioFragment : Fragment(), PromotionPageAdapter.OnPromoClickListener {
 
     private var _binding: FragmentInicioBinding? =null
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private val promoAdapter by lazy{ PromotionPageAdapter(requireContext(),this) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,9 +30,41 @@ class InicioFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val customPhrase = preferences.phrase.toLowerCase()
+        val customName = if (preferences.name.contains("Usuario")) " (:" else ", ${preferences.name}"
+
+        binding.lblName.text = "Bienvenido$customName"
+        binding.lblPhrase.text = "\" ${customPhrase.capitalize()} \" "
+        setupPromoRV()
+    }
+
+    private fun setupPromoRV(){
+        binding.vpPromo.apply {
+            adapter = promoAdapter
+        }
+        val promoList = listOf(
+            Promotion("Premium", 340.00, "x 5 sesiones (60 c/u) \n+consulta","#EE6055", listOf("Informe firmado y sellado: S/. 60")),
+            Promotion("Medium", 360.00, "x 5 sesiones (65 c/u) \n+consulta","#F4F269", listOf("Acceso exclusivo al grupo de apoyo psicológico", "Acceso gratuito a charlas psicológicas", "Informe firmado y sellado: S/. 30")),
+            Promotion("Regular", 380.00, "x 5 sesiones (70 c/u) \n+ consulta","#99EB72", listOf("Acceso exclusivo al grupo de apoyo psicológico", "Acceso gratuito a charlas psicológicas", "Acceso gratuito a  talleres, charlas y capacitaciones", "Informe firmado y sellado: S/. 15")),
+            Promotion("Luxury", 420.00, "x 8 sesiones (50 c/u) \n+consulta","#BBDEF9", listOf("Beneficios del paquete Premium", "Pagos en 2 cuotas (210 c/u)")) //
+        )
+        promoAdapter.setData(promoList)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onPromoClickListener(promo: Promotion) {
+        val promoBundle = Bundle()
+        promoBundle.putParcelable("promo", promo)
+        val intent = Intent(requireActivity(), PromotionActivity::class.java)
+        intent.putExtras(promoBundle)
+        startActivity(intent)
     }
 
 }

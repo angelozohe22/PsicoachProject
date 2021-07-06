@@ -11,18 +11,13 @@
         android:label="Inicio"
         tools:layout="@layout/fragment_inicio" />
     <fragment
-        android:id="@+id/navigation_opcion1"
-        android:name="com.example.psicoachproject.ui.modules.home.fragments.Opcion1Fragment"
+        android:id="@+id/navigation_calendar"
+        android:name="com.example.psicoachproject.ui.modules.home.fragments.CalendarFragment"
         android:label="Opcion1"
-        tools:layout="@layout/fragment_opcion1" />
+        tools:layout="@layout/fragment_calendar" />
     <fragment
-        android:id="@+id/navigation_opcion2"
-        android:name="com.example.psicoachproject.ui.modules.home.fragments.Opcion2Fragment"
+        android:id="@+id/navigation_cita"
+        android:name="com.example.psicoachproject.ui.modules.home.fragments.MeetingFragment"
         android:label="Opcion2"
-        tools:layout="@layout/fragment_opcion2" />
-    <fragment
-        android:id="@+id/navigation_opcion3"
-        android:name="com.example.psicoachproject.ui.modules.home.fragments.Opcion3Fragment"
-        android:label="Opcion3"
-        tools:layout="@layout/fragment_opcion3" />
+        tools:layout="@layout/fragment_cita" />
 </navigation>

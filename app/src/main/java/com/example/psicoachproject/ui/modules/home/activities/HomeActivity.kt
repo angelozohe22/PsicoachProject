@@ -21,8 +21,12 @@ import com.example.psicoachproject.common.utils.setColorTintBottomNavigation
 import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.core.aplication.preferences
 import com.example.psicoachproject.data.remote.source.auth.AuthRemoteDataSourceImpl
+import com.example.psicoachproject.data.remote.source.home.HomeRemoteDataSourceImpl
 import com.example.psicoachproject.databinding.ActivityHomeBinding
 import com.example.psicoachproject.domain.repository.auth.AuthRepositoryImpl
+import com.example.psicoachproject.domain.repository.home.HomeRepositoryImpl
+import com.example.psicoachproject.ui.modules.home.activities.viewmodel.HomeViewModel
+import com.example.psicoachproject.ui.modules.home.activities.viewmodel.HomeViewModelFactory
 import com.example.psicoachproject.ui.modules.main.activities.MainActivity
 import com.example.psicoachproject.ui.modules.main.activities.viewmodel.AuthViewModel
 import com.example.psicoachproject.ui.modules.main.activities.viewmodel.AuthViewModelFactory
@@ -40,13 +44,22 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var imgAppBarMenu      : AppCompatImageButton
     private lateinit var imgAppBarProfile   : AppCompatImageView
 
-    private val viewModel by viewModels<AuthViewModel>{
+    private val viewModelAuth by viewModels<AuthViewModel>{
         AuthViewModelFactory(
             AuthRepositoryImpl(
                 AuthRemoteDataSourceImpl()
             )
         )
     }
+
+    val viewModelCita by viewModels<HomeViewModel>{
+        HomeViewModelFactory(
+                HomeRepositoryImpl(
+                        remote = HomeRemoteDataSourceImpl()
+                )
+        )
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,12 +79,12 @@ class HomeActivity : AppCompatActivity() {
 
     private fun setupAppBar(){
         imgAppBarMenu.setOnClickListener { drawerLayout.openDrawer(GravityCompat.START) }
-        imgAppBarProfile.load("https://rebasando.com/images/biblicas/el-nino-y-el-perrito.jpg"){
-            placeholder(R.drawable.ic_google)
+        imgAppBarProfile.load("https://scontent.flim17-1.fna.fbcdn.net/v/t1.6435-9/128375677_3706009076109912_302792313255666766_n.jpg?_nc_cat=108&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeHUz-XltFejvfcZ3CW5xmlmQvi8Fooab4dC-LwWihpvh3tEL9lAPHSEYausf1mJDOcqPFI6g-KdvnaN6crcbucX&_nc_ohc=_QKpwt--5LsAX-9ne2B&_nc_ht=scontent.flim17-1.fna&oh=a1fca72f744a3cf94b2a530c65738e10&oe=60E06667"){
+            placeholder(R.drawable.placeholder)
             size(50,50)
             transformations(CircleCropTransformation())
             scale(Scale.FILL)
-            error(R.drawable.ic_google)
+            error(R.drawable.placeholder)
         }
     }
 
@@ -87,26 +100,21 @@ class HomeActivity : AppCompatActivity() {
                     closeDrawer()
                 }
 
-                R.id.navigation_opcion1 ->{
-                    navController.navigate(R.id.navigation_opcion1)
+                R.id.navigation_calendar ->{
+                    navController.navigate(R.id.navigation_calendar)
                     closeDrawer()
                 }
 
-                R.id.navigation_opcion2 ->{
-                    navController.navigate(R.id.navigation_opcion2)
+                R.id.navigation_cita ->{
+                    navController.navigate(R.id.navigation_cita)
                     closeDrawer()
                 }
 
-                R.id.navigation_opcion3 ->{
-                    navController.navigate(R.id.navigation_opcion3)
-                    closeDrawer()
-                }
-
-                R.id.navigation_contact_us ->{
-//                    val intent = Intent(this, ContactUsActivity::class.java)
-//                    startActivity(intent)
-                    closeDrawer()
-                }
+//                R.id.navigation_contact_us ->{
+////                    val intent = Intent(this, ContactUsActivity::class.java)
+////                    startActivity(intent)
+//                    closeDrawer()
+//                }
 
 //                R.id.navigation_about_us ->{
 //                    val intent = Intent(this, AboutUsActivity::class.java)
@@ -115,7 +123,7 @@ class HomeActivity : AppCompatActivity() {
 //                }
 
                 R.id.sign_out -> {
-                    viewModel.logOut().observe(this, Observer {
+                    viewModelAuth.logOut().observe(this, Observer {
                         it?.let { result ->
                             when (result) {
                                 is Resource.Loading -> {

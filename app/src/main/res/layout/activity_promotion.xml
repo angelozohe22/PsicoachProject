@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.modules.home.activities.PromotionActivity">
+
+    <View
+        android:id="@+id/vContainer"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/black"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_promo_diamante"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_diamante"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_promo_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Regular"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="42sp"
+        app:layout_constraintLeft_toRightOf="@id/img_promo_diamante"
+        app:layout_constraintTop_toTopOf="@id/img_promo_diamante"
+        app:layout_constraintBottom_toBottomOf="@id/img_promo_diamante"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_title_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:text="Precio:"
+        android:textColor="@color/color_Gray_Web"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vContainer"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_precio_bene"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="S/. 380"
+        android:textColor="@color/color_Gray_Web"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        app:layout_constraintLeft_toRightOf="@id/lbl_title_price"
+        app:layout_constraintTop_toTopOf="@id/lbl_title_price"
+        app:layout_constraintBottom_toBottomOf="@id/lbl_title_price"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_title_bene"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:text="Beneficios:"
+        android:textColor="@color/color_Gray_Web"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lbl_title_price"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_benefits_promo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lbl_title_bene"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/item_benefit" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_buy_now"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:text="Comprar ahora"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@drawable/btn_corner"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rv_benefits_promo"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

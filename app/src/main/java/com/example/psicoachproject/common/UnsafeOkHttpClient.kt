@@ -46,6 +46,7 @@ class UnsafeOkHttpClient {
 
                 return builder
             } catch (e: Exception) {
+                println("--- aqui >>> ${e.message.toString()}")
                 throw RuntimeException(e)
             }
         }

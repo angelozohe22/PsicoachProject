@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="16dp"
+    android:id="@+id/lyContainerCita"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title_cita"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cita"
+        android:textSize="18sp"
+        android:fontFamily="@font/googlesans_medium"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cet_fecha_cita"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:startIconDrawable="@drawable/ic_calendar"
+        app:endIconMode="clear_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_cita"
+        style="@style/ContentInputEditText"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_fecha_cita"
+            android:hint="Fecha"
+            android:inputType="text"
+            android:lines="1"
+            android:maxLength="1000"
+            android:clickable="false"
+            android:focusable="false"
+            style="@style/InputEditText"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/container_hour"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="@id/cet_fecha_cita"
+        app:layout_constraintRight_toRightOf="@id/cet_fecha_cita"
+        app:layout_constraintTop_toBottomOf="@id/cet_fecha_cita"
+        android:gravity="center"
+        android:weightSum="2">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cddl_hora_in"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Inicio"
+            android:layout_marginRight="8dp"
+            app:startIconDrawable="@drawable/ic_time"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/ddl_hora_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cet_hora_out"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            app:startIconDrawable="@drawable/ic_time"
+            android:clickable="false"
+            android:focusable="false"
+            android:enabled="false"
+            app:errorEnabled="false"
+            app:layout_constraintLeft_toRightOf="@id/cddl_hora_in"
+            app:layout_constraintTop_toTopOf="@id/cddl_hora_in"
+            app:layout_constraintRight_toRightOf="parent"
+            style="@style/ContentInputEditText"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_hora_out"
+                android:hint="Fin"
+                android:clickable="false"
+                android:focusable="false"
+                android:inputType="textCapWords"
+                android:maxLength="1000"
+                style="@style/InputEditText"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnValidateTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Validar horario"
+        android:textColor="@color/white"
+        android:fontFamily="@font/googlesans_medium"
+        android:textAllCaps="false"
+        android:background="@drawable/btn_corner"
+        app:layout_constraintLeft_toLeftOf="@id/container_hour"
+        app:layout_constraintRight_toRightOf="@id/container_hour"
+        app:layout_constraintTop_toBottomOf="@id/container_hour"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="@id/container_hour"
+        app:layout_constraintRight_toRightOf="@id/container_hour"
+        app:layout_constraintTop_toBottomOf="@id/container_hour"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

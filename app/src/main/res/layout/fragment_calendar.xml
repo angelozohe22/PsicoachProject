@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.modules.home.fragments.CalendarFragment">
+
+    <LinearLayout
+        android:id="@+id/ly_calendar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:background="@color/primary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/googlesans_regular"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            />
+
+        <com.example.psicoachproject.common.compactcalendarview.CompactCalendarView
+            android:id="@+id/calendar"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            app:compactCalendarTextColor="#fff"
+            app:compactCalendarTextSize="12dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lbl_month"
+            app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorTransparent"
+            app:compactCalendarCurrentDayBackgroundColor="@color/colorTransparentDark"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_events"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ly_calendar_container"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_event"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

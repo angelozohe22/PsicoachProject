@@ -180,11 +180,11 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun showProgress(){
         progress.visibility = View.VISIBLE
-        btnSignUp.visibility = View.GONE
+        btnSignUp.visibility = View.INVISIBLE
     }
 
     private fun hideProgress(){
-        progress.visibility = View.GONE
+        progress.visibility = View.INVISIBLE
         btnSignUp.visibility = View.VISIBLE
     }
 

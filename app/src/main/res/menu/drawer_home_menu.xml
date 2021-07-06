@@ -6,21 +6,21 @@
             android:title="Calendario"/>
 
         <item
-            android:id="@+id/navigation_opcion1"
+            android:id="@+id/navigation_calendar"
             android:title="Postergar cita"/>
 
         <item
-            android:id="@+id/navigation_opcion2"
+            android:id="@+id/navigation_cita"
             android:title="Notificaciones"/>
 
     </group>
 
-    <item android:title="Otros">
+    -<item android:title="Otros">
         <menu>
             <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/navigation_contact_us"
-                    android:title="Nosotros"/>
+                <!--<item
+                    android:id="@+id/navigation_cita"
+                    android:title="Nosotros"/>-->
 
                 <item
                     android:id="@+id/sign_out"

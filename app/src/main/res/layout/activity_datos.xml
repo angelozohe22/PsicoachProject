@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lyContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.modules.home.activities.DatosActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_datos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/googlesans_medium"
+        android:text="Datos personales"
+        android:textSize="32sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cet_nombre_datos"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lbl_datos"
+        style="@style/ContentInputEditText"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_nombre_datos"
+            android:hint="Nombre"
+            android:inputType="textCapWords"
+            android:maxLength="1000"
+            style="@style/InputEditText"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cet_apellidos_datos"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cet_nombre_datos"
+        style="@style/ContentInputEditText"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_apellidos_datos"
+            android:hint="Apellidos"
+            android:inputType="textCapWords"
+            android:maxLength="1000"
+            style="@style/InputEditText"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/containerGenderAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_margin="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cet_apellidos_datos">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cddl_genero_datos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Género"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/ddl_genero_datos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cet_edad_datos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            app:errorEnabled="false"
+            style="@style/ContentInputEditText"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_edad_datos"
+                android:hint="Edad"
+                android:inputType="number"
+                android:maxLength="1000"
+                style="@style/InputEditText"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cet_telefono_datos"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containerGenderAge"
+        style="@style/ContentInputEditText"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_telefono_datos"
+            android:hint="Teléfono"
+            android:inputType="number"
+            android:maxLength="1000"
+            style="@style/InputEditText"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/containerDoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_margin="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cet_telefono_datos">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cddl_documento_datos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Tipo doc."
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/ddl_documento_datos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cet_nrodoc_datos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            app:errorEnabled="false"
+            style="@style/ContentInputEditText"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_nrodoc_datos"
+                android:hint="Nro. Documento"
+                android:inputType="number"
+                android:maxLength="1000"
+                style="@style/InputEditText"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cet_email_datos"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containerDoc"
+        style="@style/ContentInputEditText"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email_datos"
+            android:hint="Correo*"
+            android:inputType="textEmailAddress"
+            android:maxLength="1000"
+            style="@style/InputEditText"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_send_datos"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Continuar"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/cet_email_datos"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/btn_corner"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

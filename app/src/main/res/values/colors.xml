@@ -15,4 +15,6 @@
     <color name="color_error">#E6F44336</color>
     <color name="color_curtain">#CCFFFFFF</color>
     <color name="color_transparent">#00FAFAFA</color>
+    <color name="colorTransparent">#00FFFFFF</color>
+    <color name="colorTransparentDark">#a8000000</color>
 </resources>

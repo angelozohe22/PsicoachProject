@@ -17,9 +17,9 @@ import com.example.psicoachproject.common.utils.customDialog
 import com.example.psicoachproject.common.utils.isEmailValid
 import com.example.psicoachproject.common.utils.isNullOrEmpty
 import com.example.psicoachproject.core.Resource
-import com.example.psicoachproject.core.aplication.Constants.CHANGE_PASSWORD
-import com.example.psicoachproject.core.aplication.Constants.VERIFY_EMAIL
-import com.example.psicoachproject.core.aplication.Constants.VERIFY_RESPONSE
+import com.example.psicoachproject.core.Constants.CHANGE_PASSWORD
+import com.example.psicoachproject.core.Constants.VERIFY_EMAIL
+import com.example.psicoachproject.core.Constants.VERIFY_RESPONSE
 import com.example.psicoachproject.data.remote.source.auth.AuthRemoteDataSourceImpl
 import com.example.psicoachproject.databinding.ActivitySignInBinding
 import com.example.psicoachproject.databinding.DialogForgotPassBinding
@@ -99,7 +99,7 @@ class SignInActivity : AppCompatActivity() {
             validateButton(
                 !isNullOrEmpty(email)
                         && !isNullOrEmpty(password)
-                        && password.length >= 5 || password.length < 20
+                        && password.length in 5..20
             )
 
             btnSignIn.setOnClickListener { signIn(email, password) }
@@ -117,15 +117,11 @@ class SignInActivity : AppCompatActivity() {
                 when (result) {
                     Resource.Loading -> {
                         showProgress()
-                        Toast.makeText(this, "Cargando...", Toast.LENGTH_SHORT).show()
                     }
                     is Resource.Success -> {
                         hideProgress()
                         validateButton(false)
-                        Toast.makeText(this, result.data, Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, SplashActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                        startActivity(intent)
+                        navigateToHome()
                     }
                     is Resource.Failure -> {
                         hideProgress()
@@ -368,6 +364,12 @@ class SignInActivity : AppCompatActivity() {
             if (isEnabled) setBackgroundResource(R.drawable.btn_corner)
             else setBackgroundResource(R.drawable.btn_corner_disable)
         }
+    }
+
+    private fun navigateToHome(){
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 
     private fun clearInputs(){

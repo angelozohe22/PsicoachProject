@@ -24,12 +24,20 @@ data class ProfileResponse(
 data class Combo(
     @field:SerializedName("genders")       val combosList     : List<DataInformation>? = null,
     @field:SerializedName("document_type") val documentList   : List<DataInformation>? = null,
-    @field:SerializedName("diseases_type") val diseasesList   : List<DataInformation>? = null
+    @field:SerializedName("diseases_type") val diseasesList   : List<DataInformation>? = null,
+    @field:SerializedName("products")      val products       : List<Product>? = null
 )
 
 data class DataInformation(
-    @field:SerializedName("id")   val id   : String? = null,
+    @field:SerializedName("id")   val id   : Int? = null,
     @field:SerializedName("name") val name : String? = null
+)
+
+data class Product(
+    @field:SerializedName("id")             val id          : Int?    = null,
+    @field:SerializedName("name")           val name        : String? = null,
+    @field:SerializedName("cant_session")   val cantSession : String? = null,
+    @field:SerializedName("price")          val price       : String? = null,
 )
 
 data class Day(

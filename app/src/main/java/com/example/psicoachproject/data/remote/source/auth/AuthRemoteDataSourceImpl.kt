@@ -1,18 +1,11 @@
 package com.example.psicoachproject.data.remote.source.auth
 
-import android.util.Log
-import android.widget.Toast
 import com.example.psicoachproject.common.utils.isNullOrEmpty
-import com.example.psicoachproject.core.aplication.Constants.TYPE_AUTH
+import com.example.psicoachproject.core.Constants.TYPE_AUTH
 import com.example.psicoachproject.core.aplication.preferences
 import com.example.psicoachproject.data.remote.RetrofitBuilder.getConexionRetrofit
 import com.example.psicoachproject.data.remote.service.auth.AuthService
 import com.example.psicoachproject.data.remote.source.dto.*
-import com.google.gson.Gson
-import okhttp3.ResponseBody
-import org.json.JSONObject
-import retrofit2.*
-import java.util.*
 
 
 /**
