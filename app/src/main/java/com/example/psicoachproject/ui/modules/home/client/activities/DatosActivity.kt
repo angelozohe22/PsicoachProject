@@ -186,7 +186,7 @@ class DatosActivity : AppCompatActivity() {
 //        lyContainer.showSnackBar()
 //        Toast.makeText(this, "Cita registrada", Toast.LENGTH_SHORT).show()
 //        startActivity(intent)
-        finish()
+//        finish()
 
          //revisar
         viewModel.registerMeeting(
