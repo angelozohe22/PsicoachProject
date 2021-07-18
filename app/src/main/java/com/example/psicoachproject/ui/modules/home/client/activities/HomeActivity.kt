@@ -70,7 +70,9 @@ class HomeActivity : AppCompatActivity() {
         navigationView      = binding.navigationView
         bottomNavigation    = binding.bottomNavigation
         imgAppBarMenu       = binding.imgAppBarMenu
-        navController       = findNavController(R.id.nav_host_fragment)
+
+
+
         imgAppBarProfile    = binding.imgAppBarProfile
 
         setupAppBar()
@@ -89,9 +91,18 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupNavigation() {
+        navController       = findNavController(R.id.nav_host_fragment)
+        navController.setGraph(R.navigation.home_nav_graph)
+
         NavigationUI.setupWithNavController(navigationView, navController)
         bottomNavigation.setupWithNavController(navController)
         bottomNavigation.itemIconTintList = setColorTintBottomNavigation()
+
+//        binding.navigationView.menu.clear()
+//        binding.navigationView.inflateMenu(R.menu.drawer_home_menu)
+//
+//        bottomNavigation.menu.clear()
+//        bottomNavigation.inflateMenu(R.menu.btn_nav_menu)
 
         navigationView.setNavigationItemSelectedListener { menuItem->
             when (menuItem.itemId) {
