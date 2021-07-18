@@ -92,17 +92,23 @@ class HomeActivity : AppCompatActivity() {
 
     private fun setupNavigation() {
         navController       = findNavController(R.id.nav_host_fragment)
-        navController.setGraph(R.navigation.home_nav_graph)
-
         NavigationUI.setupWithNavController(navigationView, navController)
         bottomNavigation.setupWithNavController(navController)
         bottomNavigation.itemIconTintList = setColorTintBottomNavigation()
 
+        navController.graph.clear()
         binding.navigationView.menu.clear()
-        binding.navigationView.inflateMenu(R.menu.drawer_home_menu)
-
         bottomNavigation.menu.clear()
-        bottomNavigation.inflateMenu(R.menu.btn_nav_menu)
+
+//        if (preferences.roleId == 3){
+            navController.setGraph(R.navigation.home_client_nav_graph)
+            binding.navigationView.inflateMenu(R.menu.drawer_home_menu)
+            bottomNavigation.inflateMenu(R.menu.btn_nav_menu)
+//        }else {
+
+//        }
+
+
 
         navigationView.setNavigationItemSelectedListener { menuItem->
             when (menuItem.itemId) {
@@ -120,18 +126,6 @@ class HomeActivity : AppCompatActivity() {
                     navController.navigate(R.id.navigation_cita)
                     closeDrawer()
                 }
-
-//                R.id.navigation_contact_us ->{
-////                    val intent = Intent(this, ContactUsActivity::class.java)
-////                    startActivity(intent)
-//                    closeDrawer()
-//                }
-
-//                R.id.navigation_about_us ->{
-//                    val intent = Intent(this, AboutUsActivity::class.java)
-//                    startActivity(intent)
-//                    closeDrawer()
-//                }
 
                 R.id.sign_out -> {
                     viewModelAuth.logOut().observe(this, Observer {
