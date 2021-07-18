@@ -1,5 +1,6 @@
 package com.example.psicoachproject.ui.modules.home.client.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -12,6 +13,8 @@ import com.example.psicoachproject.R
 import com.example.psicoachproject.common.utils.afterTextChanged
 import com.example.psicoachproject.common.utils.isEmailValid
 import com.example.psicoachproject.common.utils.isNullOrEmpty
+import com.example.psicoachproject.common.utils.showSnackBar
+import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.core.aplication.preferences
 import com.example.psicoachproject.data.remote.source.dto.Combo
 import com.example.psicoachproject.data.remote.source.home.HomeRemoteDataSourceImpl
@@ -179,46 +182,46 @@ class DatosActivity : AppCompatActivity() {
                 arrayListOf(),
                 meeting)
 
-//        val intent = Intent(this, PagosActivity::class.java)
+        val intent = Intent(this, PagosActivity::class.java)
 //        lyContainer.showSnackBar()
-        Toast.makeText(this, "Cita registrada", Toast.LENGTH_SHORT).show()
-//        startActivity(intent)
+//        Toast.makeText(this, "Cita registrada", Toast.LENGTH_SHORT).show()
+        startActivity(intent)
         finish()
 
-         //revisar
-//        viewModel.registerMeeting(
-//                name = etNombreDatos.text?.trim().toString(),
-//                surname = etApellidosDatos.text?.trim().toString(),
-//                age = etEdadDatos.text?.trim().toString(),
-//                document_id = combos.documentList?.first { it.name == ddlDocumentoDatos.text?.trim().toString() }?.id ?: 0,
-//                document_number = etNrodocDatos.text?.trim().toString(),
-//                gender_id = combos.combosList?.first { it.name == ddlGeneroDatos.text?.trim().toString() }?.id ?: 0,
-//                phone = etTelefonoDatos.text?.trim().toString(),
-//                emails = listOf(etEmailDatos.text?.trim().toString()),
-//                product_id = meeting.productId,
-//                disease = meeting.disease,
-//                description = meeting.description,
-//                date = meeting.date,
-//                start_time = meeting.startDate,
-//                end_time = meeting.endDate
-//        ).observe(this){
-//            it?.let { result->
-//                when(result){
-//                    is Resource.Loading -> {
-//                        lyContainer.showSnackBar("Cargando...")
-//                    }
-//                    is Resource.Success -> {
-//                        lyContainer.showSnackBar(result.data)
-//                        val intent = Intent(this, PagosActivity::class.java)
-//                        startActivity(intent)
-//                        finish()
-//                    }
-//                    is Resource.Failure -> {
-//                        lyContainer.showSnackBar(result.message)
-//                    }
-//                }
-//            }
-//        }
+//         revisar
+        viewModel.registerMeeting(
+                name = etNombreDatos.text?.trim().toString(),
+                surname = etApellidosDatos.text?.trim().toString(),
+                age = etEdadDatos.text?.trim().toString(),
+                document_id = combos.documentList?.first { it.name == ddlDocumentoDatos.text?.trim().toString() }?.id ?: 0,
+                document_number = etNrodocDatos.text?.trim().toString(),
+                gender_id = combos.combosList?.first { it.name == ddlGeneroDatos.text?.trim().toString() }?.id ?: 0,
+                phone = etTelefonoDatos.text?.trim().toString(),
+                emails = listOf(etEmailDatos.text?.trim().toString()),
+                product_id = meeting.productId,
+                disease = meeting.disease,
+                description = meeting.description,
+                date = meeting.date,
+                start_time = meeting.startDate,
+                end_time = meeting.endDate
+        ).observe(this){
+            it?.let { result->
+                when(result){
+                    is Resource.Loading -> {
+                        lyContainer.showSnackBar("Cargando...")
+                    }
+                    is Resource.Success -> {
+                        lyContainer.showSnackBar(result.data)
+                        val intent = Intent(this, PagosActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    is Resource.Failure -> {
+                        lyContainer.showSnackBar(result.message)
+                    }
+                }
+            }
+        }
     }
 
     private fun validateButton(validator: Boolean){

@@ -11,12 +11,9 @@ import retrofit2.http.*
 interface HomeService {
 
     @POST(Constants.SERVICE_ROUTE_REGISTER)
-    @Headers("Content-Type: application/json;charset=utf-8")
-//    @FormUrlEncoded
-    suspend fun registerCita(@Body json: String,
+    @Headers("content-type: application/json")
+    suspend fun registerCita(@Body json: Map<String, String>,
                              @Header("Authorization")token: String
-
-
 //    suspend fun registerCita(@Field("name")            name            : String,
 //                             @Field("surname")         surname         : String,
 //                             @Field("age")             age             : String,
@@ -32,7 +29,7 @@ interface HomeService {
 //                             @Field("phone")           phone           : String,
 //                             @Field("emails_app")      emails          : String,
 //                             @Field("is_app")          is_app          : Boolean = true,
-//                             @Header("Authorization")token: String
+//                             @Header("Authorization")  token           : String
     ): UserResponse
 
     @GET(Constants.SERVICE_ROUTE_VALIDATE_DATE)

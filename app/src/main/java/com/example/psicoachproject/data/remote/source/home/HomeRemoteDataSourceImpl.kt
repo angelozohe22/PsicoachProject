@@ -1,5 +1,7 @@
 package com.example.psicoachproject.data.remote.source.home
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import com.example.psicoachproject.common.utils.toDateStringDate
 import com.example.psicoachproject.common.utils.toJson
 import com.example.psicoachproject.core.Constants
@@ -38,27 +40,29 @@ class HomeRemoteDataSourceImpl: HomeRemoteDataSource {
             end_time        : List<String>
     ): UserResponse {
 
-        val asd = Meet(
-            name            =  name           ,
-            surname         =  surname        ,
-            age             =  age            ,
-            document_id     =  document_id    ,
-            document_number =  document_number,
-            gender_id       =  gender_id      ,
-            phone           =  phone          ,
-            emails          =  emails.toJson(),
-            product_id      =  product_id     ,
-            disease         =  disease        ,
-            description     =  description    ,
-            date            =  date.toJson(),
-            start_time      =  start_time.toJson(),
-            end_time        =  end_time.toJson()
-        ).toJson()
+        val asd = hashMapOf(
+            "name" to  name,
+            "surname" to  surname,
+            "age" to  age,
+            "document_id" to  document_id.toString(),
+            "document_number" to  document_number,
+            "gender_id" to  gender_id.toString(),
+            "phone" to  phone,
+            "emails_app" to  emails.toJson(),
+            "product_id" to  product_id.toString(),
+            "disease" to  disease,
+            "description" to  description,
+            "date_app" to  date.toJson(),
+            "start_time_app" to  start_time.toJson(),
+            "end_time_app" to  end_time.toJson(),
+            "is_app" to "true"
 
-        println("---->>> json:::: $asd")
+        )
+
+        Log.e(TAG, "registerCita: ---->>> json:::: $asd")
 
         return service.registerCita(
-            json = asd,
+            asd,
             token           = " ${Constants.TYPE_AUTH} ${preferences.token}"
         )
 
