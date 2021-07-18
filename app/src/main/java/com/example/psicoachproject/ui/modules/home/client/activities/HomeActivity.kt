@@ -98,11 +98,11 @@ class HomeActivity : AppCompatActivity() {
         bottomNavigation.setupWithNavController(navController)
         bottomNavigation.itemIconTintList = setColorTintBottomNavigation()
 
-//        binding.navigationView.menu.clear()
-//        binding.navigationView.inflateMenu(R.menu.drawer_home_menu)
-//
-//        bottomNavigation.menu.clear()
-//        bottomNavigation.inflateMenu(R.menu.btn_nav_menu)
+        binding.navigationView.menu.clear()
+        binding.navigationView.inflateMenu(R.menu.drawer_home_menu)
+
+        bottomNavigation.menu.clear()
+        bottomNavigation.inflateMenu(R.menu.btn_nav_menu)
 
         navigationView.setNavigationItemSelectedListener { menuItem->
             when (menuItem.itemId) {
