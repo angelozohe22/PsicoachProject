@@ -3,15 +3,15 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/navigation_home"
-            android:title="Calendario"/>
+            android:title="Inicio"/>
 
         <item
             android:id="@+id/navigation_calendar"
-            android:title="Postergar cita"/>
+            android:title="Calendario"/>
 
         <item
             android:id="@+id/navigation_cita"
-            android:title="Notificaciones"/>
+            android:title="Registrar cita"/>
 
     </group>
 

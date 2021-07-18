@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.modules.home.activities.PagosActivity">
+    tools:context=".ui.modules.home.client.activities.PagosActivity">
 
 <View
     app:layout_constraintLeft_toLeftOf="parent"

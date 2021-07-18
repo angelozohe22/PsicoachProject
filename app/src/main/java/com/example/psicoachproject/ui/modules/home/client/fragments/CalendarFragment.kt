@@ -1,4 +1,4 @@
-package com.example.psicoachproject.ui.modules.home.fragments
+package com.example.psicoachproject.ui.modules.home.client.fragments
 
 import android.graphics.Color
 import android.os.Bundle
@@ -17,11 +17,10 @@ import com.example.psicoachproject.common.utils.getColorWithAlpha
 import com.example.psicoachproject.common.utils.toParseString
 import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.databinding.FragmentCalendarBinding
-import com.example.psicoachproject.databinding.FragmentInicioBinding
 import com.example.psicoachproject.domain.model.MeetingCalendar
-import com.example.psicoachproject.ui.modules.home.activities.HomeActivity
-import com.example.psicoachproject.ui.modules.home.activities.viewmodel.HomeViewModel
-import com.example.psicoachproject.ui.modules.home.fragments.adapter.EventAdapter
+import com.example.psicoachproject.ui.modules.home.client.activities.HomeActivity
+import com.example.psicoachproject.ui.modules.home.client.activities.viewmodel.HomeViewModel
+import com.example.psicoachproject.ui.modules.home.client.fragments.adapter.EventAdapter
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -113,11 +112,20 @@ class CalendarFragment : Fragment() {
                     is Resource.Success -> {
                         loadEvent(result.data)
                         val currentEventList = result.data.eventList.filter { lastDate?.toParseString() == it.date }
-                        println("---->>> currentList: $currentEventList")
+
+                        if (currentEventList.isEmpty()){
+                            binding.containerEmpty.visibility = View.VISIBLE
+                            binding.rvEvents.visibility = View.GONE
+                        }else{
+                            binding.containerEmpty.visibility = View.GONE
+                            binding.rvEvents.visibility = View.VISIBLE
+                        }
+                        println("setData -->> $currentEventList")
                         eventAdapter.setData(currentEventList)
                     }
                     is Resource.Failure -> {
-
+                        binding.containerEmpty.visibility = View.VISIBLE
+                        binding.rvEvents.visibility = View.GONE
                     }
                 }
             }

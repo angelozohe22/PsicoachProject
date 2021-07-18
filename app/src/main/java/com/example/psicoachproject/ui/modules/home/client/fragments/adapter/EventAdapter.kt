@@ -1,8 +1,11 @@
-package com.example.psicoachproject.ui.modules.home.fragments.adapter
+package com.example.psicoachproject.ui.modules.home.client.fragments.adapter
 
+import android.os.Build
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.psicoachproject.R
 import com.example.psicoachproject.databinding.ItemEventBinding
@@ -36,13 +39,15 @@ class EventAdapter: RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
     inner class EventViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         private val eventBinding = ItemEventBinding.bind(itemView)
+        @RequiresApi(Build.VERSION_CODES.N)
         fun bindView(event: MeetingEvent){
             eventBinding.apply {
                 lblPackage.text = event.packageName
                 lblIssue.text   = event.issue
-                lblDate.text    = event.date
-                lblEndTime.text = event.endTime
-                lblLink.text    = event.link
+                lblDate.text    = "Fecha: ${event.date}"
+                lblEndTime.text = "Termina a las: ${event.endTime} horas"
+                val linkEvent = "<a href='https://meet.google.com/odh-ehoh-ubi'> https://meet.google.com/fjm-gyod-mvg </a>"
+                lblLink.text    = "Link de evento: ${Html.fromHtml(linkEvent, Html.FROM_HTML_MODE_COMPACT)}"
             }
         }
     }

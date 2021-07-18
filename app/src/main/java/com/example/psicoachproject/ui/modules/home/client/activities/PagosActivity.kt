@@ -1,10 +1,8 @@
-package com.example.psicoachproject.ui.modules.home.activities
+package com.example.psicoachproject.ui.modules.home.client.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.psicoachproject.R
-import com.example.psicoachproject.databinding.ActivityDatosBinding
 import com.example.psicoachproject.databinding.ActivityPagosBinding
 
 class PagosActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.example.psicoachproject.ui.modules.home.fragments.adapter
+package com.example.psicoachproject.ui.modules.home.client.fragments.adapter
 
 import android.content.Context
 import android.graphics.Color

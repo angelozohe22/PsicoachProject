@@ -1,16 +1,13 @@
-package com.example.psicoachproject.ui.modules.home.activities
+package com.example.psicoachproject.ui.modules.home.client.activities
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.psicoachproject.R
 import com.example.psicoachproject.common.utils.setStatusBarColor
-import com.example.psicoachproject.databinding.ActivityHomeBinding
 import com.example.psicoachproject.databinding.ActivityPromotionBinding
 import com.example.psicoachproject.domain.model.Promotion
-import com.example.psicoachproject.ui.modules.home.fragments.adapter.BenefitListAdapter
+import com.example.psicoachproject.ui.modules.home.client.fragments.adapter.BenefitListAdapter
 
 class PromotionActivity : AppCompatActivity() {
 
@@ -32,7 +29,8 @@ class PromotionActivity : AppCompatActivity() {
         binding.lblPromoDesc.text = promo.name
         binding.lblPrecioBene.text = "S/. ${promo.price}"
         binding.btnBuyNow.setOnClickListener {
-            Toast.makeText(this, "Muy pronto!", Toast.LENGTH_SHORT).show()
+            onBackPressed()
+//            Toast.makeText(this, "Muy pronto!", Toast.LENGTH_SHORT).show()
         }
         setupRvBenefits()
     }

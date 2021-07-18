@@ -1,4 +1,4 @@
-package com.example.psicoachproject.ui.modules.home.activities
+package com.example.psicoachproject.ui.modules.home.client.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -25,8 +25,8 @@ import com.example.psicoachproject.data.remote.source.home.HomeRemoteDataSourceI
 import com.example.psicoachproject.databinding.ActivityHomeBinding
 import com.example.psicoachproject.domain.repository.auth.AuthRepositoryImpl
 import com.example.psicoachproject.domain.repository.home.HomeRepositoryImpl
-import com.example.psicoachproject.ui.modules.home.activities.viewmodel.HomeViewModel
-import com.example.psicoachproject.ui.modules.home.activities.viewmodel.HomeViewModelFactory
+import com.example.psicoachproject.ui.modules.home.client.activities.viewmodel.HomeViewModel
+import com.example.psicoachproject.ui.modules.home.client.activities.viewmodel.HomeViewModelFactory
 import com.example.psicoachproject.ui.modules.main.activities.MainActivity
 import com.example.psicoachproject.ui.modules.main.activities.viewmodel.AuthViewModel
 import com.example.psicoachproject.ui.modules.main.activities.viewmodel.AuthViewModelFactory

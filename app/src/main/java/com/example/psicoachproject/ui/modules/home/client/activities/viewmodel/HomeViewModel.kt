@@ -1,10 +1,9 @@
-package com.example.psicoachproject.ui.modules.home.activities.viewmodel
+package com.example.psicoachproject.ui.modules.home.client.activities.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.data.remote.source.dto.ErrorResponse
-import com.example.psicoachproject.domain.model.DatosPersonaCita
 import com.example.psicoachproject.domain.model.MeetingTime
 import com.example.psicoachproject.domain.repository.home.HomeRepository
 import com.google.gson.Gson

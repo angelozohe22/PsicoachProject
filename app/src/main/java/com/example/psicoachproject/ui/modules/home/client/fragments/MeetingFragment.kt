@@ -1,4 +1,4 @@
-package com.example.psicoachproject.ui.modules.home.fragments
+package com.example.psicoachproject.ui.modules.home.client.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -20,11 +20,11 @@ import com.example.psicoachproject.data.remote.source.dto.Combo
 import com.example.psicoachproject.databinding.FragmentCitaBinding
 import com.example.psicoachproject.domain.model.Meeting
 import com.example.psicoachproject.domain.model.MeetingTime
-import com.example.psicoachproject.ui.modules.home.activities.DatosActivity
-import com.example.psicoachproject.ui.modules.home.activities.HomeActivity
-import com.example.psicoachproject.ui.modules.home.activities.viewmodel.HomeViewModel
-import com.example.psicoachproject.ui.modules.home.fragments.adapter.MeetingAdapter
-import com.example.psicoachproject.ui.modules.home.fragments.adapter.MeetingListener
+import com.example.psicoachproject.ui.modules.home.client.activities.DatosActivity
+import com.example.psicoachproject.ui.modules.home.client.activities.HomeActivity
+import com.example.psicoachproject.ui.modules.home.client.activities.viewmodel.HomeViewModel
+import com.example.psicoachproject.ui.modules.home.client.fragments.adapter.MeetingAdapter
+import com.example.psicoachproject.ui.modules.home.client.fragments.adapter.MeetingListener
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson

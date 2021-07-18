@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/lyContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.modules.home.activities.DatosActivity">
+    android:layout_margin="8dp"
+    tools:context=".ui.modules.home.client.activities.DatosActivity">
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_back_datos"
+        android:layout_width="@dimen/size_button_arrow_back"
+        android:layout_height="@dimen/size_button_arrow_back"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btn_arrow"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lbl_datos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginLeft="16dp"
         android:fontFamily="@font/googlesans_medium"
         android:text="Datos personales"
-        android:textSize="32sp"
+        android:textSize="28sp"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintLeft_toRightOf="@id/btn_back_datos"
+        app:layout_constraintTop_toTopOf="@id/btn_back_datos"
+        app:layout_constraintBottom_toBottomOf="@id/btn_back_datos"
+        />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/cet_nombre_datos"
@@ -129,7 +145,7 @@
             android:id="@+id/et_telefono_datos"
             android:hint="Teléfono"
             android:inputType="number"
-            android:maxLength="1000"
+            android:maxLength="9"
             style="@style/InputEditText"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -177,7 +193,7 @@
                 android:id="@+id/et_nrodoc_datos"
                 android:hint="Nro. Documento"
                 android:inputType="number"
-                android:maxLength="1000"
+                android:maxLength="8"
                 style="@style/InputEditText"
                 />
         </com.google.android.material.textfield.TextInputLayout>

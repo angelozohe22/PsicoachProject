@@ -1,4 +1,4 @@
-package com.example.psicoachproject.ui.modules.home.activities.viewmodel
+package com.example.psicoachproject.ui.modules.home.client.activities.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -10,7 +10,7 @@ import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.core.aplication.preferences
 import com.example.psicoachproject.data.remote.source.auth.AuthRemoteDataSourceImpl
 import com.example.psicoachproject.domain.repository.auth.AuthRepositoryImpl
-import com.example.psicoachproject.ui.modules.home.activities.HomeActivity
+import com.example.psicoachproject.ui.modules.home.client.activities.HomeActivity
 import com.example.psicoachproject.ui.modules.main.activities.viewmodel.AuthViewModel
 import com.example.psicoachproject.ui.modules.main.activities.viewmodel.AuthViewModelFactory
 

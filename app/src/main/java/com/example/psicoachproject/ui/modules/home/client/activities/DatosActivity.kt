@@ -1,6 +1,5 @@
-package com.example.psicoachproject.ui.modules.home.activities
+package com.example.psicoachproject.ui.modules.home.client.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -13,8 +12,6 @@ import com.example.psicoachproject.R
 import com.example.psicoachproject.common.utils.afterTextChanged
 import com.example.psicoachproject.common.utils.isEmailValid
 import com.example.psicoachproject.common.utils.isNullOrEmpty
-import com.example.psicoachproject.common.utils.showSnackBar
-import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.core.aplication.preferences
 import com.example.psicoachproject.data.remote.source.dto.Combo
 import com.example.psicoachproject.data.remote.source.home.HomeRemoteDataSourceImpl
@@ -22,8 +19,8 @@ import com.example.psicoachproject.databinding.ActivityDatosBinding
 import com.example.psicoachproject.domain.model.Meeting
 import com.example.psicoachproject.domain.model.DatosPersonaCita
 import com.example.psicoachproject.domain.repository.home.HomeRepositoryImpl
-import com.example.psicoachproject.ui.modules.home.activities.viewmodel.HomeViewModel
-import com.example.psicoachproject.ui.modules.home.activities.viewmodel.HomeViewModelFactory
+import com.example.psicoachproject.ui.modules.home.client.activities.viewmodel.HomeViewModel
+import com.example.psicoachproject.ui.modules.home.client.activities.viewmodel.HomeViewModelFactory
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
@@ -99,7 +96,13 @@ class DatosActivity : AppCompatActivity() {
             registrarCita()
         }
 
+        binding.btnBackDatos.setOnClickListener {
+            onBackPressed()
+        }
 
+        if (!isNullOrEmpty(preferences.email)){
+            etEmailDatos.setText(preferences.email)
+        }
 
     }
 
@@ -121,8 +124,6 @@ class DatosActivity : AppCompatActivity() {
         ddlDocumentoDatos.apply {
             setAdapter(ArrayAdapter(context, R.layout.item_drop_down, docList))
         }
-
-
 
     }
 
@@ -178,9 +179,10 @@ class DatosActivity : AppCompatActivity() {
                 arrayListOf(),
                 meeting)
 
-        val intent = Intent(this, PagosActivity::class.java)
-        lyContainer.showSnackBar("Cita registrada")
-        startActivity(intent)
+//        val intent = Intent(this, PagosActivity::class.java)
+//        lyContainer.showSnackBar()
+        Toast.makeText(this, "Cita registrada", Toast.LENGTH_SHORT).show()
+//        startActivity(intent)
         finish()
 
          //revisar

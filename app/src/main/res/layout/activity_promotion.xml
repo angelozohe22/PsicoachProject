@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.modules.home.activities.PromotionActivity">
+    tools:context=".ui.modules.home.client.activities.PromotionActivity">
 
     <View
         android:id="@+id/vContainer"
@@ -89,8 +89,8 @@
         android:id="@+id/btn_buy_now"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:text="Comprar ahora"
+        android:layout_marginTop="16dp"
+        android:text="Regresar"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textStyle="bold"

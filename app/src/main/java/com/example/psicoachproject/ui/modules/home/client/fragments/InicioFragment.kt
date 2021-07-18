@@ -1,4 +1,4 @@
-package com.example.psicoachproject.ui.modules.home.fragments
+package com.example.psicoachproject.ui.modules.home.client.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,10 +9,8 @@ import android.view.ViewGroup
 import com.example.psicoachproject.core.aplication.preferences
 import com.example.psicoachproject.databinding.FragmentInicioBinding
 import com.example.psicoachproject.domain.model.Promotion
-import com.example.psicoachproject.ui.modules.home.activities.PromotionActivity
-import com.example.psicoachproject.ui.modules.home.activities.viewmodel.HomeViewModel
-import com.example.psicoachproject.ui.modules.home.fragments.adapter.BenefitListAdapter
-import com.example.psicoachproject.ui.modules.home.fragments.adapter.PromotionPageAdapter
+import com.example.psicoachproject.ui.modules.home.client.activities.PromotionActivity
+import com.example.psicoachproject.ui.modules.home.client.fragments.adapter.PromotionPageAdapter
 
 class InicioFragment : Fragment(), PromotionPageAdapter.OnPromoClickListener {
 
@@ -46,6 +44,7 @@ class InicioFragment : Fragment(), PromotionPageAdapter.OnPromoClickListener {
             adapter = promoAdapter
         }
         val promoList = listOf(
+            Promotion("Básica", 70.00, "x 1 sesiones (70 c/u) \n+consulta","#f4a261", listOf("Informe firmado y sellado: S/. 60")),
             Promotion("Premium", 340.00, "x 5 sesiones (60 c/u) \n+consulta","#EE6055", listOf("Informe firmado y sellado: S/. 60")),
             Promotion("Medium", 360.00, "x 5 sesiones (65 c/u) \n+consulta","#F4F269", listOf("Acceso exclusivo al grupo de apoyo psicológico", "Acceso gratuito a charlas psicológicas", "Informe firmado y sellado: S/. 30")),
             Promotion("Regular", 380.00, "x 5 sesiones (70 c/u) \n+ consulta","#99EB72", listOf("Acceso exclusivo al grupo de apoyo psicológico", "Acceso gratuito a charlas psicológicas", "Acceso gratuito a  talleres, charlas y capacitaciones", "Informe firmado y sellado: S/. 15")),

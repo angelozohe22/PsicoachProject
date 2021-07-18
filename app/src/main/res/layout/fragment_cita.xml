@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:padding="8dp"
         android:id="@+id/lyContainer"
-        tools:context=".ui.modules.home.fragments.MeetingFragment">
+        tools:context=".ui.modules.home.client.fragments.MeetingFragment">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/lbl_title_cita"
