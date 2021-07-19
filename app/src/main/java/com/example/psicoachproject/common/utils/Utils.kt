@@ -15,6 +15,7 @@ import android.view.WindowManager
 import android.widget.EditText
 import androidx.core.content.ContextCompat
 import com.example.psicoachproject.R
+import com.example.psicoachproject.core.Constants
 import com.example.psicoachproject.core.aplication.preferences
 import com.example.psicoachproject.data.remote.source.dto.Day
 import com.google.android.material.snackbar.Snackbar
@@ -208,4 +209,15 @@ fun dateStringToTimeMilli(date: String, formmatter: String = "yyyy-MM-dd"): Long
         null
     }
     return time
+}
+
+fun getColorPackage(packageName: String): Int{
+    return when(packageName){
+        Constants.PACKAGE_BASIC -> R.color.color_package_basic
+        Constants.PACKAGE_PREMIUM -> R.color.color_package_premium
+        Constants.PACKAGE_MEDIUM -> R.color.color_package_medium
+        Constants.PACKAGE_REGULAR -> R.color.color_package_regular
+        Constants.PACKAGE_LUXURY -> R.color.color_package_luxury
+        else -> R.color.color_package_basic
+    }
 }

@@ -9,7 +9,7 @@ import com.example.psicoachproject.R
 import com.example.psicoachproject.common.utils.*
 import com.example.psicoachproject.databinding.ItemCitaHourBinding
 import com.example.psicoachproject.domain.model.MeetingTime
-import com.example.psicoachproject.ui.modules.home.client.fragments.DatePickerFragment
+import com.example.psicoachproject.common.design.DatePickerFragment
 import java.util.*
 
 /**

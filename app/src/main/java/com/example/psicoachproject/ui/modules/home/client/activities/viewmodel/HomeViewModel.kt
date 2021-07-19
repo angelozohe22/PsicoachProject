@@ -124,4 +124,54 @@ class HomeViewModel(
         }
     }
 
+    fun getPendingList() = liveData(Dispatchers.IO){
+        emit(Resource.Loading)
+        try {
+            emit(Resource.Success(repository.getPendingList()))
+        }catch (t: Throwable){
+            println("Se cayo--->> ${t.message.toString()}")
+            if(t is HttpException){
+                val errorResponse = t.response()
+                try {
+                    val jsonError = JSONObject(errorResponse?.errorBody()?.string())
+                    val result = Gson().fromJson(jsonError.toString(), ErrorResponse::class.java)
+                    if (errorResponse?.code() == 422){
+                        emit(Resource.Failure(result.error.first().message))
+                    }else {
+                        emit(Resource.Failure(result.message))
+                    }
+                }catch (e: Exception){
+                    emit(Resource.Failure("Ocurrió un error en servicio - ${e.message.toString()}"))
+                }
+            }else{
+                emit(Resource.Failure("Ocurrió un error"))
+            }
+        }
+    }
+
+    fun saveStateAppointment() = liveData(Dispatchers.IO){
+        emit(Resource.Loading)
+        try {
+            emit(Resource.Success(repository.saveStateAppointment()))
+        }catch (t: Throwable){
+            println("Se cayo--->> ${t.message.toString()}")
+            if(t is HttpException){
+                val errorResponse = t.response()
+                try {
+                    val jsonError = JSONObject(errorResponse?.errorBody()?.string())
+                    val result = Gson().fromJson(jsonError.toString(), ErrorResponse::class.java)
+                    if (errorResponse?.code() == 422){
+                        emit(Resource.Failure(result.error.first().message))
+                    }else {
+                        emit(Resource.Failure(result.message))
+                    }
+                }catch (e: Exception){
+                    emit(Resource.Failure("Ocurrió un error en servicio - ${e.message.toString()}"))
+                }
+            }else{
+                emit(Resource.Failure("Ocurrió un error"))
+            }
+        }
+    }
+
 }

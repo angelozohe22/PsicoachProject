@@ -1,4 +1,4 @@
-package com.example.psicoachproject.ui.modules.home.client.activities
+package com.example.psicoachproject.ui.modules.home
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -96,19 +96,22 @@ class HomeActivity : AppCompatActivity() {
         bottomNavigation.setupWithNavController(navController)
         bottomNavigation.itemIconTintList = setColorTintBottomNavigation()
 
-        navController.graph.clear()
         binding.navigationView.menu.clear()
         bottomNavigation.menu.clear()
 
-//        if (preferences.roleId == 3){
+        println("-->> Rol: ${preferences.roleId} ")
+
+        if (preferences.roleId == 3){
             navController.setGraph(R.navigation.home_client_nav_graph)
             binding.navigationView.inflateMenu(R.menu.drawer_home_menu)
             bottomNavigation.inflateMenu(R.menu.btn_nav_menu)
-//        }else {
-
-//        }
-
-
+            bottomNavigation.selectedItemId = R.id.navigation_home
+        }else {
+            navController.setGraph(R.navigation.home_psisec_nav_graph)
+            binding.navigationView.inflateMenu(R.menu.drawer_home_psico_menu)
+            bottomNavigation.inflateMenu(R.menu.btn_nav_psico_menu)
+            bottomNavigation.selectedItemId = R.id.nav_pending_psico
+        }
 
         navigationView.setNavigationItemSelectedListener { menuItem->
             when (menuItem.itemId) {

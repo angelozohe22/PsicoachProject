@@ -1,11 +1,8 @@
 package com.example.psicoachproject.data.remote.source.home
 
-import com.example.psicoachproject.data.remote.source.dto.MeetingCalendarResponse
+import com.example.psicoachproject.data.remote.source.dto.PendingResponse
 import com.example.psicoachproject.data.remote.source.dto.UserResponse
-import com.example.psicoachproject.domain.model.DatosPersonaCita
 import com.example.psicoachproject.domain.model.MeetingCalendar
-import com.example.psicoachproject.domain.model.MeetingEvent
-import com.example.psicoachproject.domain.model.PendingMeetingEvent
 
 /**
  * Created by Angelo on 6/29/2021
@@ -35,5 +32,9 @@ interface HomeRemoteDataSource {
             endTime: String)
 
     suspend fun getMeetingsCalendar(year: String, month: String): MeetingCalendar
+
+    suspend fun saveStateAppointment(): String
+    suspend fun getPendingList(): List<PendingResponse>
+
 
 }

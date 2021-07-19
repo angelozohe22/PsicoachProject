@@ -182,12 +182,6 @@ class DatosActivity : AppCompatActivity() {
                 arrayListOf(),
                 meeting)
 
-//        val intent = Intent(this, PagosActivity::class.java)
-//        lyContainer.showSnackBar()
-//        Toast.makeText(this, "Cita registrada", Toast.LENGTH_SHORT).show()
-//        startActivity(intent)
-//        finish()
-
          //revisar
         viewModel.registerMeeting(
                 name = etNombreDatos.text?.trim().toString(),
@@ -211,12 +205,14 @@ class DatosActivity : AppCompatActivity() {
                         lyContainer.showSnackBar("Cargando...")
                     }
                     is Resource.Success -> {
+                        println("Pasooooo success")
                         lyContainer.showSnackBar(result.data)
                         val intent = Intent(this, PagosActivity::class.java)
                         startActivity(intent)
                         finish()
                     }
                     is Resource.Failure -> {
+                        println("Pasooooo error")
                         lyContainer.showSnackBar(result.message)
                     }
                 }

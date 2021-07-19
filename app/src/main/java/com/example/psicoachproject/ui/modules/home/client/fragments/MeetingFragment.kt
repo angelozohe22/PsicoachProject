@@ -13,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.psicoachproject.R
+import com.example.psicoachproject.common.design.DatePickerFragment
 import com.example.psicoachproject.common.utils.*
 import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.core.aplication.preferences
@@ -21,7 +22,7 @@ import com.example.psicoachproject.databinding.FragmentCitaBinding
 import com.example.psicoachproject.domain.model.Meeting
 import com.example.psicoachproject.domain.model.MeetingTime
 import com.example.psicoachproject.ui.modules.home.client.activities.DatosActivity
-import com.example.psicoachproject.ui.modules.home.client.activities.HomeActivity
+import com.example.psicoachproject.ui.modules.home.HomeActivity
 import com.example.psicoachproject.ui.modules.home.client.activities.viewmodel.HomeViewModel
 import com.example.psicoachproject.ui.modules.home.client.fragments.adapter.MeetingAdapter
 import com.example.psicoachproject.ui.modules.home.client.fragments.adapter.MeetingListener

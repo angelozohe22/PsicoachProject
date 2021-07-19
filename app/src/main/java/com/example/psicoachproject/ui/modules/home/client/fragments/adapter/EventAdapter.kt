@@ -8,13 +8,16 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.psicoachproject.R
+import com.example.psicoachproject.core.Constants
+import com.example.psicoachproject.core.aplication.preferences
 import com.example.psicoachproject.databinding.ItemEventBinding
 import com.example.psicoachproject.domain.model.MeetingEvent
 
 /**
  * Created by Angelo on 7/5/2021
  */
-class EventAdapter: RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
+class EventAdapter(
+): RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
     private var _listEvents = emptyList<MeetingEvent>()
 
@@ -39,17 +42,28 @@ class EventAdapter: RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
     inner class EventViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         private val eventBinding = ItemEventBinding.bind(itemView)
-        @RequiresApi(Build.VERSION_CODES.N)
+
         fun bindView(event: MeetingEvent){
             eventBinding.apply {
-                lblPackage.text = event.packageName
-                lblIssue.text   = event.issue
-                lblDate.text    = "Fecha: ${event.date}"
-                lblEndTime.text = "Termina a las: ${event.endTime} horas"
-                val linkEvent = "<a href='https://meet.google.com/odh-ehoh-ubi'> https://meet.google.com/fjm-gyod-mvg </a>"
+                lblPackage.text = "Paquete: ${event.packageName}"
+                lblIssue.text   = "Tema: ${event.issue}"
+                lblTime.text = "Hora: ${event.startTime} / ${event.endTime}"
+                val linkEvent = "<a href='${event.link}'> ${event.link} </a>"
                 lblLink.text    = "Link de evento: ${Html.fromHtml(linkEvent, Html.FROM_HTML_MODE_COMPACT)}"
+                if (event.state == Constants.STATE_PENDING){
+                    lblStatus.text =  "Subir voucher"
+                    imgIconPending.setBackgroundResource(R.drawable.ic_pencil)
+                }else{
+                    lblStatus.text =  "Pagado"
+                    imgIconPending.setBackgroundResource(R.drawable.ic_pencil)
+                    imgIconPending.isClickable = false
+                }
             }
         }
+    }
+
+    interface EventListener{
+        fun goToDetails(event: MeetingEvent)
     }
 
 }

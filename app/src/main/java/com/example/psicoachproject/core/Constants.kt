@@ -15,10 +15,18 @@ object Constants {
     const val SERVICE_ROUTE_PROFILE = "auth/profile"
     const val SERVICE_ROUTE_REGISTER = "meeting/register"
     const val SERVICE_ROUTE_MEETINGS_CALENDAR = "meeting/calendar"
+    const val SERVICE_ROUTE_MEETINGS_PENDING = "meeting/list"
     const val SERVICE_ROUTE_VALIDATE_DATE = "crossing"
-
 
     const val VERIFY_EMAIL = 1
     const val VERIFY_RESPONSE = 2
     const val CHANGE_PASSWORD = 3
+    const val STATE_PENDING = "Pendiente"
+    const val STATE_OK = "Pagado"
+    const val PACKAGE_BASIC = "BASIC"
+    const val PACKAGE_PREMIUM = "PREMIUM"
+    const val PACKAGE_REGULAR = "REGULAR"
+    const val PACKAGE_MEDIUM = "MEDIUM"
+    const val PACKAGE_LUXURY = "LUXURY"
+
 }

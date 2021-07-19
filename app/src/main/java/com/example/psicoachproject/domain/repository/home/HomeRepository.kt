@@ -4,6 +4,7 @@ import com.example.psicoachproject.data.remote.source.dto.MeetingCalendarRespons
 import com.example.psicoachproject.domain.model.DatosPersonaCita
 import com.example.psicoachproject.domain.model.MeetingCalendar
 import com.example.psicoachproject.domain.model.MeetingTime
+import com.example.psicoachproject.domain.model.Pending
 
 /**
  * Created by Angelo on 6/29/2021
@@ -29,4 +30,6 @@ interface HomeRepository {
 
     suspend fun validateDate(meetingTime: MeetingTime)
     suspend fun getMeetingsCalendar(year: String, month: String): MeetingCalendar
+    suspend fun saveStateAppointment(): String
+    suspend fun getPendingList(): List<Pending>
 }

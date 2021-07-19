@@ -6,5 +6,6 @@ package com.example.psicoachproject.domain.model
 data class PendingMeetingEvent(
     val id: Int,
     val packageName : String,
-    val issue       : String
+    val issue       : String,
+    val state       : String
 )

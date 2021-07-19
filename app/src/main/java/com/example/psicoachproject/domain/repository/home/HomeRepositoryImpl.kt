@@ -6,6 +6,7 @@ import com.example.psicoachproject.data.remote.source.home.HomeRemoteDataSource
 import com.example.psicoachproject.domain.model.DatosPersonaCita
 import com.example.psicoachproject.domain.model.MeetingCalendar
 import com.example.psicoachproject.domain.model.MeetingTime
+import com.example.psicoachproject.domain.model.Pending
 
 /**
  * Created by Angelo on 6/29/2021
@@ -47,5 +48,23 @@ class HomeRepositoryImpl(
 
     override suspend fun getMeetingsCalendar(year: String, month: String): MeetingCalendar {
         return remote.getMeetingsCalendar(year, month)
+    }
+
+    override suspend fun saveStateAppointment(): String {
+        return ""
+    }
+
+    override suspend fun getPendingList(): List<Pending> {
+        val listResult = remote.getPendingList().map {
+            Pending(
+                id = it.id ?: 0,
+                packageName = it.packageName ?: "",
+                issue = it.issue ?: ""
+            )
+        }
+
+
+
+        return listResult
     }
 }

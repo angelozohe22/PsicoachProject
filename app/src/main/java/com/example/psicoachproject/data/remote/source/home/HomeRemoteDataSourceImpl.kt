@@ -5,9 +5,8 @@ import com.example.psicoachproject.common.utils.toJson
 import com.example.psicoachproject.core.Constants
 import com.example.psicoachproject.core.aplication.preferences
 import com.example.psicoachproject.data.remote.RetrofitBuilder
-import com.example.psicoachproject.data.remote.service.home.Meet
 import com.example.psicoachproject.data.remote.service.home.HomeService
-import com.example.psicoachproject.data.remote.source.dto.MeetingCalendarResponse
+import com.example.psicoachproject.data.remote.source.dto.PendingResponse
 import com.example.psicoachproject.data.remote.source.dto.UserResponse
 import com.example.psicoachproject.domain.model.MeetingCalendar
 import com.example.psicoachproject.domain.model.MeetingEvent
@@ -38,47 +37,28 @@ class HomeRemoteDataSourceImpl: HomeRemoteDataSource {
             end_time        : List<String>
     ): UserResponse {
 
-        val asd = Meet(
-            name            =  name           ,
-            surname         =  surname        ,
-            age             =  age            ,
-            document_id     =  document_id    ,
-            document_number =  document_number,
-            gender_id       =  gender_id      ,
-            phone           =  phone          ,
-            emails          =  emails.toJson(),
-            product_id      =  product_id     ,
-            disease         =  disease        ,
-            description     =  description    ,
-            date            =  date.toJson(),
-            start_time      =  start_time.toJson(),
-            end_time        =  end_time.toJson()
-        ).toJson()
-
-        println("---->>> json:::: $asd")
-
-        return service.registerCita(
-            json = asd,
-            token           = " ${Constants.TYPE_AUTH} ${preferences.token}"
+        val appointment = hashMapOf(
+            "name" to  name,
+            "surname" to  surname,
+            "age" to  age,
+            "document_id" to  document_id.toString(),
+            "document_number" to  document_number,
+            "gender_id" to  gender_id.toString(),
+            "phone" to  phone,
+            "emails_app" to  emails.toJson(),
+            "product_id" to  product_id.toString(),
+            "disease" to  disease,
+            "description" to  description,
+            "date_app" to  date.toJson(),
+            "start_time_app" to  start_time.toJson(),
+            "end_time_app" to  end_time.toJson(),
+            "is_app" to "true"
         )
 
-//        return service.registerCita(
-//            name            =  name,
-//            surname         =  surname,
-//            age             =  age,
-//            document_id     =  document_id,
-//            document_number =  document_number,
-//            gender_id       =  gender_id,
-//            phone           =  phone,
-//            emails          =  emails.toJson(),
-//            product_id      =  product_id,
-//            disease         =  disease,
-//            description     =  description,
-//            date            =  date.toJson(),
-//            start_time      =  start_time.toJson(),
-//            end_time        =  end_time.toJson(),
-//            token           = " ${Constants.TYPE_AUTH} ${preferences.token}"
-//        )
+        return service.registerCita(
+            appointment,
+            token           = " ${Constants.TYPE_AUTH} ${preferences.token}"
+        )
     }
 
     override suspend fun validateDate(date: String, startTime: String, endTime: String) {
@@ -95,22 +75,38 @@ class HomeRemoteDataSourceImpl: HomeRemoteDataSource {
 
         val eventsList = response.calendar?.map {
             val nameArray = it.name?.split("-") ?: emptyList()
-            MeetingEvent( packageName = nameArray[0].trim(),
-                          issue = nameArray[1].trim(),
-                          date = it.date?.toDateStringDate() ?: "",
-                          endTime = it.endTime ?: "00:00",
-                          link = it.linkMeet ?: "")
+            MeetingEvent(
+                idAppointment = it.idAppointment ?: 0,
+                packageName = nameArray[0].trim(),
+                issue = nameArray[1].trim(),
+                date = it.date?.toDateStringDate() ?: "",
+                startTime = it.startTime ?: "00:00",
+                endTime = it.endTime ?: "00:00",
+                description = it.description ?: "",
+                link = it.link ?: "",
+                state = Constants.STATE_OK)
         }
 
         val pendingEventList = response.pending?.map{
             val nameArray = it.name?.split("-") ?: emptyList()
             PendingMeetingEvent( id = it.id ?: 0,
                                  packageName = nameArray[0].trim(),
-                                 issue = nameArray[1].trim())
+                                 issue = nameArray[1].trim(),
+                                 state = Constants.STATE_PENDING)
         }
 
         return MeetingCalendar(eventsList ?: emptyList(),
             pendingEventList ?: emptyList())
 
     }
+
+    override suspend fun saveStateAppointment(): String{
+        return ""
+    }
+
+    override suspend fun getPendingList(): List<PendingResponse> {
+        return service.getPendingList(
+            token = " ${Constants.TYPE_AUTH} ${preferences.token}")
+    }
+
 }

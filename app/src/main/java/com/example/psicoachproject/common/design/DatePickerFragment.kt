@@ -1,4 +1,4 @@
-package com.example.psicoachproject.ui.modules.home.client.fragments
+package com.example.psicoachproject.common.design
 
 import android.app.DatePickerDialog
 import android.app.Dialog

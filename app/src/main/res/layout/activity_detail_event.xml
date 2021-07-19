@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.modules.home.psicosec.activities.DetailEventActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/shadow_edittext">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_back_appointment"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/btn_arrow"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lbl_datos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:fontFamily="@font/googlesans_medium"
+                android:text="Próxima cita"
+                android:textSize="24sp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toRightOf="@id/btn_back_appointment"
+                app:layout_constraintTop_toTopOf="@id/btn_back_appointment"
+                app:layout_constraintBottom_toBottomOf="@id/btn_back_appointment"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_package_type"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="24dp"
+                android:clickable="false"
+                android:backgroundTint="@color/color_red"
+                android:background="@drawable/default_corner"
+                app:layout_constraintTop_toBottomOf="@id/lbl_datos"
+                app:layout_constraintLeft_toRightOf="@id/lbl_package"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lbl_package"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="Paquete: "
+                android:textSize="18sp"
+                android:fontFamily="@font/googlesans_regular"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/btn_package_type"
+                app:layout_constraintBottom_toBottomOf="@id/btn_package_type"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lbl_title_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="42dp"
+                android:text="Tema:"
+                android:textSize="18sp"
+                android:fontFamily="@font/googlesans_regular"
+                app:layout_constraintLeft_toLeftOf="@id/lbl_package"
+                app:layout_constraintTop_toBottomOf="@id/lbl_package"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lbl_theme"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="24dp"
+                android:text="Depresión"
+                android:textSize="18sp"
+                android:fontFamily="@font/googlesans_regular"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="@id/btn_package_type"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/lbl_title_theme" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lbl_title_hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="42dp"
+                android:text="Hora"
+                android:textSize="18sp"
+                android:fontFamily="@font/googlesans_regular"
+                app:layout_constraintLeft_toLeftOf="@id/lbl_title_theme"
+                app:layout_constraintTop_toBottomOf="@id/lbl_theme"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lbl_hour"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="24dp"
+                app:layout_constraintLeft_toLeftOf="@id/lbl_theme"
+                app:layout_constraintTop_toTopOf="@id/lbl_title_hour"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lbl_title_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="42dp"
+                android:text="Link:"
+                android:textSize="18sp"
+                android:fontFamily="@font/googlesans_regular"
+                app:layout_constraintLeft_toLeftOf="@id/lbl_title_hour"
+                app:layout_constraintTop_toBottomOf="@id/lbl_hour"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lbl_link"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="24dp"
+                app:layout_constraintLeft_toLeftOf="@id/lbl_hour"
+                app:layout_constraintTop_toTopOf="@id/lbl_title_link"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lbl_title_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="42dp"
+                android:text="Fecha:"
+                android:textSize="18sp"
+                android:fontFamily="@font/googlesans_regular"
+                app:layout_constraintLeft_toLeftOf="@id/lbl_title_link"
+                app:layout_constraintTop_toBottomOf="@id/lbl_link"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lbl_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="24dp"
+                app:layout_constraintLeft_toLeftOf="@id/lbl_link"
+                app:layout_constraintTop_toTopOf="@id/lbl_title_date"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lbl_title_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="42dp"
+                android:text="Descripcion"
+                android:textSize="18sp"
+                android:fontFamily="@font/googlesans_regular"
+                app:layout_constraintLeft_toLeftOf="@id/lbl_title_date"
+                app:layout_constraintTop_toBottomOf="@id/lbl_date"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lbl_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="24dp"
+                android:fontFamily="@font/googlesans_regular"
+                android:text="-"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="@id/lbl_title_desc"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lbl_title_desc" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lbl_title_comments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                tools:text="Comentarios(2)"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/color_Gray_Web"
+                app:layout_constraintLeft_toLeftOf="@id/lbl_desc"
+                app:layout_constraintTop_toBottomOf="@id/lbl_desc"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_container_comments"
+                android:layout_width="0dp"
+                android:layout_height="340dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="8dp"
+                app:cardElevation="2dp"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintLeft_toLeftOf="@id/lbl_title_comments"
+                app:layout_constraintTop_toBottomOf="@id/lbl_title_comments"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_comments"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/item_comment"
+                    />
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/input_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:maxHeight="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_input_details"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/user_img_default"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_input_chat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/background_input"
+            android:hint="Escribe un comentario"
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxHeight="150dp"
+            android:maxLength="1000"
+            android:overScrollMode="always"
+            android:padding="6dp"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/img_input_details"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/shadow_edittext"
+        android:layout_width="0dp"
+        android:layout_height="7dp"
+        android:background="@drawable/shadow_bottom_top"
+        app:layout_constraintLeft_toLeftOf="@id/input_container"
+        app:layout_constraintRight_toRightOf="@id/input_container"
+        app:layout_constraintBottom_toTopOf="@id/input_container"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

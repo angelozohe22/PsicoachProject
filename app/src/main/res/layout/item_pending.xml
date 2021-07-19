@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_icon"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_margin="24dp"
+        android:background="@drawable/ic_pencil"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_see_voucher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Ver voucher"
+        android:textSize="12sp"
+        android:textAlignment="center"
+        android:fontFamily="@font/googlesans_regular"
+        app:layout_constraintLeft_toLeftOf="@id/img_icon"
+        app:layout_constraintRight_toRightOf="@id/img_icon"
+        app:layout_constraintTop_toBottomOf="@id/img_icon"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_package"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/googlesans_regular"
+        android:text="Paquete"
+        android:lines="1"
+        android:ellipsize="end"
+        android:textSize="14sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@id/img_icon"
+        app:layout_constraintRight_toLeftOf="@id/btn_aceptar"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/container_package"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintLeft_toRightOf="@id/img_icon"
+        app:layout_constraintTop_toBottomOf="@id/lbl_package"
+        app:cardBackgroundColor="@color/color_red"
+        app:cardElevation="6dp"
+        app:cardCornerRadius="8dp"
+        >
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_package_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BASIC"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:fontFamily="@font/googlesans_bold"
+            android:layout_gravity="center"
+            />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="20dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/googlesans_regular"
+        android:text="Tema: "
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@id/lbl_package"
+        app:layout_constraintRight_toLeftOf="@id/btn_cancelar"
+        app:layout_constraintTop_toBottomOf="@id/container_package"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!--<androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_icon_hour"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/ic_time"
+        app:layout_constraintLeft_toLeftOf="@id/lbl_desc"
+        app:layout_constraintTop_toBottomOf="@id/lbl_desc"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
+        android:text="Hora: "
+        android:textSize="12sp"
+        android:fontFamily="@font/googlesans_regular"
+        app:layout_constraintLeft_toRightOf="@id/img_icon_hour"
+        app:layout_constraintTop_toBottomOf="@id/lbl_desc"
+        />-->
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btn_aceptar"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="@color/color_green"
+        >
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:background="@drawable/ic_accept"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btn_cancelar"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="12dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp"
+        app:layout_constraintRight_toRightOf="@id/btn_aceptar"
+        app:layout_constraintTop_toBottomOf="@id/btn_aceptar"
+        app:cardBackgroundColor="@color/color_red"
+        >
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:background="@drawable/ic_delete"/>
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/separator_light"
+        app:layout_constraintTop_toBottomOf="@id/lbl_desc"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

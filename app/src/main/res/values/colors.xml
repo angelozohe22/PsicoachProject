@@ -11,10 +11,20 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_Gray_Web">#808080</color>
+    <color name="color_green">#52b788</color>
+    <color name="color_red">#e5383b</color>
     <color name="color_Silver">#C8C8C8</color>
     <color name="color_error">#E6F44336</color>
     <color name="color_curtain">#CCFFFFFF</color>
     <color name="color_transparent">#00FAFAFA</color>
     <color name="colorTransparent">#00FFFFFF</color>
     <color name="colorTransparentDark">#a8000000</color>
+
+    <color name="color_package_basic">#f4a261</color>
+    <color name="color_package_premium">#EE6055</color>
+    <color name="color_package_medium">#F4F269</color>
+    <color name="color_package_regular">#99EB72</color>
+    <color name="color_package_luxury">#BBDEF9</color>
+
+
 </resources>

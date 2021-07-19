@@ -1,4 +1,4 @@
-package com.example.psicoachproject.ui.modules.home.client.fragments
+package com.example.psicoachproject.ui.modules.home.psicosec.fragments
 
 import android.graphics.Color
 import android.os.Bundle
@@ -16,7 +16,7 @@ import com.example.psicoachproject.common.utils.dateStringToTimeMilli
 import com.example.psicoachproject.common.utils.getColorWithAlpha
 import com.example.psicoachproject.common.utils.toParseString
 import com.example.psicoachproject.core.Resource
-import com.example.psicoachproject.databinding.FragmentCalendarBinding
+import com.example.psicoachproject.databinding.FragmentCalendarPsicoBinding
 import com.example.psicoachproject.domain.model.MeetingCalendar
 import com.example.psicoachproject.ui.modules.home.HomeActivity
 import com.example.psicoachproject.ui.modules.home.client.activities.viewmodel.HomeViewModel
@@ -24,27 +24,25 @@ import com.example.psicoachproject.ui.modules.home.client.fragments.adapter.Even
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CalendarFragment : Fragment() {
+class CalendarPsicoFragment : Fragment() {
 
-    private var _binding: FragmentCalendarBinding? = null
+    private var _binding: FragmentCalendarPsicoBinding? = null
     private val binding get() = _binding!!
 
+    private val eventsAdapter by lazy { EventAdapter() }
     private lateinit var viewModel: HomeViewModel
+
     private var lastDate: Date? = null
     private var lastYear: String = ""
     private var lastMonth: String = ""
-    private val eventAdapter by lazy { EventAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentCalendarBinding.inflate(layoutInflater, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        _binding = FragmentCalendarPsicoBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -52,14 +50,13 @@ class CalendarFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = (activity as HomeActivity).viewModelCita
+        setupRecycler()
         setUpCalendar()
-        setUpEventRecycler()
-
     }
 
-    private fun setUpEventRecycler(){
+    private fun setupRecycler(){
         binding.rvEvents.apply {
-            adapter = eventAdapter
+            adapter = eventsAdapter
             layoutManager = LinearLayoutManager( context,
                 LinearLayoutManager.VERTICAL,false)
         }
@@ -106,25 +103,22 @@ class CalendarFragment : Fragment() {
             it?.let { result ->
                 when(result){
                     is Resource.Loading -> {
-                        println("Loading")
+                        hideEmpty()
+                        showProgress()
                     }
                     is Resource.Success -> {
+                        hideProgress()
                         loadEvent(result.data)
                         val currentEventList = result.data.eventList.filter { lastDate?.toParseString() == it.date }
 
-                        if (currentEventList.isEmpty()){
-                            binding.containerEmpty.visibility = View.VISIBLE
-                            binding.rvEvents.visibility = View.GONE
-                        }else{
-                            binding.containerEmpty.visibility = View.GONE
-                            binding.rvEvents.visibility = View.VISIBLE
-                        }
+                        if (currentEventList.isEmpty())showEmpty()
+                        else eventsAdapter.setData(currentEventList)
                         println("setData -->> $currentEventList")
-                        eventAdapter.setData(currentEventList)
+//                        eventsAdapter.setData(currentEventList)
                     }
                     is Resource.Failure -> {
-                        binding.containerEmpty.visibility = View.VISIBLE
-                        binding.rvEvents.visibility = View.GONE
+                        hideProgress()
+                        showEmpty()
                     }
                 }
             }
@@ -155,8 +149,37 @@ class CalendarFragment : Fragment() {
         binding.calendar.removeAllEvents()
     }
 
+    private fun showProgress(){
+        binding.apply {
+            progress.visibility = View.VISIBLE
+            lblProgress.visibility = View.VISIBLE
+        }
+    }
+
+    private fun hideProgress(){
+        binding.apply {
+            progress.visibility = View.GONE
+            lblProgress.visibility = View.GONE
+        }
+    }
+
+    private fun showEmpty(){
+        binding.apply {
+            imageEmpty.visibility = View.VISIBLE
+            lblEmpty.visibility = View.VISIBLE
+        }
+    }
+
+    private fun hideEmpty(){
+        binding.apply {
+            imageEmpty.visibility = View.GONE
+            lblEmpty.visibility = View.GONE
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }
