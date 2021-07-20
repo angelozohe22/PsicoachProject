@@ -34,7 +34,7 @@ class InicioFragment : Fragment(), PromotionPageAdapter.OnPromoClickListener {
         val customPhrase = preferences.phrase.toLowerCase()
         val customName = if (preferences.name.contains("Usuario")) " (:" else ", ${preferences.name}"
 
-        binding.lblName.text = "Bienvenido$customName"
+        binding.lblName.text = "Bienvenid@$customName"
         binding.lblPhrase.text = "\" ${customPhrase.capitalize()} \" "
         setupPromoRV()
     }

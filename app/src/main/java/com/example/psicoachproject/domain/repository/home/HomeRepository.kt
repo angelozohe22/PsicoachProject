@@ -30,6 +30,7 @@ interface HomeRepository {
 
     suspend fun validateDate(meetingTime: MeetingTime)
     suspend fun getMeetingsCalendar(year: String, month: String): MeetingCalendar
-    suspend fun saveStateAppointment(): String
     suspend fun getPendingList(): List<Pending>
+    suspend fun changeStateAppointment(id: String, status: String): String
+    suspend fun sendComment(id: Int, message: String): String
 }

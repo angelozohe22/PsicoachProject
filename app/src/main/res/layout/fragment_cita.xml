@@ -86,7 +86,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:hint="Tema a tratar"
+            android:hint="Posible tema a tratar"
             app:layout_constraintLeft_toLeftOf="@id/container_package"
             app:layout_constraintRight_toRightOf="@id/container_package"
             app:layout_constraintTop_toBottomOf="@id/container_package"

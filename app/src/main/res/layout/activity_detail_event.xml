@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ly_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.modules.home.psicosec.activities.DetailEventActivity">
@@ -47,18 +48,30 @@
                 app:layout_constraintBottom_toBottomOf="@id/btn_back_appointment"
                 />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <androidx.cardview.widget.CardView
                 android:id="@+id/btn_package_type"
                 android:layout_width="140dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginLeft="24dp"
-                android:clickable="false"
-                android:backgroundTint="@color/color_red"
-                android:background="@drawable/default_corner"
                 app:layout_constraintTop_toBottomOf="@id/lbl_datos"
                 app:layout_constraintLeft_toRightOf="@id/lbl_package"
-                />
+                app:cardBackgroundColor="@color/color_red"
+                app:cardElevation="6dp"
+                app:cardCornerRadius="8dp"
+                >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lbl_package_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BASIC"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/googlesans_bold"
+                    android:layout_gravity="center"
+                    />
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/lbl_package"
@@ -74,7 +87,7 @@
                 />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/lbl_title_theme"
+                android:id="@+id/lbl_title_îssue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="42dp"
@@ -85,7 +98,7 @@
                 app:layout_constraintTop_toBottomOf="@id/lbl_package"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/lbl_theme"
+                android:id="@+id/lbl_issuee"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="24dp"
@@ -95,7 +108,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@id/btn_package_type"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/lbl_title_theme" />
+                app:layout_constraintTop_toTopOf="@id/lbl_title_îssue" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/lbl_title_hour"
@@ -105,15 +118,15 @@
                 android:text="Hora"
                 android:textSize="18sp"
                 android:fontFamily="@font/googlesans_regular"
-                app:layout_constraintLeft_toLeftOf="@id/lbl_title_theme"
-                app:layout_constraintTop_toBottomOf="@id/lbl_theme"/>
+                app:layout_constraintLeft_toLeftOf="@id/lbl_title_îssue"
+                app:layout_constraintTop_toBottomOf="@id/lbl_issuee"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/lbl_hour"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="24dp"
-                app:layout_constraintLeft_toLeftOf="@id/lbl_theme"
+                app:layout_constraintLeft_toLeftOf="@id/lbl_issuee"
                 app:layout_constraintTop_toTopOf="@id/lbl_title_hour"
                 app:layout_constraintRight_toRightOf="parent"
                 />
@@ -134,6 +147,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="24dp"
+                android:autoLink="web"
+                android:linksClickable="true"
                 app:layout_constraintLeft_toLeftOf="@id/lbl_hour"
                 app:layout_constraintTop_toTopOf="@id/lbl_title_link"
                 app:layout_constraintRight_toRightOf="parent"

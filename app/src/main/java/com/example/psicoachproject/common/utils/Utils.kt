@@ -1,5 +1,6 @@
 package com.example.psicoachproject.common.utils
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
@@ -10,6 +11,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import android.view.Gravity
+import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.widget.EditText
@@ -219,5 +221,21 @@ fun getColorPackage(packageName: String): Int{
         Constants.PACKAGE_REGULAR -> R.color.color_package_regular
         Constants.PACKAGE_LUXURY -> R.color.color_package_luxury
         else -> R.color.color_package_basic
+    }
+}
+
+@SuppressLint("ClickableViewAccessibility")
+fun EditText.onRightDrawableClicked(onClicked: (view: EditText) -> Unit) {
+    this.setOnTouchListener { v, event ->
+        var hasConsumed = false
+        if (v is EditText) {
+            if (event.x >= v.width - v.totalPaddingRight) {
+                if (event.action == MotionEvent.ACTION_UP) {
+                    onClicked(this)
+                }
+                hasConsumed = true
+            }
+        }
+        hasConsumed
     }
 }

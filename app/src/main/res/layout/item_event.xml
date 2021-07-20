@@ -64,12 +64,12 @@
         />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/lbl_link"
+        android:id="@+id/lbl_title_link"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/googlesans_regular"
-        android:text="Link: "
+        android:text="Link de evento:"
         android:lines="1"
         android:ellipsize="end"
         android:textSize="12sp"
@@ -77,6 +77,23 @@
         app:layout_constraintLeft_toLeftOf="@id/img_icon_hour"
         app:layout_constraintRight_toRightOf="@id/lbl_package"
         app:layout_constraintTop_toBottomOf="@id/lbl_time" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_link"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/googlesans_regular"
+        android:text="Link"
+        android:textSize="14sp"
+        android:linksClickable="true"
+        android:autoLink="web"
+        app:layout_constraintBottom_toBottomOf="@id/separator"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@id/lbl_title_link"
+        app:layout_constraintRight_toRightOf="@id/lbl_package"
+        app:layout_constraintTop_toBottomOf="@id/lbl_title_link"
+        app:layout_constraintVertical_bias="0.0" />
 
     <View
         android:id="@+id/separator"

@@ -50,10 +50,6 @@ class HomeRepositoryImpl(
         return remote.getMeetingsCalendar(year, month)
     }
 
-    override suspend fun saveStateAppointment(): String {
-        return ""
-    }
-
     override suspend fun getPendingList(): List<Pending> {
         val listResult = remote.getPendingList().map {
             Pending(
@@ -62,9 +58,14 @@ class HomeRepositoryImpl(
                 issue = it.issue ?: ""
             )
         }
-
-
-
         return listResult
+    }
+
+    override suspend fun sendComment(id: Int, message: String): String {
+        return remote.sendComment(id, message)
+    }
+
+    override suspend fun changeStateAppointment(id: String, status: String): String {
+        return remote.changeStateAppointment(id, status)
     }
 }

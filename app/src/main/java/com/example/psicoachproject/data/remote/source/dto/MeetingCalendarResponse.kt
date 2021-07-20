@@ -33,7 +33,7 @@ data class PendingMeetingResponse(
 
 data class CommentResponse(
     @field:SerializedName("id")      val id   : Int?    = null,
-    @field:SerializedName("comment") val name : String? = null
+    @field:SerializedName("comment") val comment : String? = null
 )
 
 

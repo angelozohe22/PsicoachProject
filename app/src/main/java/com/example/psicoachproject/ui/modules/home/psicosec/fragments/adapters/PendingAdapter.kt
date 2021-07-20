@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.psicoachproject.R
 import com.example.psicoachproject.common.utils.getColorPackage
+import com.example.psicoachproject.common.utils.showSnackBar
 import com.example.psicoachproject.databinding.ItemPendingBinding
 import com.example.psicoachproject.domain.model.Pending
 
@@ -17,14 +18,15 @@ class PendingAdapter(
     private val listener: PendingListener
 ): RecyclerView.Adapter<PendingAdapter.PendingViewHolder>() {
 
-    private var _pendingList = emptyList<Pending>() //Change this variable
+    private var _pendingList = mutableListOf<Pending>() //Change this variable
 
-    fun setData(data: List<Pending>){
+    fun setData(data: MutableList<Pending>){
         this._pendingList = data
         notifyDataSetChanged()
     }
 
-    fun deleteItem(){
+    fun deleteItem(item: Pending){
+        _pendingList.remove(item)
         notifyDataSetChanged()
     }
 
@@ -38,7 +40,7 @@ class PendingAdapter(
 
     override fun onBindViewHolder(holder: PendingAdapter.PendingViewHolder, position: Int) {
         val pending = _pendingList[position]
-        holder.bind(pending)
+        holder.bind(pending, position)
     }
 
     override fun getItemCount(): Int = _pendingList.count()
@@ -46,7 +48,7 @@ class PendingAdapter(
     inner class PendingViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val bindingPending = ItemPendingBinding.bind(itemView)
 
-        fun bind(pending: Pending){
+        fun bind(pending: Pending, position: Int){
             bindingPending.apply {
                 lblDesc.text = "Tema: ${pending.issue}"
 
@@ -62,8 +64,12 @@ class PendingAdapter(
                     listener.cancelAppointment(pending)
                 }
 
-                lblSeeVoucher.setOnClickListener {
-
+                imgIcon.setOnClickListener {
+                    if(position == 0){
+                        listener.goToSeeVoucher(pending)
+                    }else{
+                        lyItemContainer.showSnackBar("Sin voucher")
+                    }
                 }
             }
         }

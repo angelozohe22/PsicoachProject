@@ -16,6 +16,8 @@ object Constants {
     const val SERVICE_ROUTE_REGISTER = "meeting/register"
     const val SERVICE_ROUTE_MEETINGS_CALENDAR = "meeting/calendar"
     const val SERVICE_ROUTE_MEETINGS_PENDING = "meeting/list"
+    const val SERVICE_ROUTE_MEETINGS_SAVE_STATE = "meeting/verify"
+    const val SERVICE_ROUTE_MEETINGS_COMMENT = "meeting/comment-action"
     const val SERVICE_ROUTE_VALIDATE_DATE = "crossing"
 
     const val VERIFY_EMAIL = 1

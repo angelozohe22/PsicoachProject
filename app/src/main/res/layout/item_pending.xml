@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/ly_item_container"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -67,7 +68,6 @@
             android:fontFamily="@font/googlesans_bold"
             android:layout_gravity="center"
             />
-
 
     </androidx.cardview.widget.CardView>
 

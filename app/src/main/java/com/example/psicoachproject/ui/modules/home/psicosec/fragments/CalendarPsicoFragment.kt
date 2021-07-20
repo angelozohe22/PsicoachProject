@@ -1,5 +1,6 @@
 package com.example.psicoachproject.ui.modules.home.psicosec.fragments
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -18,18 +19,20 @@ import com.example.psicoachproject.common.utils.toParseString
 import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.databinding.FragmentCalendarPsicoBinding
 import com.example.psicoachproject.domain.model.MeetingCalendar
+import com.example.psicoachproject.domain.model.MeetingEvent
 import com.example.psicoachproject.ui.modules.home.HomeActivity
 import com.example.psicoachproject.ui.modules.home.client.activities.viewmodel.HomeViewModel
 import com.example.psicoachproject.ui.modules.home.client.fragments.adapter.EventAdapter
+import com.example.psicoachproject.ui.modules.home.psicosec.activities.DetailEventActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CalendarPsicoFragment : Fragment() {
+class CalendarPsicoFragment : Fragment(), EventAdapter.EventListener {
 
     private var _binding: FragmentCalendarPsicoBinding? = null
     private val binding get() = _binding!!
 
-    private val eventsAdapter by lazy { EventAdapter() }
+    private val eventsAdapter by lazy { EventAdapter(this) }
     private lateinit var viewModel: HomeViewModel
 
     private var lastDate: Date? = null
@@ -99,6 +102,7 @@ class CalendarPsicoFragment : Fragment() {
     }
 
     private fun getEvents(year: String, month: String){
+        eventsAdapter.setData(emptyList())
         viewModel.getMeetingCalendar(year, month).observe(viewLifecycleOwner){
             it?.let { result ->
                 when(result){
@@ -180,6 +184,15 @@ class CalendarPsicoFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun goTo(event: MeetingEvent) {
+        val eventBundle = Bundle()
+        eventBundle.putParcelable("event", event)
+
+        val intent = Intent(requireActivity(), DetailEventActivity::class.java)
+        intent.putExtras(eventBundle)
+        startActivity(intent)
     }
 
 }

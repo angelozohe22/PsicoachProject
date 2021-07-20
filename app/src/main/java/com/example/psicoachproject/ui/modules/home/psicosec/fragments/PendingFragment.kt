@@ -6,8 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.load
 import com.example.psicoachproject.R
+import com.example.psicoachproject.common.utils.customDialog
+import com.example.psicoachproject.common.utils.showSnackBar
 import com.example.psicoachproject.core.Resource
+import com.example.psicoachproject.core.aplication.preferences
+import com.example.psicoachproject.databinding.DialogCancelPendingBinding
+import com.example.psicoachproject.databinding.DialogImgVoucherBinding
 import com.example.psicoachproject.databinding.FragmentPendingBinding
 import com.example.psicoachproject.domain.model.Pending
 import com.example.psicoachproject.ui.modules.home.HomeActivity
@@ -30,6 +36,12 @@ class PendingFragment : Fragment(), PendingAdapter.PendingListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val customPhrase = preferences.phrase.toLowerCase()
+        val customName = if (preferences.name.contains("Usuario")) " (:" else ", ${preferences.name}"
+
+        binding.lblName.text = "Bienvenid@$customName"
+        binding.lblPhrase.text = "\" ${customPhrase.capitalize()} \" "
 
         viewModel = (activity as HomeActivity).viewModelCita
         setupRecycler()
@@ -54,7 +66,7 @@ class PendingFragment : Fragment(), PendingAdapter.PendingListener {
                     }
                     is Resource.Success -> {
                         hideProgress()
-                        val data = result.data
+                        val data = result.data.toMutableList()
                         if(data.isEmpty()) showEmpty()
                         else pendingAdapter.setData(data)
                     }
@@ -66,6 +78,81 @@ class PendingFragment : Fragment(), PendingAdapter.PendingListener {
             }
         }
     }
+
+    override fun acceptAppointment(pending: Pending) {
+        viewModel.changeStateAppointment(pending.id.toString(), "1").observe(viewLifecycleOwner){
+            it?.let { result->
+                when(result){
+                    is Resource.Loading -> {
+                        binding.lyContainer.showSnackBar("Cargando...")
+                    }
+                    is Resource.Success -> {
+                        pendingAdapter.deleteItem(pending)
+                        binding.lyContainer.showSnackBar(result.data)
+                    }
+                    is Resource.Failure -> {
+                        binding.lyContainer.showSnackBar("Ha ocurrido un error")
+                    }
+                }
+            }
+        }
+    }
+
+    override fun cancelAppointment(pending: Pending) {
+        //mostrar modal
+        binding.curtainModal.visibility = View.VISIBLE
+        customDialog(requireContext(), R.layout.dialog_cancel_pending){ view, dialog ->
+            val dialogBinding = DialogCancelPendingBinding.bind(view)
+
+            val titleDialogDelete = dialogBinding.titleDialogDelete
+            val btnConfim= dialogBinding.btnConfirmDeleteTask
+            val btnCancel = dialogBinding.btnCancelDeleteTask
+
+            btnConfim.setOnClickListener {
+                dialog.dismiss()
+                viewModel.changeStateAppointment(pending.id.toString(), "0").observe(viewLifecycleOwner){
+                    it?.let { result->
+                        when(result){
+                            is Resource.Loading -> {
+                                binding.lyContainer.showSnackBar("Cargando...")
+                            }
+                            is Resource.Success -> {
+                                pendingAdapter.deleteItem(pending)
+                                binding.lyContainer.showSnackBar(result.data)
+                            }
+                            is Resource.Failure -> {
+                                binding.lyContainer.showSnackBar("Ha ocurrido un error")
+                            }
+                        }
+                    }
+                }
+            }
+
+            btnCancel.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.setOnDismissListener {
+                binding.curtainModal.visibility = View.GONE
+            }
+        }
+    }
+
+    override fun goToSeeVoucher(pending: Pending) {
+        binding.curtainModal.visibility = View.VISIBLE
+
+        customDialog(requireContext(), R.layout.dialog_img_voucher){ view, dialog ->
+            val dialogVoucherBindning = DialogImgVoucherBinding.bind(view)
+
+            dialogVoucherBindning.imgVoucher.load(R.drawable.img_qr)
+
+            dialog.setOnDismissListener {
+                binding.curtainModal.visibility = View.GONE
+            }
+
+        }
+    }
+
 
     private fun showProgress(){
         binding.apply {
@@ -95,19 +182,9 @@ class PendingFragment : Fragment(), PendingAdapter.PendingListener {
         }
     }
 
-    override fun goToSeeVoucher(pending: Pending) {
-    }
-
-    override fun acceptAppointment(pending: Pending) {
-    }
-
-    override fun cancelAppointment(pending: Pending) {
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 
 }

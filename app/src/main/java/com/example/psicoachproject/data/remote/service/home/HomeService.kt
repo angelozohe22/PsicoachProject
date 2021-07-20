@@ -31,13 +31,23 @@ interface HomeService {
         @Header("Authorization")token     : String): MeetingCalendarResponse
 
     //News
-    @POST(Constants.SERVICE_ROUTE_REGISTER)
+    @POST(Constants.SERVICE_ROUTE_MEETINGS_SAVE_STATE)
+    @Headers("Accept:application/json", "Content-type:application/json")
+    suspend fun changeStateAppointment(
+        @Body json: Map<String, String>,
+        @Header("Authorization")    token   : String
+    ): UserResponse
+
+//    @FormUrlEncoded
+    @POST(Constants.SERVICE_ROUTE_MEETINGS_COMMENT)
     @Headers("content-type: application/json")
-    suspend fun saveStateAppointment(): UserResponse
+    suspend fun sendComment(
+        @Body json: Map<String, String>,
+        @Header("Authorization")token : String
+    ): UserResponse
 
     @GET(Constants.SERVICE_ROUTE_MEETINGS_PENDING)
     suspend fun getPendingList(
-        @Header("Authorization")token     : String): List<PendingResponse>
-
+        @Header("Authorization")token : String): List<PendingResponse>
 
 }

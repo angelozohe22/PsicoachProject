@@ -1,5 +1,6 @@
 package com.example.psicoachproject.ui.modules.home.client.fragments
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -18,13 +19,16 @@ import com.example.psicoachproject.common.utils.toParseString
 import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.databinding.FragmentCalendarBinding
 import com.example.psicoachproject.domain.model.MeetingCalendar
+import com.example.psicoachproject.domain.model.MeetingEvent
 import com.example.psicoachproject.ui.modules.home.HomeActivity
+import com.example.psicoachproject.ui.modules.home.client.activities.PromotionActivity
 import com.example.psicoachproject.ui.modules.home.client.activities.viewmodel.HomeViewModel
 import com.example.psicoachproject.ui.modules.home.client.fragments.adapter.EventAdapter
+import com.example.psicoachproject.ui.modules.home.psicosec.activities.DetailEventActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CalendarFragment : Fragment() {
+class CalendarFragment : Fragment(), EventAdapter.EventListener {
 
     private var _binding: FragmentCalendarBinding? = null
     private val binding get() = _binding!!
@@ -33,7 +37,7 @@ class CalendarFragment : Fragment() {
     private var lastDate: Date? = null
     private var lastYear: String = ""
     private var lastMonth: String = ""
-    private val eventAdapter by lazy { EventAdapter() }
+    private val eventAdapter by lazy { EventAdapter(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,25 +110,20 @@ class CalendarFragment : Fragment() {
             it?.let { result ->
                 when(result){
                     is Resource.Loading -> {
-                        println("Loading")
+                        hideEmpty()
+                        showProgress()
                     }
                     is Resource.Success -> {
+                        hideProgress()
                         loadEvent(result.data)
                         val currentEventList = result.data.eventList.filter { lastDate?.toParseString() == it.date }
 
-                        if (currentEventList.isEmpty()){
-                            binding.containerEmpty.visibility = View.VISIBLE
-                            binding.rvEvents.visibility = View.GONE
-                        }else{
-                            binding.containerEmpty.visibility = View.GONE
-                            binding.rvEvents.visibility = View.VISIBLE
-                        }
-                        println("setData -->> $currentEventList")
-                        eventAdapter.setData(currentEventList)
+                        if (currentEventList.isEmpty())showEmpty()
+                        else eventAdapter.setData(currentEventList)
                     }
                     is Resource.Failure -> {
-                        binding.containerEmpty.visibility = View.VISIBLE
-                        binding.rvEvents.visibility = View.GONE
+                        hideProgress()
+                        showEmpty()
                     }
                 }
             }
@@ -153,6 +152,39 @@ class CalendarFragment : Fragment() {
 
     private fun removeAllEvents() {
         binding.calendar.removeAllEvents()
+    }
+
+    private fun showProgress(){
+        binding.apply {
+            progress.visibility = View.VISIBLE
+            lblProgress.visibility = View.VISIBLE
+        }
+    }
+
+    private fun hideProgress(){
+        binding.apply {
+            progress.visibility = View.GONE
+            lblProgress.visibility = View.GONE
+        }
+    }
+
+    private fun showEmpty(){
+        binding.apply {
+            imageEmpty.visibility = View.VISIBLE
+            lblEmpty.visibility = View.VISIBLE
+        }
+    }
+
+    private fun hideEmpty(){
+        binding.apply {
+            imageEmpty.visibility = View.GONE
+            lblEmpty.visibility = View.GONE
+            lblEmpty.text = "Sin citas"
+        }
+    }
+
+    override fun goTo(event: MeetingEvent) {
+
     }
 
     override fun onDestroyView() {

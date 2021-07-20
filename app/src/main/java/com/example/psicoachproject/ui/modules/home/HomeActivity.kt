@@ -71,12 +71,16 @@ class HomeActivity : AppCompatActivity() {
         bottomNavigation    = binding.bottomNavigation
         imgAppBarMenu       = binding.imgAppBarMenu
 
-
-
         imgAppBarProfile    = binding.imgAppBarProfile
 
         setupAppBar()
         setupNavigation()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        navigationView.setCheckedItem(R.id.navigation_home)
+        bottomNavigation.selectedItemId = R.id.navigation_home
     }
 
     private fun setupAppBar(){
@@ -130,32 +134,47 @@ class HomeActivity : AppCompatActivity() {
                     closeDrawer()
                 }
 
+                //Rol != 3
+                R.id.nav_pending_psico ->{
+                    navController.navigate(R.id.nav_pending_psico)
+                    closeDrawer()
+                }
+
+                R.id.nav_calendar_psico ->{
+                    navController.navigate(R.id.nav_calendar_psico)
+                    closeDrawer()
+                }
+
                 R.id.sign_out -> {
-                    viewModelAuth.logOut().observe(this, Observer {
-                        it?.let { result ->
-                            when (result) {
-                                is Resource.Loading -> {
-                                    println("--->> Cargando...")
-                                }
-                                is Resource.Success -> {
-                                    println("--->> Hecho ${result.data}")
-                                    preferences.clear()
-                                    val intent = Intent(this, MainActivity::class.java)
-                                    startActivity(intent)
-                                    finish()
-                                }
-                                is Resource.Failure -> {
-                                    println("--->> Fallo")
-                                }
-                            }
-                        }
-                    })
+                    logOut()
                 }
             }
             true
         }
 
     }
+
+    private fun logOut(){
+        viewModelAuth.logOut().observe(this, Observer {
+            it?.let { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        println("--->> Cargando...")
+                    }
+                    is Resource.Success -> {
+                        preferences.clear()
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    is Resource.Failure -> {
+                        println("--->> Fallo")
+                    }
+                }
+            }
+        })
+    }
+
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START))
             drawerLayout.closeDrawer(GravityCompat.START)

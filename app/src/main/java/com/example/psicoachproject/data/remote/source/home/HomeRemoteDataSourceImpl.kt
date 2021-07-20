@@ -8,6 +8,7 @@ import com.example.psicoachproject.data.remote.RetrofitBuilder
 import com.example.psicoachproject.data.remote.service.home.HomeService
 import com.example.psicoachproject.data.remote.source.dto.PendingResponse
 import com.example.psicoachproject.data.remote.source.dto.UserResponse
+import com.example.psicoachproject.domain.model.Comment
 import com.example.psicoachproject.domain.model.MeetingCalendar
 import com.example.psicoachproject.domain.model.MeetingEvent
 import com.example.psicoachproject.domain.model.PendingMeetingEvent
@@ -77,13 +78,17 @@ class HomeRemoteDataSourceImpl: HomeRemoteDataSource {
             val nameArray = it.name?.split("-") ?: emptyList()
             MeetingEvent(
                 idAppointment = it.idAppointment ?: 0,
-                packageName = nameArray[0].trim(),
-                issue = nameArray[1].trim(),
+                packageName = it.packageName ?: "",
+                issue = it.issue ?: "",
                 date = it.date?.toDateStringDate() ?: "",
+                dateFormat = it.dateFormat ?: "",
                 startTime = it.startTime ?: "00:00",
                 endTime = it.endTime ?: "00:00",
                 description = it.description ?: "",
                 link = it.link ?: "",
+                comments = it.comments?.map { com ->
+                    Comment(id = com.id ?: 0, comment = com.comment ?: "")
+                } ?: emptyList(),
                 state = Constants.STATE_OK)
         }
 
@@ -100,13 +105,32 @@ class HomeRemoteDataSourceImpl: HomeRemoteDataSource {
 
     }
 
-    override suspend fun saveStateAppointment(): String{
-        return ""
-    }
-
     override suspend fun getPendingList(): List<PendingResponse> {
         return service.getPendingList(
             token = " ${Constants.TYPE_AUTH} ${preferences.token}")
+    }
+
+    override suspend fun changeStateAppointment(id: String, status: String): String {
+        val parameters = hashMapOf(
+            "meeting_id" to  id,
+            "status"    to  status
+        )
+
+        return service.changeStateAppointment(parameters, " ${Constants.TYPE_AUTH} ${preferences.token}").message
+    }
+
+    override suspend fun sendComment(id: Int, message: String): String {
+
+        val parameters = hashMapOf(
+            "quote_id" to  id.toString(),
+            "action"   to  "action_create",
+            "comment"  to  message
+        )
+
+        return service.sendComment(
+            json  = parameters,
+            token = " ${Constants.TYPE_AUTH} ${preferences.token}"
+        ).message
     }
 
 }

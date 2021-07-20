@@ -17,6 +17,7 @@ import com.example.psicoachproject.domain.model.MeetingEvent
  * Created by Angelo on 7/5/2021
  */
 class EventAdapter(
+    private val listener: EventListener
 ): RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
     private var _listEvents = emptyList<MeetingEvent>()
@@ -49,21 +50,30 @@ class EventAdapter(
                 lblIssue.text   = "Tema: ${event.issue}"
                 lblTime.text = "Hora: ${event.startTime} / ${event.endTime}"
                 val linkEvent = "<a href='${event.link}'> ${event.link} </a>"
-                lblLink.text    = "Link de evento: ${Html.fromHtml(linkEvent, Html.FROM_HTML_MODE_COMPACT)}"
-                if (event.state == Constants.STATE_PENDING){
-                    lblStatus.text =  "Subir voucher"
-                    imgIconPending.setBackgroundResource(R.drawable.ic_pencil)
-                }else{
-                    lblStatus.text =  "Pagado"
-                    imgIconPending.setBackgroundResource(R.drawable.ic_pencil)
-                    imgIconPending.isClickable = false
+                lblLink.text    = "${Html.fromHtml(linkEvent, Html.FROM_HTML_MODE_COMPACT)}"
+
+                if (preferences.roleId !=3){
+                    lblStatus.text =  "Ver detalles"
+                    imgIconPending.setBackgroundResource(R.drawable.ic_notes)
+                    imgIconPending.setOnClickListener {
+                        listener.goTo(event)
+                    }
+                }else {
+                    if (event.state == Constants.STATE_PENDING){
+                        lblStatus.text =  "Pendiente"
+                        imgIconPending.setBackgroundResource(R.drawable.ic_pencil)
+                    }else{
+                        lblStatus.text =  "Hecho"
+                        imgIconPending.setBackgroundResource(R.drawable.ic_check)
+                        imgIconPending.isClickable = false
+                    }
                 }
             }
         }
     }
 
     interface EventListener{
-        fun goToDetails(event: MeetingEvent)
+        fun goTo(event: MeetingEvent)
     }
 
 }
