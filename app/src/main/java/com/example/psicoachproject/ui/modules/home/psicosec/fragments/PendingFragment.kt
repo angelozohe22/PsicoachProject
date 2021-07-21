@@ -12,6 +12,7 @@ import com.example.psicoachproject.common.utils.customDialog
 import com.example.psicoachproject.common.utils.showSnackBar
 import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.core.aplication.preferences
+import com.example.psicoachproject.databinding.ActivityHomeBinding
 import com.example.psicoachproject.databinding.DialogCancelPendingBinding
 import com.example.psicoachproject.databinding.DialogImgVoucherBinding
 import com.example.psicoachproject.databinding.FragmentPendingBinding
@@ -24,6 +25,8 @@ class PendingFragment : Fragment(), PendingAdapter.PendingListener {
 
     private var _binding: FragmentPendingBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var bindingAc: ActivityHomeBinding
 
     private val pendingAdapter by lazy { PendingAdapter(this) }
     private lateinit var viewModel: HomeViewModel
@@ -44,6 +47,8 @@ class PendingFragment : Fragment(), PendingAdapter.PendingListener {
         binding.lblPhrase.text = "\" ${customPhrase.capitalize()} \" "
 
         viewModel = (activity as HomeActivity).viewModelCita
+        bindingAc = (activity as HomeActivity).binding
+
         setupRecycler()
         getPendings()
     }
@@ -100,7 +105,8 @@ class PendingFragment : Fragment(), PendingAdapter.PendingListener {
 
     override fun cancelAppointment(pending: Pending) {
         //mostrar modal
-        binding.curtainModal.visibility = View.VISIBLE
+//        binding.curtainModal.visibility = View.VISIBLE
+        bindingAc.curtainModalGeneral.visibility = View.VISIBLE
         customDialog(requireContext(), R.layout.dialog_cancel_pending){ view, dialog ->
             val dialogBinding = DialogCancelPendingBinding.bind(view)
 
@@ -133,21 +139,24 @@ class PendingFragment : Fragment(), PendingAdapter.PendingListener {
             }
 
             dialog.setOnDismissListener {
-                binding.curtainModal.visibility = View.GONE
+                bindingAc.curtainModalGeneral.visibility = View.GONE
+//                binding.curtainModal.visibility = View.GONE
             }
         }
     }
 
     override fun goToSeeVoucher(pending: Pending) {
-        binding.curtainModal.visibility = View.VISIBLE
+//        binding.curtainModal.visibility = View.VISIBLE
+        bindingAc.curtainModalGeneral.visibility = View.VISIBLE
 
         customDialog(requireContext(), R.layout.dialog_img_voucher){ view, dialog ->
             val dialogVoucherBindning = DialogImgVoucherBinding.bind(view)
 
-            dialogVoucherBindning.imgVoucher.load(R.drawable.img_qr)
+            dialogVoucherBindning.imgVoucher.load(R.drawable.image_voucher)
 
             dialog.setOnDismissListener {
-                binding.curtainModal.visibility = View.GONE
+//                binding.curtainModal.visibility = View.GONE
+                bindingAc.curtainModalGeneral.visibility = View.GONE
             }
 
         }

@@ -16,14 +16,12 @@ import com.example.psicoachproject.domain.model.Promotion
  * Created by Angelo on 6/28/2021
  */
 class PromotionPageAdapter(
-    private val context: Context,
-    private val promoClickListener: OnPromoClickListener
+    private val context: Context
 ): PagerAdapter() {
 
-
-    interface OnPromoClickListener{
-        fun onPromoClickListener(promo: Promotion)
-    }
+//    interface OnPromoClickListener{
+//        fun onPromoClickListener(promo: Promotion)
+//    }
 
     private var _promotionList = emptyList<Promotion>()
 
@@ -59,9 +57,9 @@ class PromotionPageAdapter(
                 }
                 benefitAdapter.setData(_promotionList[position].benefitList)
                 cardContainerPromo.setCardBackgroundColor(Color.parseColor(_promotionList[position].color))
-                cardContainerPromo.setOnClickListener {
-                    promoClickListener.onPromoClickListener(_promotionList[position])
-                }
+//                cardContainerPromo.setOnClickListener {
+//                    promoClickListener.onPromoClickListener(_promotionList[position])
+//                }
             }
         }
         container.addView(view)

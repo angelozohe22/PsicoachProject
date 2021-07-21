@@ -12,12 +12,12 @@ import com.example.psicoachproject.domain.model.Promotion
 import com.example.psicoachproject.ui.modules.home.client.activities.PromotionActivity
 import com.example.psicoachproject.ui.modules.home.client.fragments.adapter.PromotionPageAdapter
 
-class InicioFragment : Fragment(), PromotionPageAdapter.OnPromoClickListener {
+class InicioFragment : Fragment() {
 
     private var _binding: FragmentInicioBinding? =null
     private val binding get() = _binding!!
 
-    private val promoAdapter by lazy{ PromotionPageAdapter(requireContext(),this) }
+    private val promoAdapter by lazy{ PromotionPageAdapter(requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,12 +58,12 @@ class InicioFragment : Fragment(), PromotionPageAdapter.OnPromoClickListener {
         _binding = null
     }
 
-    override fun onPromoClickListener(promo: Promotion) {
-        val promoBundle = Bundle()
-        promoBundle.putParcelable("promo", promo)
-        val intent = Intent(requireActivity(), PromotionActivity::class.java)
-        intent.putExtras(promoBundle)
-        startActivity(intent)
-    }
+//    override fun onPromoClickListener(promo: Promotion) {
+//        val promoBundle = Bundle()
+//        promoBundle.putParcelable("promo", promo)
+//        val intent = Intent(requireActivity(), PromotionActivity::class.java)
+//        intent.putExtras(promoBundle)
+//        startActivity(intent)
+//    }
 
 }

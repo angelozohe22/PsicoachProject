@@ -35,7 +35,7 @@ import com.google.android.material.navigation.NavigationView
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var binding            : ActivityHomeBinding
+    lateinit var binding            : ActivityHomeBinding
 
     private lateinit var drawerLayout       : DrawerLayout
     private lateinit var navigationView     : NavigationView
@@ -79,8 +79,13 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        navigationView.setCheckedItem(R.id.navigation_home)
-        bottomNavigation.selectedItemId = R.id.navigation_home
+        if (preferences.roleId == 3){
+            navigationView.setCheckedItem(R.id.navigation_home)
+            bottomNavigation.selectedItemId = R.id.navigation_home
+        }else{
+            navigationView.setCheckedItem(R.id.nav_pending_psico)
+            bottomNavigation.selectedItemId = R.id.nav_pending_psico
+        }
     }
 
     private fun setupAppBar(){

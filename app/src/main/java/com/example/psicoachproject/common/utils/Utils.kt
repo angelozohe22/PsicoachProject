@@ -73,7 +73,7 @@ fun customDialog(ctx: Context, layout: Int, function: (View, AlertDialog) -> Uni
     val view = layoutInflater.inflate(layout, null)
 
     customDialog.apply {
-        window?.setBackgroundDrawableResource(android.R.color.transparent)
+//        window?.setBackgroundDrawableResource(android.R.color.transparent)
         window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
         window?.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,

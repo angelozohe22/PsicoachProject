@@ -61,7 +61,9 @@ class DetailEventActivity : AppCompatActivity() {
 
             lblDate.text = "${meeting.dateFormat}"
             lblDesc.text = if (meeting.description.isNotEmpty()) "${meeting.description}" else "-"
-
+            btnBackAppointment.setOnClickListener {
+                onBackPressed()
+            }
         }
         setUpRecycler()
         setupInputChat()

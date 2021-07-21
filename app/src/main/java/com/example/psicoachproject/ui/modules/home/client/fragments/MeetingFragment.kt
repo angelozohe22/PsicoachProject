@@ -18,14 +18,18 @@ import com.example.psicoachproject.common.utils.*
 import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.core.aplication.preferences
 import com.example.psicoachproject.data.remote.source.dto.Combo
+import com.example.psicoachproject.databinding.ActivityHomeBinding
+import com.example.psicoachproject.databinding.DialogTerminosBinding
 import com.example.psicoachproject.databinding.FragmentCitaBinding
 import com.example.psicoachproject.domain.model.Meeting
 import com.example.psicoachproject.domain.model.MeetingTime
 import com.example.psicoachproject.ui.modules.home.client.activities.DatosActivity
 import com.example.psicoachproject.ui.modules.home.HomeActivity
 import com.example.psicoachproject.ui.modules.home.client.activities.viewmodel.HomeViewModel
+import com.example.psicoachproject.ui.modules.home.client.fragments.adapter.BenefitListAdapter
 import com.example.psicoachproject.ui.modules.home.client.fragments.adapter.MeetingAdapter
 import com.example.psicoachproject.ui.modules.home.client.fragments.adapter.MeetingListener
+import com.example.psicoachproject.ui.modules.home.client.fragments.adapter.PromotionPageAdapter
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
@@ -34,6 +38,8 @@ class MeetingFragment : Fragment(), MeetingListener {
 
     private var _binding: FragmentCitaBinding? =null
     private val binding get() = _binding!!
+
+    private lateinit var bindingAc: ActivityHomeBinding
 
     private lateinit var lyContainer    : ConstraintLayout
     private lateinit var cddlPaquete    : TextInputLayout
@@ -52,6 +58,8 @@ class MeetingFragment : Fragment(), MeetingListener {
 
     private lateinit var combos: Combo
     private val meetingAdapter by lazy { MeetingAdapter(this) }
+    private val terminosAdapter by lazy{ BenefitListAdapter() }
+
     private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
@@ -80,12 +88,16 @@ class MeetingFragment : Fragment(), MeetingListener {
 
         combos = Gson().fromJson(preferences.combos, Combo::class.java)
         viewModel = (activity as HomeActivity).viewModelCita
+        bindingAc = (activity as HomeActivity).binding
 
         setUpDropDowns()
         textInputValidator()
         setUpCitaRecycler()
 
         btnRegisterCita.setOnClickListener { goToRegisterUserInformation() }
+        binding.btnInfo.setOnClickListener {
+            showDialogTerms()
+        }
     }
 
     private fun setUpDropDowns(){
@@ -112,6 +124,31 @@ class MeetingFragment : Fragment(), MeetingListener {
             setAdapter(ArrayAdapter(requireContext(), R.layout.item_drop_down, themeList))
         }
 
+    }
+
+    private fun showDialogTerms(){
+//        binding.curtainModal.visibility = View.VISIBLE
+        bindingAc.curtainModalGeneral.visibility = View.VISIBLE
+        customDialog(requireContext(), R.layout.dialog_terminos){ view, dialog->
+            val bindingDialog = DialogTerminosBinding.bind(view)
+
+            bindingDialog.rvTerminos.apply {
+                adapter = terminosAdapter
+                layoutManager = LinearLayoutManager( requireContext(),
+                    LinearLayoutManager.VERTICAL,false)
+            }
+            val termsList = listOf(
+                "Si se ausenta su sesión, no habrá opción a recuperarlo",
+                "Se podrá cancelar o reprogramar la sesión con 24 horas de anticipación",
+                "Cada sesión se realiza 1 vez por semana a menos que el especialista modifique la frecuencia de las sesiones con previo aviso"
+            )
+            terminosAdapter.setData(termsList)
+
+            dialog.setOnDismissListener {
+                bindingAc.curtainModalGeneral.visibility = View.GONE
+            }
+
+        }
     }
 
     private fun setUpCitaRecycler(){

@@ -96,4 +96,12 @@
         app:itemTextAppearance="@style/TextViewStyle"
         android:theme="@style/Theme.NavigationView"/>
 
+    <View
+        android:id="@+id/curtain_modal_general"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="24dp"
+        android:background="@color/color_curtain"
+        android:visibility="gone" />
+
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -182,7 +182,6 @@ class HomeViewModel(
         try {
             emit(Resource.Success(repository.sendComment(id, message)))
         }catch (t: Throwable){
-            println("Se cayo--->> ${t.message.toString()}")
             if(t is HttpException){
                 val errorResponse = t.response()
                 try {

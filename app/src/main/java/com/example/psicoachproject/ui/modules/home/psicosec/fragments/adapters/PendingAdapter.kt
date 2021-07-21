@@ -52,7 +52,6 @@ class PendingAdapter(
             bindingPending.apply {
                 lblDesc.text = "Tema: ${pending.issue}"
 
-                println("---> package name: ${pending.packageName}")
                 containerPackage.setCardBackgroundColor(ContextCompat.getColor(itemView.context, getColorPackage(pending.packageName)))
                 lblPackageName.text = "${pending.packageName}"
 
