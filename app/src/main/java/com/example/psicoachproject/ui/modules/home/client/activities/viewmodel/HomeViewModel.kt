@@ -157,7 +157,7 @@ class HomeViewModel(
         try {
             emit(Resource.Success(repository.changeStateAppointment(id, status)))
         }catch (t: Throwable){
-            println("Se cayo--->> ${t.message.toString()}")
+            println("Se cayo cambiar estado--->> ${t.message.toString()}")
             if(t is HttpException){
                 val errorResponse = t.response()
                 try {

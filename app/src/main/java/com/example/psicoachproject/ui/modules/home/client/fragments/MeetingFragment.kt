@@ -67,11 +67,6 @@ class MeetingFragment : Fragment(), MeetingListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCitaBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         //binding
         lyContainer     = binding.lyContainer
@@ -98,6 +93,13 @@ class MeetingFragment : Fragment(), MeetingListener {
         binding.btnInfo.setOnClickListener {
             showDialogTerms()
         }
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     private fun setUpDropDowns(){

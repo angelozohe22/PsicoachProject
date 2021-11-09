@@ -25,11 +25,6 @@ class InicioFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentInicioBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         val customPhrase = preferences.phrase.toLowerCase()
         val customName = if (preferences.name.contains("Usuario")) " (:" else ", ${preferences.name}"
@@ -37,6 +32,13 @@ class InicioFragment : Fragment() {
         binding.lblName.text = "Bienvenid@$customName"
         binding.lblPhrase.text = "\" ${customPhrase.capitalize()} \" "
         setupPromoRV()
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     private fun setupPromoRV(){

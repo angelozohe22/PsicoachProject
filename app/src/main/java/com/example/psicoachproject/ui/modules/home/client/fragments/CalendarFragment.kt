@@ -49,15 +49,17 @@ class CalendarFragment : Fragment(), EventAdapter.EventListener {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentCalendarBinding.inflate(layoutInflater, container, false)
+
+        viewModel = (activity as HomeActivity).viewModelCita
+        setUpCalendar()
+        setUpEventRecycler()
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = (activity as HomeActivity).viewModelCita
-        setUpCalendar()
-        setUpEventRecycler()
 
     }
 

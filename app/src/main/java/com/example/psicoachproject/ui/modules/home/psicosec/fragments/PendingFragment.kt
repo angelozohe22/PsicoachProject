@@ -34,11 +34,6 @@ class PendingFragment : Fragment(), PendingAdapter.PendingListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         _binding = FragmentPendingBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         val customPhrase = preferences.phrase.toLowerCase()
         val customName = if (preferences.name.contains("Usuario")) " (:" else ", ${preferences.name}"
@@ -51,6 +46,13 @@ class PendingFragment : Fragment(), PendingAdapter.PendingListener {
 
         setupRecycler()
         getPendings()
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     private fun setupRecycler(){
@@ -71,11 +73,13 @@ class PendingFragment : Fragment(), PendingAdapter.PendingListener {
                     }
                     is Resource.Success -> {
                         hideProgress()
+                        println("--->> Result ${result.data}")
                         val data = result.data.toMutableList()
                         if(data.isEmpty()) showEmpty()
                         else pendingAdapter.setData(data)
                     }
                     is Resource.Failure -> {
+                        println("--->>Falla")
                         hideProgress()
                         showEmpty()
                     }
@@ -92,10 +96,12 @@ class PendingFragment : Fragment(), PendingAdapter.PendingListener {
                         binding.lyContainer.showSnackBar("Cargando...")
                     }
                     is Resource.Success -> {
+                        println("--->>aceptar entra")
                         pendingAdapter.deleteItem(pending)
                         binding.lyContainer.showSnackBar(result.data)
                     }
                     is Resource.Failure -> {
+                        println("--->>aceptar falla")
                         binding.lyContainer.showSnackBar("Ha ocurrido un error")
                     }
                 }

@@ -46,15 +46,17 @@ class CalendarPsicoFragment : Fragment(), EventAdapter.EventListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         _binding = FragmentCalendarPsicoBinding.inflate(layoutInflater, container, false)
+
+        viewModel = (activity as HomeActivity).viewModelCita
+        setupRecycler()
+        setUpCalendar()
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = (activity as HomeActivity).viewModelCita
-        setupRecycler()
-        setUpCalendar()
     }
 
     private fun setupRecycler(){
