@@ -51,14 +51,13 @@ class HomeRepositoryImpl(
     }
 
     override suspend fun getPendingList(): List<Pending> {
-        val listResult = remote.getPendingList().map {
+        return remote.getPendingList().map {
             Pending(
                 id = it.id ?: 0,
                 packageName = it.packageName ?: "",
                 issue = it.issue ?: ""
             )
         }
-        return listResult
     }
 
     override suspend fun sendComment(id: Int, message: String): String {

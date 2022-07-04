@@ -6,6 +6,7 @@ import com.example.psicoachproject.data.remote.source.auth.AuthRemoteDataSource
 import com.example.psicoachproject.data.remote.source.dto.Day
 import com.example.psicoachproject.data.remote.source.dto.SecretQuestion
 import com.google.gson.Gson
+import java.lang.Exception
 
 /**
  * Created by Angelo on 5/23/2021
@@ -44,7 +45,19 @@ class AuthRepositoryImpl(
     }
 
     override suspend fun changePassword(email: String, password: String): String {
-        return remote.changePassword(email, password).message
+
+        try {
+            val message = remote.changePassword(email, password).message
+            print("---->> holaaa:: $message")
+            return message
+        }catch (e: Exception){
+            println("---->> exception:: ${e.localizedMessage}")
+            return "se cae"
+        }
+
+//        val message = remote.changePassword(email, password).message
+//        print("---->>")
+//        return remote.changePassword(email, password).message
     }
 
     override suspend fun refreshData(): String {

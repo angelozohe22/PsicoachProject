@@ -134,6 +134,7 @@ class HomeViewModel(
                 val errorResponse = t.response()
                 try {
                     val jsonError = JSONObject(errorResponse?.errorBody()?.string())
+                    print("---->> jsonError:: $jsonError")
                     val result = Gson().fromJson(jsonError.toString(), ErrorResponse::class.java)
                     if (errorResponse?.code() == 422){
                         emit(Resource.Failure(result.error.first().message))

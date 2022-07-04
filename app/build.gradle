@@ -99,7 +99,7 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.okhttp3:okhttp:3.14.9'
-    implementation "com.squareup.okhttp3:logging-interceptor:3.12.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.2.1"
     // RxJava2
     implementation "io.reactivex.rxjava2:rxjava:2.2.0"
 
@@ -111,4 +111,13 @@ dependencies {
 
     //Infinite recycler
     implementation "com.github.devlight:infinitecycleviewpager:1.0.2"
+
+    //Unit test
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'io.mockk:mockk:1.12.2'
+
+    //Unit test only for android components
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
 }

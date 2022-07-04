@@ -1,4 +1,4 @@
-package com.example.psicoachproject.common
+package com.example.psicoachproject.common.utils
 
 import android.content.Context
 import okhttp3.OkHttpClient
