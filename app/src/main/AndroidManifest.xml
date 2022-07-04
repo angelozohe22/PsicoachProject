@@ -14,12 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PsicoachProject">
-        <activity android:name=".ui.modules.home.psicosec.activities.DetailEventActivity"></activity>
-        <activity android:name=".ui.modules.home.client.activities.PagosActivity" />
-        <activity android:name=".ui.modules.home.client.activities.DatosActivity" />
-        <activity android:name=".ui.modules.home.client.activities.PromotionActivity" />
+        <activity android:name="com.example.psicoachproject.ui.modules.psicosec.calendario.DetailEventActivity"></activity>
+        <activity android:name="com.example.psicoachproject.ui.modules.client.cita.PagosActivity" />
+        <activity android:name="com.example.psicoachproject.ui.modules.client.cita.DatosActivity" />
+        <activity android:name="com.example.psicoachproject.ui.modules.client.home.PromotionActivity" />
         <activity
-            android:name=".ui.modules.main.activities.SplashActivity"
+            android:name=".ui.launch.SplashActivity"
             android:theme="@style/Theme.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,10 +27,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.modules.home.HomeActivity" />
-        <activity android:name=".ui.modules.main.activities.SignUpActivity" />
-        <activity android:name=".ui.modules.main.activities.SignInActivity" />
-        <activity android:name=".ui.modules.main.activities.MainActivity" />
+        <activity android:name=".ui.modules.MainActivity" />
+        <activity android:name=".ui.login.SignUpActivity" />
+        <activity android:name=".ui.login.SignInActivity" />
+        <activity android:name=".ui.login.MainActivity" />
     </application>
 
 </manifest>

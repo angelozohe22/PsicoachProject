@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/container"
     android:background="@drawable/background_image"
-    tools:context=".ui.modules.main.activities.MainActivity">
+    tools:context=".ui.login.MainActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_slider"

@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.psicoachproject.ui.modules.home.client.fragments.InicioFragment"
+        android:name="com.example.psicoachproject.ui.modules.client.home.HomeFragment"
         android:label="Inicio"
         tools:layout="@layout/fragment_inicio" />
     <fragment
         android:id="@+id/navigation_calendar"
-        android:name="com.example.psicoachproject.ui.modules.home.client.fragments.CalendarFragment"
+        android:name="com.example.psicoachproject.ui.modules.client.calendario.CalendarFragment"
         android:label="Opcion1"
         tools:layout="@layout/fragment_calendar" />
     <fragment
         android:id="@+id/navigation_cita"
-        android:name="com.example.psicoachproject.ui.modules.home.client.fragments.MeetingFragment"
+        android:name="com.example.psicoachproject.ui.modules.client.cita.MeetingFragment"
         android:label="Opcion2"
         tools:layout="@layout/fragment_cita" />
 </navigation>

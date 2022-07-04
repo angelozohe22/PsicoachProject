@@ -45,19 +45,8 @@ class AuthRepositoryImpl(
     }
 
     override suspend fun changePassword(email: String, password: String): String {
-
-        try {
-            val message = remote.changePassword(email, password).message
-            print("---->> holaaa:: $message")
-            return message
-        }catch (e: Exception){
-            println("---->> exception:: ${e.localizedMessage}")
-            return "se cae"
-        }
-
-//        val message = remote.changePassword(email, password).message
-//        print("---->>")
-//        return remote.changePassword(email, password).message
+        val message = remote.changePassword(email, password).message
+        return message.ifEmpty { "Cambio de contraseña con éxito" }
     }
 
     override suspend fun refreshData(): String {
