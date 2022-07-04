@@ -21,8 +21,8 @@ import com.example.psicoachproject.databinding.ActivityDatosBinding
 import com.example.psicoachproject.domain.model.Meeting
 import com.example.psicoachproject.domain.model.DatosPersonaCita
 import com.example.psicoachproject.domain.repository.home.HomeRepositoryImpl
-import com.example.psicoachproject.ui.modules.client.viewmodel.PSClientViewModel
-import com.example.psicoachproject.ui.modules.client.viewmodel.PSClientViewModelFactory
+import com.example.psicoachproject.ui.modules.viewmodel.PSViewModel
+import com.example.psicoachproject.ui.modules.viewmodel.PSViewModelFactory
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
@@ -53,8 +53,8 @@ class DatosActivity : AppCompatActivity() {
     private lateinit var meeting     : Meeting
     private lateinit var combos   : Combo
 
-    private val viewModel by viewModels<PSClientViewModel>{
-        PSClientViewModelFactory(
+    private val viewModel by viewModels<PSViewModel>{
+        PSViewModelFactory(
                 HomeRepositoryImpl(
                         remote = HomeRemoteDataSourceImpl()
                 )

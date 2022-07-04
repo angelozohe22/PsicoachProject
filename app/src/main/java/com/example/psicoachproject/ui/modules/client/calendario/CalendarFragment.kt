@@ -19,8 +19,8 @@ import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.databinding.FragmentCalendarBinding
 import com.example.psicoachproject.domain.model.MeetingCalendar
 import com.example.psicoachproject.domain.model.MeetingEvent
-import com.example.psicoachproject.ui.modules.MainActivity
-import com.example.psicoachproject.ui.modules.client.viewmodel.PSClientViewModel
+import com.example.psicoachproject.ui.modules.PSMainActivity
+import com.example.psicoachproject.ui.modules.viewmodel.PSViewModel
 import com.example.psicoachproject.ui.modules.client.calendario.adapter.EventAdapter
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,7 +30,7 @@ class CalendarFragment : Fragment(), EventAdapter.EventListener {
     private var _binding: FragmentCalendarBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: PSClientViewModel
+    private lateinit var viewModel: PSViewModel
     private var lastDate: Date? = null
     private var lastYear: String = ""
     private var lastMonth: String = ""
@@ -47,7 +47,7 @@ class CalendarFragment : Fragment(), EventAdapter.EventListener {
         // Inflate the layout for this fragment
         _binding = FragmentCalendarBinding.inflate(layoutInflater, container, false)
 
-        viewModel = (activity as MainActivity).viewModelCita
+        viewModel = (activity as PSMainActivity).viewModelCita
         setUpCalendar()
         setUpEventRecycler()
 

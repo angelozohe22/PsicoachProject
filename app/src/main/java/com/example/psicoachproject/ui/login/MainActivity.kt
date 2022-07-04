@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.example.psicoachproject.R
 import com.example.psicoachproject.databinding.ActivityMainBinding
-import com.example.psicoachproject.ui.modules.main.fragments.intro.IntroFragment
 import com.example.psicoachproject.common.utils.transform.FadePageTransfomer
 import com.example.psicoachproject.common.utils.transform.MyPageAdapter
+import com.example.psicoachproject.ui.login.intropager.IntroFragment
 
 class MainActivity : AppCompatActivity() {
 

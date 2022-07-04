@@ -1,4 +1,4 @@
-package com.example.psicoachproject.ui.modules.psicosec.pendientes
+package com.example.psicoachproject.ui.modules.secretary.pendientes
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,9 +17,9 @@ import com.example.psicoachproject.databinding.DialogCancelPendingBinding
 import com.example.psicoachproject.databinding.DialogImgVoucherBinding
 import com.example.psicoachproject.databinding.FragmentPendingBinding
 import com.example.psicoachproject.domain.model.Pending
-import com.example.psicoachproject.ui.modules.MainActivity
-import com.example.psicoachproject.ui.modules.client.viewmodel.PSClientViewModel
-import com.example.psicoachproject.ui.modules.psicosec.pendientes.adapter.PendingAdapter
+import com.example.psicoachproject.ui.modules.PSMainActivity
+import com.example.psicoachproject.ui.modules.viewmodel.PSViewModel
+import com.example.psicoachproject.ui.modules.secretary.pendientes.adapter.PendingAdapter
 
 class PendingFragment : Fragment(), PendingAdapter.PendingListener {
 
@@ -29,7 +29,7 @@ class PendingFragment : Fragment(), PendingAdapter.PendingListener {
     private lateinit var bindingAc: ActivityHomeBinding
 
     private val pendingAdapter by lazy { PendingAdapter(this) }
-    private lateinit var viewModel: PSClientViewModel
+    private lateinit var viewModel: PSViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -41,8 +41,8 @@ class PendingFragment : Fragment(), PendingAdapter.PendingListener {
         binding.lblName.text = "Bienvenid@$customName"
         binding.lblPhrase.text = "\" ${customPhrase.capitalize()} \" "
 
-        viewModel = (activity as MainActivity).viewModelCita
-        bindingAc = (activity as MainActivity).binding
+        viewModel = (activity as PSMainActivity).viewModelCita
+        bindingAc = (activity as PSMainActivity).binding
 
         setupRecycler()
         getPendings()

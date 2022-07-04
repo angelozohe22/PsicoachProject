@@ -7,6 +7,8 @@ import com.example.psicoachproject.domain.model.DatosPersonaCita
 import com.example.psicoachproject.domain.model.MeetingCalendar
 import com.example.psicoachproject.domain.model.MeetingTime
 import com.example.psicoachproject.domain.model.Pending
+import java.io.IOException
+import java.lang.Exception
 
 /**
  * Created by Angelo on 6/29/2021
@@ -65,6 +67,12 @@ class HomeRepositoryImpl(
     }
 
     override suspend fun changeStateAppointment(id: String, status: String): String {
-        return remote.changeStateAppointment(id, status)
+        try {
+            val responseMessage = remote.changeStateAppointment(id, status)
+            remote.getPendingList()
+            return responseMessage
+        }catch (e: Exception){
+            return throw IOException()
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.psicoachproject.ui.modules.psicosec.calendario.adapter
+package com.example.psicoachproject.ui.modules.secretary.calendario.adapter
 
 import android.view.LayoutInflater
 import android.view.View

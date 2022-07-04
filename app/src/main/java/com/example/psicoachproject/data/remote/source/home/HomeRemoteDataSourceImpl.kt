@@ -1,17 +1,19 @@
 package com.example.psicoachproject.data.remote.source.home
 
-import com.example.psicoachproject.common.utils.toDateStringDate
-import com.example.psicoachproject.common.utils.toJson
+import com.example.psicoachproject.common.utils.*
 import com.example.psicoachproject.core.Constants
 import com.example.psicoachproject.core.aplication.preferences
 import com.example.psicoachproject.data.remote.RetrofitBuilder
 import com.example.psicoachproject.data.remote.service.home.HomeService
+import com.example.psicoachproject.data.remote.source.dto.CommentResponse
 import com.example.psicoachproject.data.remote.source.dto.PendingResponse
 import com.example.psicoachproject.data.remote.source.dto.UserResponse
 import com.example.psicoachproject.domain.model.Comment
 import com.example.psicoachproject.domain.model.MeetingCalendar
 import com.example.psicoachproject.domain.model.MeetingEvent
 import com.example.psicoachproject.domain.model.PendingMeetingEvent
+import java.io.IOException
+import java.lang.Exception
 
 /**
  * Created by Angelo on 6/29/2021
@@ -86,9 +88,7 @@ class HomeRemoteDataSourceImpl: HomeRemoteDataSource {
                 endTime = it.endTime ?: "00:00",
                 description = it.description ?: "",
                 link = it.link ?: "",
-                comments = it.comments?.map { com ->
-                    Comment(id = com.id ?: 0, comment = com.comment ?: "")
-                } ?: emptyList(),
+                comments = commentMapper(it.comments),
                 state = Constants.STATE_OK)
         }
 
@@ -131,6 +131,16 @@ class HomeRemoteDataSourceImpl: HomeRemoteDataSource {
             json  = parameters,
             token = " ${Constants.TYPE_AUTH} ${preferences.token}"
         ).message
+    }
+
+    private fun commentMapper(commentList: List<CommentResponse>?): List<Comment>{
+        val commentMapper = mutableListOf<Comment>()
+        commentList?.forEach { comment ->
+            if (comment.id != null && comment.comment != null){
+                commentMapper.add(Comment(id = comment.id, comment = comment.comment))
+            }
+        }
+        return commentMapper
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.psicoachproject.ui.modules.psicosec.calendario
+package com.example.psicoachproject.ui.modules.secretary.calendario
 
 import android.content.Intent
 import android.graphics.Color
@@ -20,8 +20,8 @@ import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.databinding.FragmentCalendarPsicoBinding
 import com.example.psicoachproject.domain.model.MeetingCalendar
 import com.example.psicoachproject.domain.model.MeetingEvent
-import com.example.psicoachproject.ui.modules.MainActivity
-import com.example.psicoachproject.ui.modules.client.viewmodel.PSClientViewModel
+import com.example.psicoachproject.ui.modules.PSMainActivity
+import com.example.psicoachproject.ui.modules.viewmodel.PSViewModel
 import com.example.psicoachproject.ui.modules.client.calendario.adapter.EventAdapter
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,7 +32,7 @@ class CalendarPsicoFragment : Fragment(), EventAdapter.EventListener {
     private val binding get() = _binding!!
 
     private val eventsAdapter by lazy { EventAdapter(this) }
-    private lateinit var viewModel: PSClientViewModel
+    private lateinit var viewModel: PSViewModel
 
     private var lastDate: Date? = null
     private var lastYear: String = ""
@@ -46,7 +46,7 @@ class CalendarPsicoFragment : Fragment(), EventAdapter.EventListener {
                               savedInstanceState: Bundle?): View? {
         _binding = FragmentCalendarPsicoBinding.inflate(layoutInflater, container, false)
 
-        viewModel = (activity as MainActivity).viewModelCita
+        viewModel = (activity as PSMainActivity).viewModelCita
         setupRecycler()
         setUpCalendar()
 

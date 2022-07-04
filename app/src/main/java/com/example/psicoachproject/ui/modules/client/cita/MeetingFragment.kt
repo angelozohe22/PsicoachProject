@@ -23,8 +23,8 @@ import com.example.psicoachproject.databinding.DialogTerminosBinding
 import com.example.psicoachproject.databinding.FragmentCitaBinding
 import com.example.psicoachproject.domain.model.Meeting
 import com.example.psicoachproject.domain.model.MeetingTime
-import com.example.psicoachproject.ui.modules.MainActivity
-import com.example.psicoachproject.ui.modules.client.viewmodel.PSClientViewModel
+import com.example.psicoachproject.ui.modules.PSMainActivity
+import com.example.psicoachproject.ui.modules.viewmodel.PSViewModel
 import com.example.psicoachproject.ui.modules.client.cita.adapter.BenefitListAdapter
 import com.example.psicoachproject.ui.modules.client.fragments.adapter.MeetingAdapter
 import com.example.psicoachproject.ui.modules.client.fragments.adapter.MeetingListener
@@ -58,7 +58,7 @@ class MeetingFragment : Fragment(), MeetingListener {
     private val meetingAdapter by lazy { MeetingAdapter(this) }
     private val terminosAdapter by lazy{ BenefitListAdapter() }
 
-    private lateinit var viewModel: PSClientViewModel
+    private lateinit var viewModel: PSViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,8 +80,8 @@ class MeetingFragment : Fragment(), MeetingListener {
         etDescription   = binding.etDescripcionCita
 
         combos = Gson().fromJson(preferences.combos, Combo::class.java)
-        viewModel = (activity as MainActivity).viewModelCita
-        bindingAc = (activity as MainActivity).binding
+        viewModel = (activity as PSMainActivity).viewModelCita
+        bindingAc = (activity as PSMainActivity).binding
 
         setUpDropDowns()
         textInputValidator()

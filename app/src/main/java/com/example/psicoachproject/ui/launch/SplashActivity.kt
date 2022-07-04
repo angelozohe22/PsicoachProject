@@ -10,8 +10,10 @@ import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.core.aplication.preferences
 import com.example.psicoachproject.data.remote.source.auth.AuthRemoteDataSourceImpl
 import com.example.psicoachproject.domain.repository.auth.AuthRepositoryImpl
+import com.example.psicoachproject.ui.login.MainActivity
 import com.example.psicoachproject.ui.login.viewmodel.AuthViewModel
 import com.example.psicoachproject.ui.login.viewmodel.AuthViewModelFactory
+import com.example.psicoachproject.ui.modules.PSMainActivity
 
 /**
  * Created by Angelo on 6/27/2021
@@ -45,7 +47,7 @@ class SplashActivity: AppCompatActivity() {
                         }
                         is Resource.Success -> {
                             println("Hecho...")
-                            val intent = Intent(this, MainActivity::class.java)
+                            val intent = Intent(this, PSMainActivity::class.java)
                             startActivity(intent)
                             finish()
                         }

@@ -25,15 +25,15 @@ import com.example.psicoachproject.data.remote.source.home.HomeRemoteDataSourceI
 import com.example.psicoachproject.databinding.ActivityHomeBinding
 import com.example.psicoachproject.domain.repository.auth.AuthRepositoryImpl
 import com.example.psicoachproject.domain.repository.home.HomeRepositoryImpl
-import com.example.psicoachproject.ui.modules.client.viewmodel.PSClientViewModel
-import com.example.psicoachproject.ui.modules.client.viewmodel.PSClientViewModelFactory
+import com.example.psicoachproject.ui.modules.viewmodel.PSViewModel
+import com.example.psicoachproject.ui.modules.viewmodel.PSViewModelFactory
 import com.example.psicoachproject.ui.login.MainActivity
 import com.example.psicoachproject.ui.login.viewmodel.AuthViewModel
 import com.example.psicoachproject.ui.login.viewmodel.AuthViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity() {
+class PSMainActivity : AppCompatActivity() {
 
     lateinit var binding            : ActivityHomeBinding
 
@@ -52,8 +52,8 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    val viewModelCita by viewModels<PSClientViewModel>{
-        PSClientViewModelFactory(
+    val viewModelCita by viewModels<PSViewModel>{
+        PSViewModelFactory(
                 HomeRepositoryImpl(
                         remote = HomeRemoteDataSourceImpl()
                 )

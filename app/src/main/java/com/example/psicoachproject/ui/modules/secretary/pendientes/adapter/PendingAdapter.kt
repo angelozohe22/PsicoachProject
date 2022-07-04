@@ -1,4 +1,4 @@
-package com.example.psicoachproject.ui.modules.psicosec.pendientes.adapter
+package com.example.psicoachproject.ui.modules.secretary.pendientes.adapter
 
 import android.view.LayoutInflater
 import android.view.View

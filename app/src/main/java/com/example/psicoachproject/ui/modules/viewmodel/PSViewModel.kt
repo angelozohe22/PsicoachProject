@@ -1,4 +1,4 @@
-package com.example.psicoachproject.ui.modules.client.viewmodel
+package com.example.psicoachproject.ui.modules.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -15,7 +15,7 @@ import java.lang.Exception
 /**
  * Created by Angelo on 7/3/2021
  */
-class PSClientViewModel(
+class PSViewModel(
         private val repository: HomeRepository
 ): ViewModel() {
 

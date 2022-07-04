@@ -1,4 +1,4 @@
-package com.example.psicoachproject.ui.modules.psicosec.calendario
+package com.example.psicoachproject.ui.modules.secretary.calendario
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,15 +9,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.psicoachproject.R
 import com.example.psicoachproject.common.utils.afterTextChanged
 import com.example.psicoachproject.common.utils.getColorPackage
+import com.example.psicoachproject.common.utils.onRightDrawableClicked
+import com.example.psicoachproject.common.utils.showSnackBar
 import com.example.psicoachproject.core.Resource
 import com.example.psicoachproject.data.remote.source.home.HomeRemoteDataSourceImpl
 import com.example.psicoachproject.databinding.ActivityDetailEventBinding
 import com.example.psicoachproject.domain.model.Comment
 import com.example.psicoachproject.domain.model.MeetingEvent
 import com.example.psicoachproject.domain.repository.home.HomeRepositoryImpl
-import com.example.psicoachproject.ui.modules.client.viewmodel.PSClientViewModel
-import com.example.psicoachproject.ui.modules.client.viewmodel.PSClientViewModelFactory
-import com.example.psicoachproject.ui.modules.psicosec.calendario.adapter.CommentAdapter
+import com.example.psicoachproject.ui.modules.viewmodel.PSViewModel
+import com.example.psicoachproject.ui.modules.viewmodel.PSViewModelFactory
+import com.example.psicoachproject.ui.modules.secretary.calendario.adapter.CommentAdapter
 
 class DetailEventActivity : AppCompatActivity() {
 
@@ -26,8 +28,8 @@ class DetailEventActivity : AppCompatActivity() {
 
     private val commentAdapter by lazy { CommentAdapter() }
 
-    private val viewModel by viewModels<PSClientViewModel>{
-        PSClientViewModelFactory(
+    private val viewModel by viewModels<PSViewModel>{
+        PSViewModelFactory(
             HomeRepositoryImpl(
                 remote = HomeRemoteDataSourceImpl()
             )

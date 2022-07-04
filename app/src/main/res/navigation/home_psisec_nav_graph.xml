@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/nav_calendar_psico"
-        android:name="com.example.psicoachproject.ui.modules.psicosec.calendario.CalendarPsicoFragment"
+        android:name="com.example.psicoachproject.ui.modules.secretary.calendario.CalendarPsicoFragment"
         android:label="Calendario"
         tools:layout="@layout/fragment_calendar_psico" />
 
     <fragment
         android:id="@+id/nav_pending_psico"
-        android:name="com.example.psicoachproject.ui.modules.psicosec.pendientes.PendingFragment"
+        android:name="com.example.psicoachproject.ui.modules.secretary.pendientes.PendingFragment"
         android:label="Pendientes"
         tools:layout="@layout/fragment_pending" />
 </navigation>
